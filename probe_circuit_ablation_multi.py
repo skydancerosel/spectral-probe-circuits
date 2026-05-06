@@ -4,8 +4,10 @@ Multi-layer ablation variant of probe_circuit_ablation.py.
 Conditions are specified as dicts of {layer_idx: [head_indices]} so we can
 ablate multiple heads across multiple layers in a single pass.
 
-Designed for s271 testing where the spectrally-identified circuit candidates
-span L6 + L7, not just L0 like in s42.
+Each --tag selects a hardcoded condition set whose spectral picks come from
+probe_circuit_per_head.py (run that first, eyeball the top heads by PR spread).
+
+Tags supported: s42, s271, s149.
 """
 
 import json
@@ -92,37 +94,79 @@ def main():
         n_head=cfg.n_head, d_ff=cfg.d_ff, dropout=0.0,
     ).to(device)
 
-    # s271-specific candidate set: from per-head spectral, top heads by spread
-    # during steps 200..2000 (s271 emergence window):
-    #   L6H10, L7H9, L6H1, L7H15  (top 4 by spread, spread 9.0–11.0)
-    # Plus s42-circuit-on-s271 (L0H{3,6,14,15}) — should NOT cause big effect
-    # if seed-specific localization is real.
+    # Per-seed circuit-condition sets. Spectral picks were determined offline
+    # by probe_circuit_per_head.py and are hardcoded here:
+    #   s42:  L0H{3, 6, 14, 15}             (PR spread 19.9–22.8, all L0)
+    #   s271: L6H{1, 10} + L7H{9, 15}        (PR spread 9.0–11.0, late layers)
+    #   s149: L6H{2, 5, 6, 7} + L7H13        (PR spread 20.4–24.1, late layers)
+    # Each seed's run includes (i) its own circuit ablation, (ii) the other
+    # seeds' circuits as cross-seed checks, (iii) matched random control.
     rng = np.random.RandomState(42)
-    eligible_L6 = [h for h in range(n_head) if h not in (1, 10)]
-    eligible_L7 = [h for h in range(n_head) if h not in (9, 15)]
-    random_L6 = sorted(rng.choice(eligible_L6, size=2, replace=False).tolist())
-    random_L7 = sorted(rng.choice(eligible_L7, size=2, replace=False).tolist())
 
-    conditions = [
-        ("baseline",                          {}),
-        # Main: ablate s271-identified circuit (L6H{1,10} + L7H{9,15})
-        ("ablate_s271_circuit_L6L7",          {6: [1, 10], 7: [9, 15]}),
-        # Each circuit head individually
-        ("ablate_L6H1",                       {6: [1]}),
-        ("ablate_L6H10",                      {6: [10]}),
-        ("ablate_L7H9",                       {7: [9]}),
-        ("ablate_L7H15",                      {7: [15]}),
-        # Per-layer pairs
-        ("ablate_L6_pair_only",               {6: [1, 10]}),
-        ("ablate_L7_pair_only",               {7: [9, 15]}),
-        # Test the s42-circuit hypothesis on s271 (should NOT work if seed-specific)
-        ("ablate_s42_circuit_on_s271",        {0: [3, 6, 14, 15]}),
-        # Matched control: 2 random heads from L6 + 2 from L7, NOT in circuit
-        ("ablate_matched_random_L6L7",        {6: random_L6, 7: random_L7}),
-        # Upper bound: ablate ALL of L6 + L7
-        ("ablate_full_L6L7",                  {6: list(range(n_head)),
+    s42_circuit  = {0: [3, 6, 14, 15]}
+    s271_circuit = {6: [1, 10], 7: [9, 15]}
+    s149_circuit = {6: [2, 5, 6, 7], 7: [13]}
+
+    if TAG == "s271":
+        eligible_L6 = [h for h in range(n_head) if h not in (1, 10)]
+        eligible_L7 = [h for h in range(n_head) if h not in (9, 15)]
+        random_L6 = sorted(rng.choice(eligible_L6, size=2, replace=False).tolist())
+        random_L7 = sorted(rng.choice(eligible_L7, size=2, replace=False).tolist())
+        conditions = [
+            ("baseline",                       {}),
+            ("ablate_s271_circuit_L6L7",       s271_circuit),
+            ("ablate_L6H1",                    {6: [1]}),
+            ("ablate_L6H10",                   {6: [10]}),
+            ("ablate_L7H9",                    {7: [9]}),
+            ("ablate_L7H15",                   {7: [15]}),
+            ("ablate_L6_pair_only",            {6: [1, 10]}),
+            ("ablate_L7_pair_only",            {7: [9, 15]}),
+            ("ablate_s42_circuit_on_s271",     s42_circuit),
+            ("ablate_matched_random_L6L7",     {6: random_L6, 7: random_L7}),
+            ("ablate_full_L6L7",               {6: list(range(n_head)),
                                                 7: list(range(n_head))}),
-    ]
+        ]
+    elif TAG == "s149":
+        eligible_L6 = [h for h in range(n_head) if h not in (2, 5, 6, 7)]
+        eligible_L7 = [h for h in range(n_head) if h != 13]
+        random_L6 = sorted(rng.choice(eligible_L6, size=4, replace=False).tolist())
+        random_L7 = sorted(rng.choice(eligible_L7, size=1, replace=False).tolist())
+        conditions = [
+            ("baseline",                       {}),
+            ("ablate_s149_circuit_L6L7",       s149_circuit),
+            ("ablate_L6H2",                    {6: [2]}),
+            ("ablate_L6H5",                    {6: [5]}),
+            ("ablate_L6H6",                    {6: [6]}),
+            ("ablate_L6H7",                    {6: [7]}),
+            ("ablate_L7H13",                   {7: [13]}),
+            ("ablate_L6_quad_only",            {6: [2, 5, 6, 7]}),
+            ("ablate_s42_circuit_on_s149",     s42_circuit),
+            ("ablate_s271_circuit_on_s149",    s271_circuit),
+            ("ablate_matched_random_L6L7",     {6: random_L6, 7: random_L7}),
+            ("ablate_full_L6L7",               {6: list(range(n_head)),
+                                                7: list(range(n_head))}),
+        ]
+    elif TAG == "s42":
+        eligible_L0 = [h for h in range(n_head) if h not in (3, 6, 14, 15)]
+        random_L0 = sorted(rng.choice(eligible_L0, size=4, replace=False).tolist())
+        random_L6 = []
+        random_L7 = []
+        conditions = [
+            ("baseline",                       {}),
+            ("ablate_s42_circuit_L0",          s42_circuit),
+            ("ablate_L0H3",                    {0: [3]}),
+            ("ablate_L0H6",                    {0: [6]}),
+            ("ablate_L0H14",                   {0: [14]}),
+            ("ablate_L0H15",                   {0: [15]}),
+            ("ablate_s271_circuit_on_s42",     s271_circuit),
+            ("ablate_s149_circuit_on_s42",     s149_circuit),
+            ("ablate_matched_random_L0",       {0: random_L0}),
+            ("ablate_full_L0",                 {0: list(range(n_head))}),
+            ("ablate_full_L6L7",               {6: list(range(n_head)),
+                                                7: list(range(n_head))}),
+        ]
+    else:
+        raise ValueError(f"Unknown TAG {TAG!r}; expected one of: s42, s271, s149")
 
     results = {"conditions": [], "test_ckpts": TEST_CKPTS,
                "tag": TAG, "run_dir": str(PRETRAIN_DIR),
