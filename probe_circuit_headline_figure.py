@@ -149,10 +149,11 @@ def main():
     ax_abl.legend(fontsize=8, loc="lower right")
     ax_abl.grid(True, alpha=0.3, axis="y")
 
-    # ── Panel D (bottom-right): 3-seed cross-seed asymmetry as heatmap ──
+    # ── Panel D (bottom-right): 4-seed cross-seed asymmetry as heatmap ──
     ax_xs = fig.add_subplot(gs[2, 1])
 
     ablation_s149 = json.load(open(ANALYSES / "probe_circuit_ablation_s149.json"))
+    ablation_s256 = json.load(open(ANALYSES / "probe_circuit_ablation_s256.json"))
     s42_xs_data = {r["name"]: r["probe_in_acc"]
                     for r in ablation_s42_with_s271["conditions"]
                     if r["ckpt_step"] == 4000}
@@ -162,18 +163,30 @@ def main():
     s149_data = {r["name"]: r["probe_in_acc"]
                   for r in ablation_s149["conditions"]
                   if r["ckpt_step"] == 4000}
+    s256_data = {r["name"]: r["probe_in_acc"]
+                  for r in ablation_s256["conditions"]
+                  if r["ckpt_step"] == 4000}
 
     NA = np.nan
+    # Columns: baseline, ablate_s42, ablate_s271, ablate_s149, ablate_s256
+    # Rows: s42, s271, s149, s256
     grid = np.array([
-        # baseline,  ablate_s42_picks,                ablate_s271_picks,            ablate_s149_picks
-        [s42_xs_data.get("baseline", NA),  s42_xs_data.get("baseline", NA) - 0,  # baseline placeholder gives s42 own circuit via row1
-         s42_xs_data.get("ablate_s271_circuit_L6L7", NA), NA],  # NA: s149 picks on s42 not yet measured
-        [s271_data.get("baseline", NA), s271_data.get("ablate_s42_circuit_on_s271", NA),
-         s271_data.get("ablate_s271_circuit_L6L7", NA), NA],   # NA: s149 picks on s271 not yet measured
-        [s149_data.get("baseline", NA), s149_data.get("ablate_s42_circuit_on_s149", NA),
-         s149_data.get("ablate_s271_circuit_on_s149", NA), s149_data.get("ablate_s149_circuit_L6L7", NA)],
+        [s42_xs_data.get("baseline", NA), NA,
+         s42_xs_data.get("ablate_s271_circuit_L6L7", NA), NA, NA],
+        [s271_data.get("baseline", NA),
+         s271_data.get("ablate_s42_circuit_on_s271", NA),
+         s271_data.get("ablate_s271_circuit_L6L7", NA), NA, NA],
+        [s149_data.get("baseline", NA),
+         s149_data.get("ablate_s42_circuit_on_s149", NA),
+         s149_data.get("ablate_s271_circuit_on_s149", NA),
+         s149_data.get("ablate_s149_circuit_L6L7", NA), NA],
+        [s256_data.get("baseline", NA),
+         s256_data.get("ablate_s42_circuit_on_s256", NA),
+         s256_data.get("ablate_s271_circuit_on_s256", NA),
+         s256_data.get("ablate_s149_circuit_on_s256", NA),
+         s256_data.get("ablate_s256_circuit_L5L6L7", NA)],
     ])
-    # cell (0,1) = s42 own ablation: that's "ablate_circuit" in the s42-only ablation file
+    # cell (0,1) = s42 own ablation
     grid[0, 1] = next((r["probe_in_acc"] for r in ablation_s42["conditions"]
                        if r["ckpt_step"] == 4000 and r["name"] == "ablate_circuit"), NA)
 
@@ -189,26 +202,29 @@ def main():
                             fontsize=8, color="dimgray")
             else:
                 color = "white" if v < 0.45 else "black"
-                weight = "bold" if i == j else "normal"
+                weight = "bold" if i + 1 == j else "normal"  # diagonal: row i, col i+1 (skip baseline col)
                 ax_xs.text(j, i, f"{v:.2f}", ha="center", va="center",
                             fontsize=9, color=color, weight=weight)
-    ax_xs.set_xticks(range(4))
-    ax_xs.set_xticklabels(["baseline", "ablate L0H{3,6,14,15}\n(s42 picks)",
+    ax_xs.set_xticks(range(5))
+    ax_xs.set_xticklabels(["baseline",
+                             "ablate L0H{3,6,14,15}\n(s42 picks)",
                              "ablate L6H{1,10}+L7H{9,15}\n(s271 picks)",
-                             "ablate L6H{2,5,6,7}+L7H13\n(s149 picks)"],
-                            fontsize=8)
-    ax_xs.set_yticks(range(3))
-    ax_xs.set_yticklabels(["s42\n(eval @ ckpt 4000)",
-                             "s271\n(eval @ ckpt 2000)",
-                             "s149\n(eval @ ckpt 4000)"], fontsize=8)
-    ax_xs.set_title("(D) Cross-seed asymmetry on three seeds:\n"
-                     "diagonal = own picks tank own circuit; gray = not yet measured",
+                             "ablate L6H{2,5,6,7}+L7H13\n(s149 picks)",
+                             "ablate L5H10+L6H{2,4}\n+L7H{6,13} (s256 picks)"],
+                            fontsize=7)
+    ax_xs.set_yticks(range(4))
+    ax_xs.set_yticklabels(["s42\n(eval @ 4000)",
+                             "s271\n(eval @ 2000)",
+                             "s149\n(eval @ 4000)",
+                             "s256\n(eval @ 4000)"], fontsize=8)
+    ax_xs.set_title("(D) Cross-seed asymmetry on four seeds:\n"
+                     "bold = own picks tank own circuit; gray = not yet measured",
                      fontsize=11, loc="left", weight="bold")
     cbar = plt.colorbar(im, ax=ax_xs, shrink=0.7, pad=0.02)
     cbar.set_label("probe_in_acc after ablation", fontsize=8)
 
     fig.suptitle(
-        "Probe-retrieval circuit in TS-51M (n=3 seeds):\n"
+        "Probe-retrieval circuit in TS-51M (n=4 seeds):\n"
         "spectral identification → causal ablation → mechanistic confirmation → cross-seed asymmetry",
         fontsize=13, weight="bold", y=0.995,
     )

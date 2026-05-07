@@ -99,6 +99,8 @@ def main():
     #   s42:  L0H{3, 6, 14, 15}             (PR spread 19.9–22.8, all L0)
     #   s271: L6H{1, 10} + L7H{9, 15}        (PR spread 9.0–11.0, late layers)
     #   s149: L6H{2, 5, 6, 7} + L7H13        (PR spread 20.4–24.1, late layers)
+    #   s256: L5H10 + L6H{2, 4} + L7H{6, 13} (PR spread 19.7–23.4, mid-late layers)
+    # s149 and s256 share specific heads L6H2 + L7H13 — first observed cross-seed overlap.
     # Each seed's run includes (i) its own circuit ablation, (ii) the other
     # seeds' circuits as cross-seed checks, (iii) matched random control.
     rng = np.random.RandomState(42)
@@ -106,6 +108,7 @@ def main():
     s42_circuit  = {0: [3, 6, 14, 15]}
     s271_circuit = {6: [1, 10], 7: [9, 15]}
     s149_circuit = {6: [2, 5, 6, 7], 7: [13]}
+    s256_circuit = {5: [10], 6: [2, 4], 7: [6, 13]}
 
     if TAG == "s271":
         eligible_L6 = [h for h in range(n_head) if h not in (1, 10)]
@@ -165,8 +168,31 @@ def main():
             ("ablate_full_L6L7",               {6: list(range(n_head)),
                                                 7: list(range(n_head))}),
         ]
+    elif TAG == "s256":
+        eligible_L5 = [h for h in range(n_head) if h != 10]
+        eligible_L6 = [h for h in range(n_head) if h not in (2, 4)]
+        eligible_L7 = [h for h in range(n_head) if h not in (6, 13)]
+        random_L5 = sorted(rng.choice(eligible_L5, size=1, replace=False).tolist())
+        random_L6 = sorted(rng.choice(eligible_L6, size=2, replace=False).tolist())
+        random_L7 = sorted(rng.choice(eligible_L7, size=2, replace=False).tolist())
+        conditions = [
+            ("baseline",                       {}),
+            ("ablate_s256_circuit_L5L6L7",     s256_circuit),
+            ("ablate_L5H10",                   {5: [10]}),
+            ("ablate_L6H2",                    {6: [2]}),
+            ("ablate_L6H4",                    {6: [4]}),
+            ("ablate_L7H6",                    {7: [6]}),
+            ("ablate_L7H13",                   {7: [13]}),
+            ("ablate_s42_circuit_on_s256",     s42_circuit),
+            ("ablate_s271_circuit_on_s256",    s271_circuit),
+            ("ablate_s149_circuit_on_s256",    s149_circuit),
+            ("ablate_matched_random_L5L6L7",   {5: random_L5, 6: random_L6, 7: random_L7}),
+            ("ablate_full_L5L6L7",             {5: list(range(n_head)),
+                                                6: list(range(n_head)),
+                                                7: list(range(n_head))}),
+        ]
     else:
-        raise ValueError(f"Unknown TAG {TAG!r}; expected one of: s42, s271, s149")
+        raise ValueError(f"Unknown TAG {TAG!r}; expected one of: s42, s271, s149, s256")
 
     results = {"conditions": [], "test_ckpts": TEST_CKPTS,
                "tag": TAG, "run_dir": str(PRETRAIN_DIR),
