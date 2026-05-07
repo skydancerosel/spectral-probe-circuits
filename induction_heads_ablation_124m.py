@@ -18,8 +18,8 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-REPO = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(REPO / "analyses"))
+REPO = Path(__file__).resolve().parent
+sys.path.insert(0, str(REPO))
 from induction_heads_per_head_124m import (
     GPT, GPTConfig, load_karpathy_ckpt, build_induction_batch
 )
@@ -105,7 +105,7 @@ def main():
     print(f"device = {device}")
 
     # Load top picks from per_head output
-    per_head_json = REPO / "analyses/induction_heads_per_head_124m.json"
+    per_head_json = REPO / "results/induction_heads_per_head_124m.json"
     if not per_head_json.exists():
         print(f"ERROR: missing {per_head_json}")
         sys.exit(1)
@@ -169,7 +169,7 @@ def main():
         print(f"  {name:<35} {r['loss']:>8.4f} {r['acc_top1']:>8.4f} {r['acc_top5']:>8.4f}")
         results.append({"name": name, "spec": {str(k): v for k, v in spec.items()}, **r})
 
-    out_json = REPO / "analyses/induction_heads_ablation_124m.json"
+    out_json = REPO / "results/induction_heads_ablation_124m.json"
     with open(out_json, "w") as f:
         json.dump({"step": int(step),
                     "spectral_picks": [(L, H) for L, H, _ in top_picks],

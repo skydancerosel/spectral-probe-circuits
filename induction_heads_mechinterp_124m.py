@@ -20,8 +20,8 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-REPO = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(REPO / "analyses"))
+REPO = Path(__file__).resolve().parent
+sys.path.insert(0, str(REPO))
 from induction_heads_per_head_124m import (
     GPT, GPTConfig, load_karpathy_ckpt, build_induction_batch
 )
@@ -84,7 +84,7 @@ def main():
     print(f"device = {device}")
 
     # Load top picks from per_head output
-    per_head_json = REPO / "analyses/induction_heads_per_head_124m.json"
+    per_head_json = REPO / "results/induction_heads_per_head_124m.json"
     if not per_head_json.exists():
         print(f"ERROR: missing {per_head_json}")
         print("Run induction_heads_per_head_124m.py first.")
@@ -197,7 +197,7 @@ def main():
     for k, v in sel_sorted[:15]:
         print(f"  {k:<8} {v['selectivity']:>12.1f}x")
 
-    out_json = REPO / "analyses/induction_heads_mechinterp_124m.json"
+    out_json = REPO / "results/induction_heads_mechinterp_124m.json"
     with open(out_json, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nwrote {out_json}")

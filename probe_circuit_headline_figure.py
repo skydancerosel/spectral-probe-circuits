@@ -21,8 +21,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
-REPO = Path(__file__).resolve().parent.parent
-ANALYSES = REPO / "analyses"
+REPO = Path(__file__).resolve().parent
+ANALYSES = REPO / "results"
 
 CIRCUIT_HEADS_S42 = [3, 6, 14, 15]
 CONTROL_HEADS_S42 = [0, 1, 5, 7]

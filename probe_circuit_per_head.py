@@ -29,14 +29,53 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 
-REPO = Path(__file__).resolve().parent.parent
+REPO = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO / "training"))
 from config import Config, get_device
 from model import GPTModel
 from dataset import build_datasets
 
-sys.path.insert(0, str(REPO / "analyses"))
-from forgetting_monitors import kstar_weighted, participation_ratio
+
+# Inlined from analyses/forgetting_monitors.py in mini_gpt (the parent
+# research repo). These two functions are all we need from there.
+def kstar_weighted(sigma: np.ndarray, eps: float = 0.05) -> int:
+    """Signal-weighted k* (see thesis Remark after Def kstar):
+        k*_w = argmax_{j: sigma_{j+1} >= eps * sigma_1}
+                 (sigma_j / sum sigma) * (sigma_j / sigma_{j+1})
+    sigma: descending singular values. Returns 1-indexed k*.
+    """
+    if len(sigma) < 2:
+        return 1
+    s = sigma.astype(np.float64)
+    s_sum = s.sum()
+    if s_sum <= 0:
+        return 1
+    s1 = s[0]
+    best_j, best_score = 1, -np.inf
+    for j in range(1, len(s) - 1):
+        if s[j] < eps * s1:
+            break
+        if s[j + 1] <= 0:
+            continue
+        score = (s[j] / s_sum) * (s[j] / s[j + 1])
+        if score > best_score:
+            best_score = score
+            best_j = j
+    return best_j + 1
+
+
+def participation_ratio(sigma: np.ndarray) -> float:
+    """PR = exp(spectral entropy of normalized squared singular values).
+    Bounded in [1, len(sigma)]. Low PR => energy concentrated.
+    """
+    s2 = sigma.astype(np.float64) ** 2
+    s2_sum = s2.sum()
+    if s2_sum <= 0:
+        return float("nan")
+    p = s2 / s2_sum
+    p = p[p > 0]
+    H = -float((p * np.log(p)).sum())
+    return float(np.exp(H))
 
 
 import argparse  # noqa: E402

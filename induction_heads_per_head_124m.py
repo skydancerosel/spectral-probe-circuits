@@ -30,7 +30,7 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-REPO = Path(__file__).resolve().parent.parent
+REPO = Path(__file__).resolve().parent
 KARPATHY_CKPT_DIR = REPO / "karpathy_llmc/runs/gpt2_fineweb10B"
 
 # ───────────────────── Karpathy GPT-2 124M ──────────────────────
@@ -301,7 +301,7 @@ def main():
             print(f"  ckpt {ck_idx+1}/{len(ckpts)} step={step:>5}  "
                   f"PR max={top:.2f}  mean={mean:.2f}")
 
-    out_json = REPO / "analyses/induction_heads_per_head_124m.json"
+    out_json = REPO / "results/induction_heads_per_head_124m.json"
     with open(out_json, "w") as f:
         json.dump(out, f, indent=2)
     print(f"\nwrote {out_json}")

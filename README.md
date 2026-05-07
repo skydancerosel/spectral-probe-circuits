@@ -188,21 +188,29 @@ spectral-probe-circuits/
 ├── INDUCTION_HEADS.md         # induction-heads generalization test
 ├── RESULTS.md                 # long-form per-condition tables
 ├── headline.png
+├── LICENSE                    # MIT
 ├── requirements.txt
-├── training/
+├── training/                  # pretraining pipeline (TS-51M)
 │   ├── pilot.py               # training entry point (probe-injection + LM loss)
 │   ├── model.py               # 8L/512d/16h GPT
 │   ├── config.py              # Config dataclass, device selection
 │   └── dataset.py             # TS loader + probe-batch construction
+├── results/                   # all JSON outputs from the analyses
+│   ├── probe_circuit_per_head*.json   (4 seeds)
+│   ├── probe_circuit_ablation*.json   (4 seeds + legacy variants)
+│   ├── probe_circuit_mechinterp.json
+│   └── induction_heads_*.json
 └── (analysis scripts at top level)
     ├── probe_circuit_per_head.py
     ├── probe_circuit_ablation_multi.py     # supports tags s42, s271, s149, s256
     ├── probe_circuit_mechinterp.py
-    ├── probe_circuit_headline_figure.py
+    ├── probe_circuit_headline_figure.py    # reads results/, writes headline.png
     ├── induction_heads_per_head_124m.py    # GPT-2 124M variant
     ├── induction_heads_mechinterp_124m.py
     └── induction_heads_ablation_124m.py
 ```
+
+Result JSONs are bundled under `results/` so the headline figure can be regenerated without retraining (`python probe_circuit_headline_figure.py`).
 
 ### Train a seed (TS-51M probe-circuit experiment)
 

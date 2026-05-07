@@ -1,0 +1,547 @@
+{
+  "conditions": [
+    {
+      "ckpt_step": 800,
+      "name": "baseline",
+      "ablation_spec": {},
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.939,
+      "val_loss": 3.4688175872459017
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_s271_circuit_L6L7",
+      "ablation_spec": {
+        "6": [
+          1,
+          10
+        ],
+        "7": [
+          9,
+          15
+        ]
+      },
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.936,
+      "val_loss": 3.4724535684184534
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_L6H1",
+      "ablation_spec": {
+        "6": [
+          1
+        ]
+      },
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.938,
+      "val_loss": 3.468413978495263
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_L6H10",
+      "ablation_spec": {
+        "6": [
+          10
+        ]
+      },
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.939,
+      "val_loss": 3.4696103680801857
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_L7H9",
+      "ablation_spec": {
+        "7": [
+          9
+        ]
+      },
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.936,
+      "val_loss": 3.471006853952645
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_L7H15",
+      "ablation_spec": {
+        "7": [
+          15
+        ]
+      },
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.939,
+      "val_loss": 3.4691059557514667
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_L6_pair_only",
+      "ablation_spec": {
+        "6": [
+          1,
+          10
+        ]
+      },
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.9385,
+      "val_loss": 3.4711856483304113
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_L7_pair_only",
+      "ablation_spec": {
+        "7": [
+          9,
+          15
+        ]
+      },
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.936,
+      "val_loss": 3.472548018641159
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_s42_circuit_on_s271",
+      "ablation_spec": {
+        "0": [
+          3,
+          6,
+          14,
+          15
+        ]
+      },
+      "probe_in_acc": 0.396,
+      "probe_ood_acc": 0.187,
+      "val_loss": 3.5662018567482248
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_matched_random_L6L7",
+      "ablation_spec": {
+        "6": [
+          11,
+          13
+        ],
+        "7": [
+          10,
+          12
+        ]
+      },
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.936,
+      "val_loss": 3.4687893594281243
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_full_L6L7",
+      "ablation_spec": {
+        "6": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "7": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "probe_in_acc": 0.982,
+      "probe_ood_acc": 0.9195,
+      "val_loss": 3.5118070387012827
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "baseline",
+      "ablation_spec": {},
+      "probe_in_acc": 0.843,
+      "probe_ood_acc": 0.221,
+      "val_loss": 1.7068715869768458
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_s271_circuit_L6L7",
+      "ablation_spec": {
+        "6": [
+          1,
+          10
+        ],
+        "7": [
+          9,
+          15
+        ]
+      },
+      "probe_in_acc": 0.838,
+      "probe_ood_acc": 0.2205,
+      "val_loss": 1.7138957662088823
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_L6H1",
+      "ablation_spec": {
+        "6": [
+          1
+        ]
+      },
+      "probe_in_acc": 0.842,
+      "probe_ood_acc": 0.2215,
+      "val_loss": 1.708380791554797
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_L6H10",
+      "ablation_spec": {
+        "6": [
+          10
+        ]
+      },
+      "probe_in_acc": 0.84,
+      "probe_ood_acc": 0.22,
+      "val_loss": 1.7079227908076966
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_L7H9",
+      "ablation_spec": {
+        "7": [
+          9
+        ]
+      },
+      "probe_in_acc": 0.8435,
+      "probe_ood_acc": 0.2205,
+      "val_loss": 1.7084148181762546
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_L7H15",
+      "ablation_spec": {
+        "7": [
+          15
+        ]
+      },
+      "probe_in_acc": 0.8425,
+      "probe_ood_acc": 0.2215,
+      "val_loss": 1.7081387652994544
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_L6_pair_only",
+      "ablation_spec": {
+        "6": [
+          1,
+          10
+        ]
+      },
+      "probe_in_acc": 0.839,
+      "probe_ood_acc": 0.2205,
+      "val_loss": 1.7080088355918506
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_L7_pair_only",
+      "ablation_spec": {
+        "7": [
+          9,
+          15
+        ]
+      },
+      "probe_in_acc": 0.8425,
+      "probe_ood_acc": 0.221,
+      "val_loss": 1.7115536161357905
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_s42_circuit_on_s271",
+      "ablation_spec": {
+        "0": [
+          3,
+          6,
+          14,
+          15
+        ]
+      },
+      "probe_in_acc": 0.151,
+      "probe_ood_acc": 0.129,
+      "val_loss": 1.823925094968346
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_matched_random_L6L7",
+      "ablation_spec": {
+        "6": [
+          11,
+          13
+        ],
+        "7": [
+          10,
+          12
+        ]
+      },
+      "probe_in_acc": 0.8435,
+      "probe_ood_acc": 0.223,
+      "val_loss": 1.725616853027107
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_full_L6L7",
+      "ablation_spec": {
+        "6": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "7": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "probe_in_acc": 0.826,
+      "probe_ood_acc": 0.2085,
+      "val_loss": 2.023963433930619
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "baseline",
+      "ablation_spec": {},
+      "probe_in_acc": 0.9945,
+      "probe_ood_acc": 0.3295,
+      "val_loss": 1.4958502782142857
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_s271_circuit_L6L7",
+      "ablation_spec": {
+        "6": [
+          1,
+          10
+        ],
+        "7": [
+          9,
+          15
+        ]
+      },
+      "probe_in_acc": 0.9945,
+      "probe_ood_acc": 0.3315,
+      "val_loss": 1.5083136055416075
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_L6H1",
+      "ablation_spec": {
+        "6": [
+          1
+        ]
+      },
+      "probe_in_acc": 0.995,
+      "probe_ood_acc": 0.33,
+      "val_loss": 1.5017784826463236
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_L6H10",
+      "ablation_spec": {
+        "6": [
+          10
+        ]
+      },
+      "probe_in_acc": 0.9945,
+      "probe_ood_acc": 0.331,
+      "val_loss": 1.4954906972717095
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_L7H9",
+      "ablation_spec": {
+        "7": [
+          9
+        ]
+      },
+      "probe_in_acc": 0.9945,
+      "probe_ood_acc": 0.3305,
+      "val_loss": 1.5009711791955485
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_L7H15",
+      "ablation_spec": {
+        "7": [
+          15
+        ]
+      },
+      "probe_in_acc": 0.9945,
+      "probe_ood_acc": 0.331,
+      "val_loss": 1.4990594720103558
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_L6_pair_only",
+      "ablation_spec": {
+        "6": [
+          1,
+          10
+        ]
+      },
+      "probe_in_acc": 0.9945,
+      "probe_ood_acc": 0.3305,
+      "val_loss": 1.4993260285004837
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_L7_pair_only",
+      "ablation_spec": {
+        "7": [
+          9,
+          15
+        ]
+      },
+      "probe_in_acc": 0.9945,
+      "probe_ood_acc": 0.332,
+      "val_loss": 1.5020645114695526
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_s42_circuit_on_s271",
+      "ablation_spec": {
+        "0": [
+          3,
+          6,
+          14,
+          15
+        ]
+      },
+      "probe_in_acc": 0.1725,
+      "probe_ood_acc": 0.141,
+      "val_loss": 1.5369005178456558
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_matched_random_L6L7",
+      "ablation_spec": {
+        "6": [
+          11,
+          13
+        ],
+        "7": [
+          10,
+          12
+        ]
+      },
+      "probe_in_acc": 0.9945,
+      "probe_ood_acc": 0.329,
+      "val_loss": 1.515016217192865
+    },
+    {
+      "ckpt_step": 10000,
+      "name": "ablate_full_L6L7",
+      "ablation_spec": {
+        "6": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "7": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "probe_in_acc": 0.941,
+      "probe_ood_acc": 0.294,
+      "val_loss": 1.9744900614359688
+    }
+  ],
+  "test_ckpts": [
+    800,
+    4000,
+    10000
+  ],
+  "tag": "s42_with_s271_candidates",
+  "run_dir": "/Volumes/Brandy/mini_gpt/runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s42",
+  "random_L6": [
+    11,
+    13
+  ],
+  "random_L7": [
+    10,
+    12
+  ]
+}

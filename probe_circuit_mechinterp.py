@@ -33,16 +33,26 @@ import torch
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 
-REPO = Path(__file__).resolve().parent.parent
+REPO = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO / "training"))
 from config import Config, get_device
 from model import GPTModel
 from dataset import build_datasets
 
-PRETRAIN_DIR = REPO / "runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s42"
-CKPT_STEP = 4000
-N_EXAMPLES = 200    # enough for clean per-head averages
+import argparse
+_ap = argparse.ArgumentParser(add_help=False)
+_ap.add_argument("--run-dir", default="runs/s42",
+                  help="path to a trained run dir (contains ckpt_*.pt and codewords.json)")
+_ap.add_argument("--ckpt-step", type=int, default=4000)
+_ap.add_argument("--n-examples", type=int, default=200)
+_args, _ = _ap.parse_known_args()
 
+PRETRAIN_DIR = REPO / _args.run_dir
+CKPT_STEP = _args.ckpt_step
+N_EXAMPLES = _args.n_examples    # enough for clean per-head averages
+
+# Default circuit picks for the s42 example. For other seeds, edit these or
+# generalize the script to take --circuit-heads as CLI arg.
 CIRCUIT_HEADS = [3, 6, 14, 15]
 CONTROL_HEADS = [0, 1, 5, 7]
 

@@ -1,0 +1,268 @@
+{
+  "conditions": [
+    {
+      "ckpt_step": 800,
+      "name": "baseline",
+      "layer": null,
+      "heads_ablated": [],
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.939,
+      "val_loss": 3.4688175872459017
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_circuit",
+      "layer": 0,
+      "heads_ablated": [
+        3,
+        6,
+        14,
+        15
+      ],
+      "probe_in_acc": 0.396,
+      "probe_ood_acc": 0.187,
+      "val_loss": 3.5674480679252594
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_circuit_L0H3",
+      "layer": 0,
+      "heads_ablated": [
+        3
+      ],
+      "probe_in_acc": 0.981,
+      "probe_ood_acc": 0.9315,
+      "val_loss": 3.477988072564817
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_circuit_L0H6",
+      "layer": 0,
+      "heads_ablated": [
+        6
+      ],
+      "probe_in_acc": 0.9785,
+      "probe_ood_acc": 0.912,
+      "val_loss": 3.4972537332466316
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_circuit_L0H14",
+      "layer": 0,
+      "heads_ablated": [
+        14
+      ],
+      "probe_in_acc": 0.9755,
+      "probe_ood_acc": 0.932,
+      "val_loss": 3.4817821837373346
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_circuit_L0H15",
+      "layer": 0,
+      "heads_ablated": [
+        15
+      ],
+      "probe_in_acc": 0.969,
+      "probe_ood_acc": 0.909,
+      "val_loss": 3.4756252380389947
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_matched_control_L0H0157",
+      "layer": 0,
+      "heads_ablated": [
+        0,
+        1,
+        5,
+        7
+      ],
+      "probe_in_acc": 0.9815,
+      "probe_ood_acc": 0.9345,
+      "val_loss": 3.510845595367723
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_random_L0",
+      "layer": 0,
+      "heads_ablated": [
+        0,
+        10,
+        11,
+        12
+      ],
+      "probe_in_acc": 0.984,
+      "probe_ood_acc": 0.9425,
+      "val_loss": 3.5089317300810774
+    },
+    {
+      "ckpt_step": 800,
+      "name": "ablate_full_L0",
+      "layer": 0,
+      "heads_ablated": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "probe_in_acc": 0.1345,
+      "probe_ood_acc": 0.139,
+      "val_loss": 4.1013248184912605
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "baseline",
+      "layer": null,
+      "heads_ablated": [],
+      "probe_in_acc": 0.843,
+      "probe_ood_acc": 0.221,
+      "val_loss": 1.7058870161197368
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_circuit",
+      "layer": 0,
+      "heads_ablated": [
+        3,
+        6,
+        14,
+        15
+      ],
+      "probe_in_acc": 0.151,
+      "probe_ood_acc": 0.129,
+      "val_loss": 1.8232838417224582
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_circuit_L0H3",
+      "layer": 0,
+      "heads_ablated": [
+        3
+      ],
+      "probe_in_acc": 0.8305,
+      "probe_ood_acc": 0.217,
+      "val_loss": 1.71165172116132
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_circuit_L0H6",
+      "layer": 0,
+      "heads_ablated": [
+        6
+      ],
+      "probe_in_acc": 0.807,
+      "probe_ood_acc": 0.2095,
+      "val_loss": 1.74026658578032
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_circuit_L0H14",
+      "layer": 0,
+      "heads_ablated": [
+        14
+      ],
+      "probe_in_acc": 0.772,
+      "probe_ood_acc": 0.1805,
+      "val_loss": 1.7149713388711114
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_circuit_L0H15",
+      "layer": 0,
+      "heads_ablated": [
+        15
+      ],
+      "probe_in_acc": 0.5955,
+      "probe_ood_acc": 0.179,
+      "val_loss": 1.7244885504765923
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_matched_control_L0H0157",
+      "layer": 0,
+      "heads_ablated": [
+        0,
+        1,
+        5,
+        7
+      ],
+      "probe_in_acc": 0.8465,
+      "probe_ood_acc": 0.3405,
+      "val_loss": 1.8023146731562696
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_random_L0",
+      "layer": 0,
+      "heads_ablated": [
+        0,
+        10,
+        11,
+        12
+      ],
+      "probe_in_acc": 0.8305,
+      "probe_ood_acc": 0.2035,
+      "val_loss": 1.7541945669018209
+    },
+    {
+      "ckpt_step": 4000,
+      "name": "ablate_full_L0",
+      "layer": 0,
+      "heads_ablated": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "probe_in_acc": 0.1285,
+      "probe_ood_acc": 0.132,
+      "val_loss": 3.9632615890327947
+    }
+  ],
+  "test_ckpts": [
+    800,
+    4000
+  ],
+  "circuit_heads": [
+    3,
+    6,
+    14,
+    15
+  ],
+  "control_heads": [
+    0,
+    1,
+    5,
+    7
+  ],
+  "random_control": [
+    0,
+    10,
+    11,
+    12
+  ]
+}

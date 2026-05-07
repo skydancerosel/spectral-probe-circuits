@@ -17,7 +17,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-REPO = Path(__file__).resolve().parent.parent
+REPO = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO / "training"))
 from config import Config, get_device
 from model import GPTModel
