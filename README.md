@@ -86,18 +86,24 @@ Zero out the spectrally-identified heads on a fully-trained checkpoint and measu
 |---|---:|
 | baseline | **0.843** |
 | ablate s42 spectral picks: L0H{3, 6, 14, 15} | **0.151** ← circuit destroyed |
-| ablate s271 spectral picks: L6H{1,10}+L7H{9,15} | 0.838 ← s271's heads do nothing here |
-| ablate matched-size L0 control: L0H{0, 1, 5, 7} | 0.847 |
+| ablate s271 spectral picks: L6H{1,10}+L7H{9,15} | 0.838 ← no effect |
+| ablate s149 spectral picks: L6H{2,5,6,7}+L7H13 | 0.840 ← no effect |
+| ablate s256 spectral picks: L5H10+L6H{2,4}+L7H{6,13} | 0.844 ← no effect |
+| ablate matched-size L0 control: L0H{0, 1, 5, 7} | 0.831 |
 | ablate ALL 32 heads in L6+L7 | 0.826 |
 | ablate all 16 L0 heads | 0.129 |
+
+s42 is **L0-only**: every late-layer ablation (s271, s149, s256 picks; even all 32 L6+L7 heads) leaves probe accuracy at baseline; only L0 ablations matter.
 
 **s271 ablations (step 2000, baseline pin 0.526):**
 
 | Condition | probe_in_acc |
 |---|---:|
 | baseline | 0.526 |
-| ablate s271 spectral picks (L6+L7) | 0.273 |
-| ablate s42 spectral picks (L0H{3,6,14,15}) | 0.251 ← s42's L0 picks ALSO matter on s271 |
+| ablate s271 spectral picks (L6+L7) | **0.273** ← own circuit destroyed |
+| ablate s42 spectral picks (L0H{3,6,14,15}) | **0.251** ← s42's L0 picks ALSO matter |
+| ablate s149 spectral picks: L6H{2,5,6,7}+L7H13 | 0.515 ← no effect (no shared heads) |
+| ablate s256 spectral picks: L5H10+L6H{2,4}+L7H{6,13} | 0.525 ← no effect (no shared heads) |
 | matched-size random L6+L7 control | 0.518 |
 
 **s149 ablations (step 4000, baseline pin 0.832):**
@@ -106,9 +112,9 @@ Zero out the spectrally-identified heads on a fully-trained checkpoint and measu
 |---|---:|
 | baseline | 0.832 |
 | ablate s149 spectral picks (L6H{2,5,6,7} + L7H13) | **0.329** ← circuit destroyed |
-| ablate s42 spectral picks: L0H{3, 6, 14, 15} | 0.668 ← s42's L0 picks ALSO matter on s149 |
-| ablate s271 spectral picks: L6H{1,10}+L7H{9,15} | 0.830 ← s271's specific picks do nothing |
-| ablate s256 spectral picks: L5H10+L6H{2,4}+L7H{6,13} | (pending: requires rerun with updated condition set) |
+| ablate s42 spectral picks: L0H{3, 6, 14, 15} | 0.668 ← s42's L0 picks ALSO matter |
+| ablate s271 spectral picks: L6H{1,10}+L7H{9,15} | 0.830 ← no effect (no shared heads) |
+| ablate s256 spectral picks: L5H10+L6H{2,4}+L7H{6,13} | **0.698** ← partial effect via shared L6H2+L7H13 |
 | matched-size random L6+L7 control | 0.816 |
 | ablate ALL 32 heads in L6+L7 | 0.150 |
 
@@ -203,7 +209,7 @@ Pretraining configs used (all four seeds identical except RNG):
 
 Full launch commands in the corresponding `STATUS.md` files in mini_gpt.
 
-See `RESULTS.md` for the full per-head and per-condition tables (note: results.md is at n=2 detail; the n=4 tables are in this README).
+See `RESULTS.md` for additional detail (note: results.md predates the n=4 update; the most current tables are in this README).
 
 ## Open questions
 

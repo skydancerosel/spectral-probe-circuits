@@ -152,13 +152,17 @@ def main():
     # ── Panel D (bottom-right): 4-seed cross-seed asymmetry as heatmap ──
     ax_xs = fig.add_subplot(gs[2, 1])
 
+    # Use the v2 ablation JSONs that include all 3 cross-seed conditions
+    ablation_s42_v2 = json.load(open(ANALYSES / "probe_circuit_ablation_s42.json"))
+    ablation_s271_v2 = json.load(open(ANALYSES / "probe_circuit_ablation_s271.json"))
     ablation_s149 = json.load(open(ANALYSES / "probe_circuit_ablation_s149.json"))
     ablation_s256 = json.load(open(ANALYSES / "probe_circuit_ablation_s256.json"))
-    s42_xs_data = {r["name"]: r["probe_in_acc"]
-                    for r in ablation_s42_with_s271["conditions"]
-                    if r["ckpt_step"] == 4000}
+
+    s42_data = {r["name"]: r["probe_in_acc"]
+                 for r in ablation_s42_v2["conditions"]
+                 if r["ckpt_step"] == 4000}
     s271_data = {r["name"]: r["probe_in_acc"]
-                  for r in ablation_s271["conditions"]
+                  for r in ablation_s271_v2["conditions"]
                   if r["ckpt_step"] == 2000}
     s149_data = {r["name"]: r["probe_in_acc"]
                   for r in ablation_s149["conditions"]
@@ -171,24 +175,27 @@ def main():
     # Columns: baseline, ablate_s42, ablate_s271, ablate_s149, ablate_s256
     # Rows: s42, s271, s149, s256
     grid = np.array([
-        [s42_xs_data.get("baseline", NA), NA,
-         s42_xs_data.get("ablate_s271_circuit_L6L7", NA), NA, NA],
+        [s42_data.get("baseline", NA),
+         s42_data.get("ablate_s42_circuit_L0", NA),
+         s42_data.get("ablate_s271_circuit_on_s42", NA),
+         s42_data.get("ablate_s149_circuit_on_s42", NA),
+         s42_data.get("ablate_s256_circuit_on_s42", NA)],
         [s271_data.get("baseline", NA),
          s271_data.get("ablate_s42_circuit_on_s271", NA),
-         s271_data.get("ablate_s271_circuit_L6L7", NA), NA, NA],
+         s271_data.get("ablate_s271_circuit_L6L7", NA),
+         s271_data.get("ablate_s149_circuit_on_s271", NA),
+         s271_data.get("ablate_s256_circuit_on_s271", NA)],
         [s149_data.get("baseline", NA),
          s149_data.get("ablate_s42_circuit_on_s149", NA),
          s149_data.get("ablate_s271_circuit_on_s149", NA),
-         s149_data.get("ablate_s149_circuit_L6L7", NA), NA],
+         s149_data.get("ablate_s149_circuit_L6L7", NA),
+         s149_data.get("ablate_s256_circuit_on_s149", NA)],
         [s256_data.get("baseline", NA),
          s256_data.get("ablate_s42_circuit_on_s256", NA),
          s256_data.get("ablate_s271_circuit_on_s256", NA),
          s256_data.get("ablate_s149_circuit_on_s256", NA),
          s256_data.get("ablate_s256_circuit_L5L6L7", NA)],
     ])
-    # cell (0,1) = s42 own ablation
-    grid[0, 1] = next((r["probe_in_acc"] for r in ablation_s42["conditions"]
-                       if r["ckpt_step"] == 4000 and r["name"] == "ablate_circuit"), NA)
 
     masked = np.ma.array(grid, mask=np.isnan(grid))
     cmap = plt.cm.RdYlGn.copy()
@@ -218,7 +225,7 @@ def main():
                              "s149\n(eval @ 4000)",
                              "s256\n(eval @ 4000)"], fontsize=8)
     ax_xs.set_title("(D) Cross-seed asymmetry on four seeds:\n"
-                     "bold = own picks tank own circuit; gray = not yet measured",
+                     "bold = own picks tank own circuit",
                      fontsize=11, loc="left", weight="bold")
     cbar = plt.colorbar(im, ax=ax_xs, shrink=0.7, pad=0.02)
     cbar.set_label("probe_in_acc after ablation", fontsize=8)
