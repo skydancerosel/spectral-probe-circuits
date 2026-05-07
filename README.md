@@ -174,42 +174,25 @@ This piece answers half of that. The same kind of spectral signal — applied pe
 
 - **A V-circuit decomposition.** We've shown the heads attend to KEY; we haven't quantified how the V projection encodes codeword identity, or how downstream MLP layers consume the retrieved signal.
 - **A statistically-characterized account of seed-to-seed variability.** With N=4 seeds the structural picture is becoming load-bearing: the L0 substrate is shared, each distributed seed adds its own seed-specific late-layer team, and at least two of those late-layer teams (s149 and s256) share specific heads (L6H2, L7H13). Whether *every* seed has the L0 substrate (4/4 so far), whether late-layer overlap is incidental or systematic, and whether the OOD-generalization-vs-circuit-pattern relationship is real all still need more seeds. The current N=4 OOD numbers — s42 0.33, s271 0.66, s256 0.68, s149 0.95 — show distributed-circuit seeds (s271, s149, s256) all outperforming the L0-only seed (s42), with within-distributed variation (s271 ≈ s256 < s149) that we cannot yet account for. Treat the OOD claim as a **hypothesis the n=4 data are consistent with, not a finding**. Definitive conclusions need 6–8 seeds.
-- **A general claim about retrieval circuits in production LLMs.** The TinyStories probe task has stylized structure, and the circuit found may be specific to that template. The right next stress test is to apply the method to a *non-injected, naturally-emerging* capability — induction-head emergence on natural text is the obvious candidate, since it is well-characterized (Olsson et al., 2022) and has independent ground truth from prior work. The prediction is sharp and falsifiable: the same per-head PR signal should pre-identify the induction heads at their emergence step in a model trained on natural text, with no probe injection. We have not run this experiment yet; the result there is the single highest-leverage piece before any general claim about naturally-emerging circuits, and it's the natural follow-up.
+- **A general claim about retrieval circuits in production LLMs** — but here we have an update. The TinyStories probe task has stylized structure, so we ran the obvious follow-up experiment on a different model (GPT-2 124M trained on FineWeb-10B) testing whether the same spectral signal pre-identifies *induction heads* — a naturally-emerging, well-characterized capability — without any probe injection. Result: **partially validated.** The spectral signal recovers 3 of the top-by-selectivity induction heads in its top 8 picks (4 of 6 in top 16). Causal ablation on the top-6 spectral picks tanks induction top-1 accuracy from 16% to 0.85% — about 4× larger than the matched-random control. So the signal generalizes, but it is **noisier on natural text** than on the synthetic TS-51M probe: many heads doing content-dependent computation produce high PR, not all of them induction. Treat the signal as a **high-recall first-pass filter** for finding heads involved in *some* learned capability; combine with mechinterp-style attention-pattern measurement to triangulate which capability. Full details in [INDUCTION_HEADS.md](INDUCTION_HEADS.md) (in the public repo) or `analyses/induction_heads_writeup.md` here.
 
 ## Reproducibility
 
-This repo contains the analysis pipeline. The pretraining infrastructure
-(model, dataset, training loop) and the actual checkpoints live in the
-parent project: **[skydancerosel/mini_gpt](https://github.com/skydancerosel/mini_gpt)**.
+All code and data in [analyses/](.) and [runs/beta2_ablation/](../runs/beta2_ablation/).
 
-Scripts here:
+Key artifacts:
 
-- `probe_circuit_per_head.py` — per-head spectral analysis (PR over training)
-- `probe_circuit_ablation_multi.py` — causal ablation under multiple conditions (supports tags `s42`, `s271`, `s149`, `s256`)
-- `probe_circuit_mechinterp.py` — attention-pattern measurement (KEY-attending selectivity)
+- `probe_circuit_per_head.py` — per-head spectral analysis
+- `probe_circuit_ablation_multi.py` — causal ablation
+- `probe_circuit_mechinterp.py` — attention-pattern measurement
 - `probe_circuit_headline_figure.py` — headline composite
 
-To reproduce, clone mini_gpt, run pretraining for the seeds, then point the scripts at the resulting checkpoint directory:
+Pretraining configs:
 
-```bash
-python probe_circuit_per_head.py \
-    --run-dir <path-to-mini_gpt>/runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s42 \
-    --tag s42
-
-python probe_circuit_ablation_multi.py \
-    --run-dir <path-to-mini_gpt>/runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s256 \
-    --tag s256 --ckpts 2000,4000,10000
-```
-
-Pretraining configs used (all four seeds identical except RNG):
-- 8 layers × 512 dim × 16 heads (51M params)
-- AdamW (lr=1e-3, wd=0.5, β₁=0.9, β₂=0.95), 10K steps, 1500 warmup
-- λ-probe schedule 0 → 2 at step 4000
-- Checkpoint cadence: every 200 (1..600), every 50 (650..2000), every 100 (2100..10000)
-
-Full launch commands in the corresponding `STATUS.md` files in mini_gpt.
-
-See `RESULTS.md` for additional detail (note: results.md predates the n=4 update; the most current tables are in this README).
+- s42: `runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s42`
+- s271: `runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s271`
+- s149: `runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s149`
+- s256: `runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s256`
 
 ## Open questions
 
