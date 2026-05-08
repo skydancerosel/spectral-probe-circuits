@@ -63,7 +63,7 @@ def main():
     gs_outer = gridspec.GridSpec(
         2, 1,
         height_ratios=[4.6, 3.5],
-        hspace=0.35,
+        hspace=0.20,
     )
     gs_top = gridspec.GridSpecFromSubplotSpec(
         2, 2,
