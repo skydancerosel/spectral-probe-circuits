@@ -55,16 +55,32 @@ def main():
     pc_pin = np.array([row[1] for row in pc], dtype=float)
 
     # ── Set up canvas ─────────────────────────────────────────────────
-    fig = plt.figure(figsize=(16, 11))
-    gs = gridspec.GridSpec(
-        3, 2,
-        height_ratios=[0.6, 4, 3.5],
+    fig = plt.figure(figsize=(17, 14))
+    # Outer gridspec: top half (rows 0-1: A's curve + heatmap, B) vs bottom half (C, D)
+    # Use a nested layout so we get tight spacing between A's curve and heatmap
+    # but generous spacing between the top row (A heatmap / B) and the bottom row (C / D)
+    # so panel C/D titles don't collide with A/B xlabels.
+    gs_outer = gridspec.GridSpec(
+        2, 1,
+        height_ratios=[4.6, 3.5],
+        hspace=0.35,
+    )
+    gs_top = gridspec.GridSpecFromSubplotSpec(
+        2, 2,
+        subplot_spec=gs_outer[0],
+        height_ratios=[0.6, 4],
         width_ratios=[1.6, 1.0],
-        hspace=0.25, wspace=0.22,
+        hspace=0.05, wspace=0.30,
+    )
+    gs_bot = gridspec.GridSpecFromSubplotSpec(
+        1, 2,
+        subplot_spec=gs_outer[1],
+        width_ratios=[1.6, 1.0],
+        wspace=0.30,
     )
 
     # ── Panel A (top): probe_in_acc curve ─────────────────────────────
-    ax_pin = fig.add_subplot(gs[0, 0])
+    ax_pin = fig.add_subplot(gs_top[0, 0])
     ax_pin.plot(pc_steps, pc_pin, color="tab:red", lw=2)
     ax_pin.set_ylabel("probe_in_acc", fontsize=10)
     ax_pin.set_xlim(steps_pretrain[0], steps_pretrain[-1])
@@ -75,23 +91,30 @@ def main():
                       fontsize=11, loc="left", weight="bold")
 
     # Heatmap of per-head PR over training
-    ax_hm = fig.add_subplot(gs[1, 0], sharex=ax_pin)
+    ax_hm = fig.add_subplot(gs_top[1, 0], sharex=ax_pin)
     im = ax_hm.imshow(PR, aspect="auto", cmap="viridis",
                       extent=[steps_pretrain[0], steps_pretrain[-1],
                               n_layer*n_head - 0.5, -0.5])
     ax_hm.set_xlabel("pretraining step", fontsize=10)
     ax_hm.set_ylabel("(layer, head) — 128 total", fontsize=10)
-    # Annotate the L0 row range with red bracket on the left
+    # Annotate the L0 circuit heads with a red bracket + a single combined label
+    # (individual labels overlap because L0H3..L0H15 are within the top 12 of 128 rows)
+    bracket_top = min(CIRCUIT_HEADS_S42)
+    bracket_bot = max(CIRCUIT_HEADS_S42)
+    ax_hm.plot([steps_pretrain[0] - 100, steps_pretrain[0] - 100],
+                [bracket_top - 0.5, bracket_bot + 0.5],
+                color="tab:red", lw=2, clip_on=False)
+    ax_hm.text(steps_pretrain[0] - 250, (bracket_top + bracket_bot) / 2,
+                "L0H{3,6,14,15}", color="tab:red",
+                fontsize=9, va="center", ha="right", weight="bold")
     for h in CIRCUIT_HEADS_S42:
-        row = 0 * n_head + h   # L0
-        ax_hm.axhline(row, color="tab:red", lw=0.5, alpha=0.4, xmax=0.04)
-        ax_hm.text(steps_pretrain[0] - 200, row, f"L0H{h}", color="tab:red",
-                    fontsize=8, va="center", ha="right", weight="bold")
+        row = 0 * n_head + h
+        ax_hm.axhline(row, color="tab:red", lw=0.5, alpha=0.4, xmax=0.03)
     cbar = plt.colorbar(im, ax=ax_hm, shrink=0.8, pad=0.02)
     cbar.set_label("PR (effective rank, head_dim=32)", fontsize=9)
 
     # ── Panel B (top-right): attention to KEY ─────────────────────────
-    ax_attn = fig.add_subplot(gs[0:2, 1])
+    ax_attn = fig.add_subplot(gs_top[:, 1])
     n = n_head
     attn_to_key = np.array(mechinterp["attn_to_key"])
     attn_baseline = np.array(mechinterp["attn_to_random_position"])
@@ -115,7 +138,7 @@ def main():
     ax_attn.grid(True, alpha=0.3, axis="y")
 
     # ── Panel C (bottom-left): causal ablation on s42 ─────────────────
-    ax_abl = fig.add_subplot(gs[2, 0])
+    ax_abl = fig.add_subplot(gs_bot[0, 0])
     # Extract relevant conditions from s42 ablation
     s42_data = {}  # {ckpt: {condition: pin}}
     for r in ablation_s42["conditions"]:
@@ -150,7 +173,7 @@ def main():
     ax_abl.grid(True, alpha=0.3, axis="y")
 
     # ── Panel D (bottom-right): 4-seed cross-seed asymmetry as heatmap ──
-    ax_xs = fig.add_subplot(gs[2, 1])
+    ax_xs = fig.add_subplot(gs_bot[0, 1])
 
     # Use the v2 ablation JSONs that include all 3 cross-seed conditions
     ablation_s42_v2 = json.load(open(ANALYSES / "probe_circuit_ablation_s42.json"))
@@ -214,11 +237,11 @@ def main():
                             fontsize=9, color=color, weight=weight)
     ax_xs.set_xticks(range(5))
     ax_xs.set_xticklabels(["baseline",
-                             "ablate L0H{3,6,14,15}\n(s42 picks)",
-                             "ablate L6H{1,10}+L7H{9,15}\n(s271 picks)",
-                             "ablate L6H{2,5,6,7}+L7H13\n(s149 picks)",
-                             "ablate L5H10+L6H{2,4}\n+L7H{6,13} (s256 picks)"],
-                            fontsize=7)
+                             "ablate\ns42 picks",
+                             "ablate\ns271 picks",
+                             "ablate\ns149 picks",
+                             "ablate\ns256 picks"],
+                            fontsize=8)
     ax_xs.set_yticks(range(4))
     ax_xs.set_yticklabels(["s42\n(eval @ 4000)",
                              "s271\n(eval @ 2000)",
