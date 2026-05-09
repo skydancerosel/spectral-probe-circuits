@@ -8,26 +8,35 @@ FineWeb-10B, with no probe injection, to test whether the method
 generalizes from a stylized synthetic capability to a naturally-emerging
 one.
 
-**Headline (revised):** the spectral signal's top 8 picks on natural text
-break down as **3 induction heads + 5 previous-token heads = all 8 are
-real capability heads.** None are noise. The original write-up of this
-experiment thought 5 of the 8 picks were false positives (because they
-weren't induction heads); a follow-up mech-interp pass for previous-token
-heads showed those same 5 are previous-token heads with 114–221×
-attention-to-prev-token selectivity.
+**Headline (revised after the top-30 capability survey):** the spectral
+signal is **near-perfect-precision on natural-text GPT-2 124M**. Of the
+top-15 spectral picks by PR spread, **all 15 are classified into a known
+capability class** — induction, previous-token, or self-attention. At
+top-30 the precision is still 93% (28 of 30 classified; only 2 are
+weakly-content-dependent diffuse heads).
 
-So the spectral signal is **high-precision on natural text** when you
-check the full capability menu — it just doesn't tell you *which*
-capability each pick implements; that requires the downstream mech-interp
-check. For each of the two capabilities we tested:
+So the original "spectral signal is noisier on natural text" framing is
+fully retracted. The signal is high-precision; the original confusion
+came from checking only one capability class at a time. When you check
+the full mech-interp menu, every top-15 pick matches a class.
 
-- **Induction**: 3 of 6 known induction heads are in top-8 picks (recall
-  50%); top-6-pick ablation drops induction top-1 by ~95%, ~4× larger
-  than matched-random.
-- **Previous-token**: 5 of top-8 picks are previous-token heads; the
-  full model has 30+ prev-token heads (defined as selectivity > 50×),
-  spread across many layers, and the spectral signal preferentially
-  flags those with the sharpest PR transitions during emergence.
+What the signal *does not* give you for free:
+- **Which capability each pick implements** — needs downstream mech-interp
+- **A perfect ranking by capability strength** — L6H9 has 8,105× prev-token
+  selectivity but ranks only 14 by PR spread; L7H4 has 184× induction
+  selectivity at rank 23. The signal flags real heads but doesn't always
+  rank them by how strong/clean their pattern is.
+
+For each capability we directly tested:
+
+- **Induction**: 5 of 6 induction heads (selectivity > 50×) are in top-30
+  picks. Top-6-pick ablation drops induction top-1 from 16% to 0.85%,
+  ~4× larger than matched-random.
+- **Previous-token**: 9 of top-30 picks; model has 30+ prev-token heads
+  total (selectivity > 50×) in the long PR-spread tail.
+- **Self-attention** (attn to current position): 14 of top-30. The largest
+  class. Heads attending mostly to the current token's V projection — a
+  real but underexplored class in the interp literature.
 
 ## Setup
 
@@ -132,40 +141,59 @@ induction heads (L8H{8,10,5}) each individually drop top-1 by 5–10 pp,
 while the three false-positive spectral picks (L6H10, L1H{9,11}) each
 drop top-1 by ≤1 pp.
 
-## Cross-classification of top-8 spectral picks (the headline result)
+## Cross-classification of top-30 spectral picks (the headline result)
 
-After spectral identification, we ran *two* mech-interp passes — one for
-induction-attention, one for previous-token-attention. Result:
+After spectral identification, we ran mech-interp passes for **six**
+known capability classes — induction, previous-token, duplicate-token,
+first-token (BOS), self (attn to current position), local (recent
+positions excluding t-1) — and classified each top-30 spectral pick by
+its highest-selectivity class (threshold ≥ 30× over the uniform-other
+baseline).
 
-| Head | Spread rank | Induction selectivity | Prev-token selectivity | Classification |
-|---|---:|---:|---:|---|
-| L8H8 | 1 | **149×** | — | induction |
-| L8H10 | 2 | **111×** | — | induction |
-| L6H10 | 3 | 0× | **122×** | prev-token |
-| L8H5 | 4 | **73×** | — | induction |
-| L1H9 | 5 | 0× | **114×** | prev-token |
-| L1H11 | 6 | 0× | **174×** | prev-token |
-| L4H6 | 7 | 0× | **221×** | prev-token |
-| L6H5 | 8 | 0× | **118×** | prev-token |
+**Precision-at-k:**
 
-**All 8 spectral picks are real capability heads.** No noise. The picks
-that originally looked like false positives for induction were correctly
-identified — just as a different head class.
+| k | precision | classified / unclassified |
+|---:|---:|---|
+| 1, 5, 10, **15** | **100%** | all classified |
+| 20 | 95% | 19 / 1 |
+| 25 | 96% | 24 / 1 |
+| 30 | **93%** | 28 / 2 |
 
-The model contains many more previous-token heads beyond the top 8 by
-spread. The **most-selective prev-token head is L6H9** with **27,775×**
-attention-to-prev-token (essentially perfect previous-token), but its PR
-spread is only at rank 14 — so a top-8 spectral cutoff would miss it.
-30+ heads in the model have prev-token selectivity > 50×.
+**Class breakdown across top-30:**
+
+| Class | Count |
+|---|---:|
+| self (attn to current position) | 14 |
+| previous-token | 9 |
+| induction | 5 |
+| unclassified | 2 |
+
+The spectral signal is **near-perfect-precision at top-15** on
+natural-text GPT-2 124M, and degrades only modestly through top-30 (93%).
+This is a much stronger generalization claim than the original
+single-capability framing made.
+
+**Notable picks:**
+
+- **L8H8 (rank 1)**: induction, 98× selectivity
+- **L4H6 (rank 7)**: previous-token, 148×
+- **L6H9 (rank 14)**: previous-token, **8,105×** — essentially perfect
+- **L7H4 (rank 23)**: induction, 184× — the head originally missed by
+  top-8 induction-only analysis
+- **L1H10 (rank 18)** and **L9H8 (rank 27)**: unclassified — max
+  selectivity 11–13×, weak diffuse content-dependence with no specific
+  dominant pattern
 
 So the spectral signal:
-- **High precision** at top-k: all flagged heads do *something*
-  identifiable
+
+- **High precision** at top-15 (100%): every flagged head matches a
+  named capability class
+- **Multi-capability**: the signal doesn't tell you which capability each
+  pick implements — that requires the downstream mech-interp check
 - **Imperfect ranking by selectivity**: PR-spread doesn't cleanly
-  correspond to capability-strength; some very high-selectivity heads
-  rank lower than less-selective ones
-- **Multi-capability**: it doesn't tell you which capability each pick
-  implements — that needs downstream mech-interp
+  correspond to capability-strength; L6H9's 8,105× prev-token
+  selectivity sits at rank 14, while less-selective heads rank higher.
+  An alternative ranking signal might give better k-precision/recall.
 
 ## What this validates
 
