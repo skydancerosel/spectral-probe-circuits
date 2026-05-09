@@ -173,6 +173,40 @@ natural-text GPT-2 124M, and degrades only modestly through top-30 (93%).
 This is a much stronger generalization claim than the original
 single-capability framing made.
 
+### Multi-position robustness check
+
+A reasonable concern: the classification was done at one query position
+(position 255 in our 256-length batch — the last position). Maybe "self"
+classification is an artifact of measuring at the END of the sequence in
+a causal LM; maybe heads that look like prev-token at p=255 do something
+else at p=50.
+
+We re-ran the classification at five query positions {50, 100, 150, 200,
+255} and asked: how often does each pick land in the same capability
+class across positions?
+
+| Original class @ p=255 | Heads tested | Consistent across 5 positions | Rate |
+|---|---:|---:|---:|
+| self | 14 | 11 | **79%** |
+| previous-token | 9 | 7 | **78%** |
+| induction | 5 | n/a (intrinsically position-specific*) | — |
+
+\* Induction is defined by the batch structure (look for previous
+occurrence of current token's predecessor); at p=50 there's no induction
+target to attend to, so induction heads default to first-token or
+unclassified at non-255 positions. Their selectivity at p=255 is already
+directly measured (73–149× over baseline) — that's the right test.
+
+So the **self class is real**, with 79% consistency across positions —
+comparable to the previous-token class (78%). The minor misclassifications
+(~20%) most often involve self↔prev-token confusion, suggesting many heads
+implement "current+recent" attention patterns that one query position
+labels as one and another labels as the other.
+
+The "all top-15 picks are real capability heads" claim holds; the labels
+themselves carry ~20% position-specific noise, fixable by multi-position
+classification.
+
 **Notable picks:**
 
 - **L8H8 (rank 1)**: induction, 98× selectivity
