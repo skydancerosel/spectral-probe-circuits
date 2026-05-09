@@ -1,0 +1,245 @@
+{
+  "tag": "s271",
+  "ckpt_step": 4000,
+  "circuit_by_layer": {
+    "6": [
+      1,
+      10
+    ],
+    "7": [
+      9,
+      15
+    ]
+  },
+  "n_examples": 200,
+  "per_layer": {
+    "6": {
+      "H0": {
+        "attn_to_key": 0.05562986287288368,
+        "attn_to_self": 0.04368642060784623,
+        "attn_to_random": 0.0035552182502578944,
+        "selectivity": 15.64738335511422,
+        "is_circuit": false
+      },
+      "H1": {
+        "attn_to_key": 0.23420873549534008,
+        "attn_to_self": 0.056776435959909576,
+        "attn_to_random": 0.0027997210145986173,
+        "selectivity": 83.65431208113337,
+        "is_circuit": true
+      },
+      "H2": {
+        "attn_to_key": 0.30394244567491113,
+        "attn_to_self": 0.035205622058347215,
+        "attn_to_random": 0.0026094254319468744,
+        "selectivity": 116.47868605624103,
+        "is_circuit": false
+      },
+      "H3": {
+        "attn_to_key": 0.058745624981820586,
+        "attn_to_self": 0.0471610800200142,
+        "attn_to_random": 0.0035293417633511124,
+        "selectivity": 16.644923875561876,
+        "is_circuit": false
+      },
+      "H4": {
+        "attn_to_key": 0.060790085156913844,
+        "attn_to_self": 0.03389000106428284,
+        "attn_to_random": 0.003573293919907883,
+        "selectivity": 17.01233834088884,
+        "is_circuit": false
+      },
+      "H5": {
+        "attn_to_key": 0.33164217304438354,
+        "attn_to_self": 0.027220166554980097,
+        "attn_to_random": 0.002531873652660579,
+        "selectivity": 130.98685737966534,
+        "is_circuit": false
+      },
+      "H6": {
+        "attn_to_key": 0.06443377873627469,
+        "attn_to_self": 0.10313743186183273,
+        "attn_to_random": 0.003285577860660851,
+        "selectivity": 19.61109475071599,
+        "is_circuit": false
+      },
+      "H7": {
+        "attn_to_key": 0.05072438667993993,
+        "attn_to_self": 0.03283622541814111,
+        "attn_to_random": 0.0036172576306853443,
+        "selectivity": 14.022884698519364,
+        "is_circuit": false
+      },
+      "H8": {
+        "attn_to_key": 0.17458061032928526,
+        "attn_to_self": 0.01448293030770401,
+        "attn_to_random": 0.0032013432067469695,
+        "selectivity": 54.533550155243915,
+        "is_circuit": false
+      },
+      "H9": {
+        "attn_to_key": 0.08555067978799342,
+        "attn_to_self": 0.048326152143999934,
+        "attn_to_random": 0.0034187895350623874,
+        "selectivity": 25.023675458990272,
+        "is_circuit": false
+      },
+      "H10": {
+        "attn_to_key": 0.31619199440581724,
+        "attn_to_self": 0.04000898396883713,
+        "attn_to_random": 0.0025428586308044033,
+        "selectivity": 124.3450935791085,
+        "is_circuit": true
+      },
+      "H11": {
+        "attn_to_key": 0.15042133196257054,
+        "attn_to_self": 0.046044045917224136,
+        "attn_to_random": 0.0031721674121217803,
+        "selectivity": 47.419102594575115,
+        "is_circuit": false
+      },
+      "H12": {
+        "attn_to_key": 0.4007189565175213,
+        "attn_to_self": 0.031624940530382444,
+        "attn_to_random": 0.0022426075695875626,
+        "selectivity": 178.6843859584481,
+        "is_circuit": false
+      },
+      "H13": {
+        "attn_to_key": 0.05349141009850428,
+        "attn_to_self": 0.06820370318135247,
+        "attn_to_random": 0.003466642334824428,
+        "selectivity": 15.430322753850927,
+        "is_circuit": false
+      },
+      "H14": {
+        "attn_to_key": 0.17889804880542215,
+        "attn_to_self": 0.033300865103083194,
+        "attn_to_random": 0.0031106059535522946,
+        "selectivity": 57.51228264741202,
+        "is_circuit": false
+      },
+      "H15": {
+        "attn_to_key": 0.03285138261446264,
+        "attn_to_self": 0.05536225133109838,
+        "attn_to_random": 0.003599104271270335,
+        "selectivity": 9.12765514372482,
+        "is_circuit": false
+      }
+    },
+    "7": {
+      "H0": {
+        "attn_to_key": 0.036265296899946405,
+        "attn_to_self": 0.04091520471207332,
+        "attn_to_random": 0.0036426032159943135,
+        "selectivity": 9.955873519440448,
+        "is_circuit": false
+      },
+      "H1": {
+        "attn_to_key": 0.08112334028817714,
+        "attn_to_self": 0.03463113421923481,
+        "attn_to_random": 0.0034902661736123265,
+        "selectivity": 23.24273744549883,
+        "is_circuit": false
+      },
+      "H2": {
+        "attn_to_key": 0.06301952127145341,
+        "attn_to_self": 0.08264871276624035,
+        "attn_to_random": 0.0033717475207231474,
+        "selectivity": 18.690462700462653,
+        "is_circuit": false
+      },
+      "H3": {
+        "attn_to_key": 0.04684944631997496,
+        "attn_to_self": 0.026097839302383363,
+        "attn_to_random": 0.0036591531825251877,
+        "selectivity": 12.803357493671276,
+        "is_circuit": false
+      },
+      "H4": {
+        "attn_to_key": 0.08743179185315966,
+        "attn_to_self": 0.025483883431879805,
+        "attn_to_random": 0.003501567451748997,
+        "selectivity": 24.969329609654782,
+        "is_circuit": false
+      },
+      "H5": {
+        "attn_to_key": 0.27335900044767186,
+        "attn_to_self": 0.0656453662590684,
+        "attn_to_random": 0.002609750589399482,
+        "selectivity": 104.74525863047062,
+        "is_circuit": false
+      },
+      "H6": {
+        "attn_to_key": 0.04796208669897169,
+        "attn_to_self": 0.047853682131972164,
+        "attn_to_random": 0.003568869683658704,
+        "selectivity": 13.439013175118884,
+        "is_circuit": false
+      },
+      "H7": {
+        "attn_to_key": 0.2908236668771133,
+        "attn_to_self": 0.04370252535445616,
+        "attn_to_random": 0.002627889213617891,
+        "selectivity": 110.66816111198537,
+        "is_circuit": false
+      },
+      "H8": {
+        "attn_to_key": 0.1335924052183691,
+        "attn_to_self": 0.04319501550868154,
+        "attn_to_random": 0.0032496445835568013,
+        "selectivity": 41.109851180140296,
+        "is_circuit": false
+      },
+      "H9": {
+        "attn_to_key": 0.3649179822625592,
+        "attn_to_self": 0.03521391835987742,
+        "attn_to_random": 0.0023690965840796707,
+        "selectivity": 154.03254756045325,
+        "is_circuit": true
+      },
+      "H10": {
+        "attn_to_key": 0.06410533481743187,
+        "attn_to_self": 0.04111350929830224,
+        "attn_to_random": 0.0035318004188593477,
+        "selectivity": 18.150893939283165,
+        "is_circuit": false
+      },
+      "H11": {
+        "attn_to_key": 0.053723400738090274,
+        "attn_to_self": 0.05153193756472319,
+        "attn_to_random": 0.0035316582291852684,
+        "selectivity": 15.211947830660819,
+        "is_circuit": false
+      },
+      "H12": {
+        "attn_to_key": 0.048436425463296476,
+        "attn_to_self": 0.05000578724779189,
+        "attn_to_random": 0.003558713347883895,
+        "selectivity": 13.61065664142296,
+        "is_circuit": false
+      },
+      "H13": {
+        "attn_to_key": 0.23010652536526321,
+        "attn_to_self": 0.027226298557525296,
+        "attn_to_random": 0.0029321378481108693,
+        "selectivity": 78.47738997452568,
+        "is_circuit": false
+      },
+      "H14": {
+        "attn_to_key": 0.04687641306780279,
+        "attn_to_self": 0.03755617310060188,
+        "attn_to_random": 0.003613861964549869,
+        "selectivity": 12.97127934814233,
+        "is_circuit": false
+      },
+      "H15": {
+        "attn_to_key": 0.42231527852825823,
+        "attn_to_self": 0.013461779740791826,
+        "attn_to_random": 0.0022287517391669097,
+        "selectivity": 189.48511451801107,
+        "is_circuit": true
+      }
+    }
+  }
+}

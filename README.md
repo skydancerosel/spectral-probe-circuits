@@ -158,7 +158,20 @@ The four circuit heads are **induction-style retrieval heads**: at the query pos
 
 This explains the spectral signature mechanistically, in the way the previous section sketched. Pre-emergence the heads attend to a single default position regardless of probe content (V output near-rank-1, PR ≈ 2). Post-emergence the QK has become content-dependent, attention follows the codeword, and the V output diversifies across probes (PR ≈ 22).
 
-s271's L6/L7 heads and s149's L6/L7 heads almost certainly do the same kind of thing — KEY-attending retrieval — but at higher layers. (We confirmed this on s42 at the per-head level; for the late-layer heads on s271 and s149 we infer it from the analogous PR signature and the ablation specificity, but have not yet measured per-head attention-to-KEY for those heads. That measurement is straightforward and is the natural next step.) So the cross-seed observation is **same task, similar mechanism (KEY-attending retrieval), different layer placement and different specific heads at each placement**.
+**The late-layer picks are also KEY-attending heads** — directly measured. Running the same query→KEY attention measurement for each distributed seed's spectral picks (at ckpt step 4000):
+
+| Seed | Spectral picks | mean selectivity | max selectivity |
+|---|---|---:|---:|
+| s42 | L0H{3,6,14,15} | 64× | L0H15 = 95× |
+| s271 | L6H{1,10}+L7H{9,15} | 138× | L7H15 = 190× |
+| s149 | L6H{2,5,6,7}+L7H13 | **262×** | L6H5 = 333× |
+| s256 | L5H10+L6H{2,4}+L7H{6,13} | 161× | L7H13 = 276× |
+
+All 18 spectral picks across 4 seeds are confirmed KEY-attending. Notably the late-layer picks have *higher* selectivity than s42's L0 picks — induction-style retrieval at higher layers is sharper, perhaps because the residual stream there carries cleaner content-tagged information.
+
+**Side observation:** in each distributed seed, the spectral signal picks 4–5 heads but the model has ~10–12 KEY-attending heads in the active layers. The signal preferentially flags the *sharpest-transitioning* subset of the KEY-attending pool. Heads with high KEY-attention but lower PR transition spread are not flagged — consistent with the "ablate full L6+L7" results, which tank probe accuracy *more* than ablating just the spectral picks. So the spectral picks are a high-precision (all are real induction heads) but moderate-recall identification of the broader retrieval circuit.
+
+So the cross-seed observation is **same task, same mechanism (KEY-attending retrieval), different layer placement and different specific heads at each placement**.
 
 ## How this connects to the spectral-edge program
 
@@ -178,94 +191,21 @@ This piece answers half of that. The same kind of spectral signal — applied pe
 
 ## Reproducibility
 
-This repo is self-contained. Both the training pipeline and the analysis pipeline are included.
+All code and data in [analyses/](.) and [runs/beta2_ablation/](../runs/beta2_ablation/).
 
-### Repo layout
+Key artifacts:
 
-```
-spectral-probe-circuits/
-├── README.md                  # this writeup
-├── INDUCTION_HEADS.md         # induction-heads generalization test
-├── RESULTS.md                 # long-form per-condition tables
-├── headline.png
-├── LICENSE                    # MIT
-├── requirements.txt
-├── training/                  # pretraining pipeline (TS-51M)
-│   ├── pilot.py               # training entry point (probe-injection + LM loss)
-│   ├── model.py               # 8L/512d/16h GPT
-│   ├── config.py              # Config dataclass, device selection
-│   └── dataset.py             # TS loader + probe-batch construction
-├── results/                   # all JSON outputs from the analyses
-│   ├── probe_circuit_per_head*.json   (4 seeds)
-│   ├── probe_circuit_ablation*.json   (4 seeds + legacy variants)
-│   ├── probe_circuit_mechinterp.json
-│   └── induction_heads_*.json
-└── (analysis scripts at top level)
-    ├── probe_circuit_per_head.py
-    ├── probe_circuit_ablation_multi.py     # supports tags s42, s271, s149, s256
-    ├── probe_circuit_mechinterp.py
-    ├── probe_circuit_headline_figure.py    # reads results/, writes headline.png
-    ├── induction_heads_per_head_124m.py    # GPT-2 124M variant
-    ├── induction_heads_mechinterp_124m.py
-    └── induction_heads_ablation_124m.py
-```
+- `probe_circuit_per_head.py` — per-head spectral analysis
+- `probe_circuit_ablation_multi.py` — causal ablation
+- `probe_circuit_mechinterp.py` — attention-pattern measurement
+- `probe_circuit_headline_figure.py` — headline composite
 
-Result JSONs are bundled under `results/` so the headline figure can be regenerated without retraining (`python probe_circuit_headline_figure.py`).
+Pretraining configs:
 
-### Train a seed (TS-51M probe-circuit experiment)
-
-Each of the four seeds was trained with the same launch command, varying only `--seed`:
-
-```bash
-python training/pilot.py \
-    --wd 0.5 --lr 1e-3 --beta2 0.95 --steps 10000 \
-    --warmup 1500 --eval-every 200 \
-    --n-layer 8 --d-model 512 --n-head 16 --d-ff 2048 \
-    --p-probe 0.10 --seed 42 \
-    --lambda-probe 0.0 --lambda-probe2 2.0 --lambda-step 4000 \
-    --ckpt-dense-from 650 --ckpt-dense-to 2000 --ckpt-dense-every 50 \
-    --ckpt-sparse-from 2100 --ckpt-sparse-every 100 \
-    --out-dir runs/s42
-```
-
-Repeat with `--seed 271`, `--seed 149`, `--seed 256` to reproduce the four-seed dataset. Each run takes ~5–6 hours on Apple Silicon (MPS), produces ~22 GB of checkpoints, and saves a `pilot_metrics.json` with per-step val_loss / probe_in_acc / probe_ood_acc.
-
-### Run the analyses on a trained seed
-
-```bash
-# Per-head spectral signal
-python probe_circuit_per_head.py --run-dir runs/s42 --tag s42
-
-# Causal ablation (the --tag determines which condition set is used)
-python probe_circuit_ablation_multi.py --run-dir runs/s42 --tag s42 --ckpts 4000,10000
-
-# Mechanistic confirmation (s42 only — script measures KEY-attending selectivity for L0 heads)
-python probe_circuit_mechinterp.py --run-dir runs/s42
-
-# Headline composite figure
-python probe_circuit_headline_figure.py
-```
-
-### Induction-heads experiment (GPT-2 124M)
-
-For the natural-text generalization test ([INDUCTION_HEADS.md](INDUCTION_HEADS.md)), you'll need a GPT-2 124M trained on FineWeb-10B. We used [karpathy/llm.c](https://github.com/karpathy/llm.c) for ours — clone that, run `gpt2_fineweb10B`, then point the induction scripts at the resulting checkpoint directory:
-
-```bash
-python induction_heads_per_head_124m.py        # ~1h on MPS, processes 89 ckpts
-python induction_heads_mechinterp_124m.py      # ~10 min, on final ckpt
-python induction_heads_ablation_124m.py        # ~5 min, on final ckpt
-```
-
-(The induction scripts hardcode the karpathy checkpoint path — adjust `KARPATHY_CKPT_DIR` in each.)
-
-### Pretraining configs (all four seeds, identical except RNG)
-
-- 8 layers × 512 dim × 16 heads (51M params)
-- AdamW (lr=1e-3, wd=0.5, β₁=0.9, β₂=0.95), 10K steps, 1500 warmup
-- λ-probe schedule: 0 → 2 at step 4000
-- Checkpoint cadence: every 200 (1..600), every 50 (650..2000), every 100 (2100..10000)
-
-The full intermediate JSONs (per-head PR over training, ablation results, mechinterp scores) for all four seeds were generated by the analysis scripts above and are not committed here — re-run the scripts on a trained checkpoint to reproduce.
+- s42: `runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s42`
+- s271: `runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s271`
+- s149: `runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s149`
+- s256: `runs/beta2_ablation/pilot_wd0.5_lr0.001_lp2.0_b20.95_s256`
 
 ## Open questions
 
