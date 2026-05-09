@@ -1,4 +1,4 @@
-# Induction heads on natural text — a generalization test
+# Induction heads (and previous-token heads) on natural text
 
 ## What this is
 
@@ -6,15 +6,28 @@ The natural follow-up to [the probe-circuit work](probe_circuit_blog.md):
 applying the same per-head spectral signal to GPT-2 124M trained on
 FineWeb-10B, with no probe injection, to test whether the method
 generalizes from a stylized synthetic capability to a naturally-emerging
-one (induction heads).
+one.
 
-**Result: partially validated.** The spectral signal recovers 3 of the
-top induction heads in its top 8 picks (4 of 6 in top 16), but the signal
-is much noisier on natural text than on the TS-51M probe — many heads
-doing content-dependent computation produce high PR, not all of them
-induction. Causal ablation confirms the spectral picks carry the
-induction circuit (top-6 picks ablation drops induction top-1 by ~95%,
-≈4× larger than a matched-random control).
+**Headline (revised):** the spectral signal's top 8 picks on natural text
+break down as **3 induction heads + 5 previous-token heads = all 8 are
+real capability heads.** None are noise. The original write-up of this
+experiment thought 5 of the 8 picks were false positives (because they
+weren't induction heads); a follow-up mech-interp pass for previous-token
+heads showed those same 5 are previous-token heads with 114–221×
+attention-to-prev-token selectivity.
+
+So the spectral signal is **high-precision on natural text** when you
+check the full capability menu — it just doesn't tell you *which*
+capability each pick implements; that requires the downstream mech-interp
+check. For each of the two capabilities we tested:
+
+- **Induction**: 3 of 6 known induction heads are in top-8 picks (recall
+  50%); top-6-pick ablation drops induction top-1 by ~95%, ~4× larger
+  than matched-random.
+- **Previous-token**: 5 of top-8 picks are previous-token heads; the
+  full model has 30+ prev-token heads (defined as selectivity > 50×),
+  spread across many layers, and the spectral signal preferentially
+  flags those with the sharpest PR transitions during emergence.
 
 ## Setup
 
@@ -119,12 +132,48 @@ induction heads (L8H{8,10,5}) each individually drop top-1 by 5–10 pp,
 while the three false-positive spectral picks (L6H10, L1H{9,11}) each
 drop top-1 by ≤1 pp.
 
+## Cross-classification of top-8 spectral picks (the headline result)
+
+After spectral identification, we ran *two* mech-interp passes — one for
+induction-attention, one for previous-token-attention. Result:
+
+| Head | Spread rank | Induction selectivity | Prev-token selectivity | Classification |
+|---|---:|---:|---:|---|
+| L8H8 | 1 | **149×** | — | induction |
+| L8H10 | 2 | **111×** | — | induction |
+| L6H10 | 3 | 0× | **122×** | prev-token |
+| L8H5 | 4 | **73×** | — | induction |
+| L1H9 | 5 | 0× | **114×** | prev-token |
+| L1H11 | 6 | 0× | **174×** | prev-token |
+| L4H6 | 7 | 0× | **221×** | prev-token |
+| L6H5 | 8 | 0× | **118×** | prev-token |
+
+**All 8 spectral picks are real capability heads.** No noise. The picks
+that originally looked like false positives for induction were correctly
+identified — just as a different head class.
+
+The model contains many more previous-token heads beyond the top 8 by
+spread. The **most-selective prev-token head is L6H9** with **27,775×**
+attention-to-prev-token (essentially perfect previous-token), but its PR
+spread is only at rank 14 — so a top-8 spectral cutoff would miss it.
+30+ heads in the model have prev-token selectivity > 50×.
+
+So the spectral signal:
+- **High precision** at top-k: all flagged heads do *something*
+  identifiable
+- **Imperfect ranking by selectivity**: PR-spread doesn't cleanly
+  correspond to capability-strength; some very high-selectivity heads
+  rank lower than less-selective ones
+- **Multi-capability**: it doesn't tell you which capability each pick
+  implements — that needs downstream mech-interp
+
 ## What this validates
 
 1. **The spectral signal generalizes.** Applied to a different model
    (124M vs 51M), trained on different data (natural text vs synthetic
-   probes), with no task injection, the per-head PR signal still pre-
-   identifies a substantial fraction of the induction heads.
+   probes), with no task injection, the per-head PR signal pre-identifies
+   real capability heads at high precision (8/8 of top-8 are real
+   capabilities, across two checked classes).
 2. **Causal effect holds.** Ablating top-6 spectral picks tanks induction
    top-1 from 16% to 0.85%. Matched-random ablation only drops to 11%.
    The signal points at causally-relevant heads, not arbitrary content-
@@ -132,25 +181,25 @@ drop top-1 by ≤1 pp.
 3. **Individual ablation aligns with mechinterp.** Heads that show
    induction-attention pattern (L8H{8,10,5}) are also the ones whose
    individual ablation produces the largest induction-loss drop.
+4. **Multi-capability identification.** The "noise" in the original
+   single-capability framing dissolves when you check multiple
+   capabilities — top-8 picks are 3 induction + 5 previous-token, all
+   real.
 
 ## What this does *not* validate
 
-1. **The spectral signal is noisier on natural text.** On TS-51M with
-   a single injected capability, the top 4 spectral picks were exactly
-   the 4 causally-relevant heads. On natural-text 124M, only 3 of the
-   top 8 are induction heads; the other 5 are doing other content-
-   dependent computation. Many capabilities emerging simultaneously
-   during natural-text pretraining create more "high PR" heads.
-2. **Some induction heads are missed.** The top-by-selectivity head
-   (L7H4 at 681×) is at rank 23 by PR spread — not flagged by a top-8
-   cutoff. Top-16 captures 4 of 6 induction heads, top-23 captures 5.
-3. **Discriminating induction from "other content-dependent work" is
-   not solved.** Spectral picks are a *partial* identification — they
-   include induction heads but also include heads doing other
-   capability-related content-dependent computation. To cleanly identify
-   induction specifically requires combining spectral identification
-   with the mechinterp-style attention-pattern check (which is exactly
-   what we did here).
+1. **PR-spread is not a clean ranking by capability importance.** L6H9
+   is the model's strongest previous-token head (27,775× selectivity)
+   but ranks 14 by spread. The signal flags heads that are doing *some*
+   learned attention pattern but doesn't rank them by how strong/clean
+   the pattern is.
+2. **Some induction heads are missed.** The top-by-selectivity induction
+   head (L7H4 at 681×) is at rank 23 by PR spread — not flagged by a
+   top-8 cutoff. Top-16 captures 4 of 6 induction heads, top-23 captures 5.
+3. **Discriminating which capability each pick implements requires
+   downstream mech-interp.** Spectral identification + selectivity
+   measurement together give the full picture; either alone is
+   incomplete.
 
 ## Practical reading
 
@@ -170,11 +219,27 @@ that requires a downstream check.
 
 ## Reproducibility
 
-- Code: `analyses/induction_heads_per_head_124m.py`,
-  `induction_heads_mechinterp_124m.py`, `induction_heads_ablation_124m.py`
-- Outputs: `induction_heads_per_head_124m.json`,
+- Code: `induction_heads_per_head_124m.py`,
+  `induction_heads_mechinterp_124m.py`, `induction_heads_ablation_124m.py`,
+  `prev_token_mechinterp_124m.py` (prev-token cross-classification)
+- Outputs in `results/`:
+  `induction_heads_per_head_124m.json`,
   `induction_heads_mechinterp_124m.json`,
-  `induction_heads_ablation_124m.json`
+  `induction_heads_ablation_124m.json`,
+  `prev_token_mechinterp_124m.json`
 - Model: karpathy_llmc/runs/gpt2_fineweb10B/ (89 checkpoints)
 - Eval batch: 2000 synthetic-induction sequences, seq_len=256, RNG=42
-- Compute: ~1h on M4 MPS for per_head; ~30 min total for mechinterp + ablation
+  (used for both induction and prev-token analyses — for prev-token, only
+  the immediately-preceding-position attention is measured, which doesn't
+  depend on the induction structure)
+- Compute: ~1h on M4 MPS for per_head; ~30 min total for both mechinterps + ablation
+
+## Pivot note
+
+This experiment was originally planned to test IOI (indirect object
+identification) as the second naturally-emerging capability, but the
+karpathy_llmc 124M was undertrained for clean IOI — top-1 IOI accuracy
+was ~13% on a 60-example sanity check, target-beats-distractor only 57%
+(barely above chance). We pivoted to previous-token heads as a simpler,
+robust capability that any LM has. See `ioi_sanity_check.py` for the
+sanity test that prompted the pivot.
