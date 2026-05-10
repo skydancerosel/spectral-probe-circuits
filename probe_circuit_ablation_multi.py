@@ -109,6 +109,8 @@ def main():
     s271_circuit = {6: [1, 10], 7: [9, 15]}
     s149_circuit = {6: [2, 5, 6, 7], 7: [13]}
     s256_circuit = {5: [10], 6: [2, 4], 7: [6, 13]}
+    s123_circuit = {5: [5], 6: [5, 11], 7: [2, 4, 13]}  # truncated at step 5000
+    s314_circuit = {5: [7, 14, 15], 7: [0, 5]}  # top 5 by spread
 
     if TAG == "s271":
         eligible_L6 = [h for h in range(n_head) if h not in (1, 10)]
@@ -148,6 +150,8 @@ def main():
             ("ablate_s42_circuit_on_s149",     s42_circuit),
             ("ablate_s271_circuit_on_s149",    s271_circuit),
             ("ablate_s256_circuit_on_s149",    s256_circuit),
+            ("ablate_s123_circuit_on_s149",    s123_circuit),
+            ("ablate_s314_circuit_on_s149",    s314_circuit),
             ("ablate_matched_random_L6L7",     {6: random_L6, 7: random_L7}),
             ("ablate_full_L6L7",               {6: list(range(n_head)),
                                                 7: list(range(n_head))}),
@@ -190,13 +194,64 @@ def main():
             ("ablate_s42_circuit_on_s256",     s42_circuit),
             ("ablate_s271_circuit_on_s256",    s271_circuit),
             ("ablate_s149_circuit_on_s256",    s149_circuit),
+            ("ablate_s123_circuit_on_s256",    s123_circuit),
+            ("ablate_s314_circuit_on_s256",    s314_circuit),
+            ("ablate_matched_random_L5L6L7",   {5: random_L5, 6: random_L6, 7: random_L7}),
+            ("ablate_full_L5L6L7",             {5: list(range(n_head)),
+                                                6: list(range(n_head)),
+                                                7: list(range(n_head))}),
+        ]
+    elif TAG == "s314":
+        eligible_L5 = [h for h in range(n_head) if h not in (7, 14, 15)]
+        eligible_L7 = [h for h in range(n_head) if h not in (0, 5)]
+        random_L5 = sorted(rng.choice(eligible_L5, size=3, replace=False).tolist())
+        random_L7 = sorted(rng.choice(eligible_L7, size=2, replace=False).tolist())
+        random_L6 = []
+        conditions = [
+            ("baseline",                       {}),
+            ("ablate_s314_circuit_L5L7",       s314_circuit),
+            ("ablate_L5H7",                    {5: [7]}),
+            ("ablate_L5H14",                   {5: [14]}),
+            ("ablate_L5H15",                   {5: [15]}),
+            ("ablate_L7H0",                    {7: [0]}),
+            ("ablate_L7H5",                    {7: [5]}),
+            ("ablate_s42_circuit_on_s314",     s42_circuit),
+            ("ablate_s271_circuit_on_s314",    s271_circuit),
+            ("ablate_s149_circuit_on_s314",    s149_circuit),
+            ("ablate_s256_circuit_on_s314",    s256_circuit),
+            ("ablate_s123_circuit_on_s314",    s123_circuit),
+            ("ablate_matched_random_L5L7",     {5: random_L5, 7: random_L7}),
+            ("ablate_full_L5L6L7",             {5: list(range(n_head)),
+                                                6: list(range(n_head)),
+                                                7: list(range(n_head))}),
+        ]
+    elif TAG == "s123":
+        eligible_L5 = [h for h in range(n_head) if h != 5]
+        eligible_L6 = [h for h in range(n_head) if h not in (5, 11)]
+        eligible_L7 = [h for h in range(n_head) if h not in (2, 4, 13)]
+        random_L5 = sorted(rng.choice(eligible_L5, size=1, replace=False).tolist())
+        random_L6 = sorted(rng.choice(eligible_L6, size=2, replace=False).tolist())
+        random_L7 = sorted(rng.choice(eligible_L7, size=3, replace=False).tolist())
+        conditions = [
+            ("baseline",                       {}),
+            ("ablate_s123_circuit_L5L6L7",     s123_circuit),
+            ("ablate_L5H5",                    {5: [5]}),
+            ("ablate_L6H5",                    {6: [5]}),
+            ("ablate_L6H11",                   {6: [11]}),
+            ("ablate_L7H2",                    {7: [2]}),
+            ("ablate_L7H4",                    {7: [4]}),
+            ("ablate_L7H13",                   {7: [13]}),
+            ("ablate_s42_circuit_on_s123",     s42_circuit),
+            ("ablate_s271_circuit_on_s123",    s271_circuit),
+            ("ablate_s149_circuit_on_s123",    s149_circuit),
+            ("ablate_s256_circuit_on_s123",    s256_circuit),
             ("ablate_matched_random_L5L6L7",   {5: random_L5, 6: random_L6, 7: random_L7}),
             ("ablate_full_L5L6L7",             {5: list(range(n_head)),
                                                 6: list(range(n_head)),
                                                 7: list(range(n_head))}),
         ]
     else:
-        raise ValueError(f"Unknown TAG {TAG!r}; expected one of: s42, s271, s149, s256")
+        raise ValueError(f"Unknown TAG {TAG!r}; expected one of: s42, s271, s149, s256, s123, s314")
 
     results = {"conditions": [], "test_ckpts": TEST_CKPTS,
                "tag": TAG, "run_dir": str(PRETRAIN_DIR),
