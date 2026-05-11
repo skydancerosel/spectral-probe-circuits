@@ -285,6 +285,39 @@ So: integral-ranking + the same per-head spectral pipeline + the same
 within 1-2 pp on a completely different model train. **The spectral
 signal is portable.**
 
+#### Causal verification on Pythia: the workflow matters
+
+Ablation on Pythia 160M induction batch (baseline top-1 = 4.7%; n=2000):
+
+| Condition | top-1 |
+|---|---:|
+| baseline | 4.7% |
+| ablate top-6 spectral picks (by integral) | 1.5% |
+| ablate matched random (same layers) | 1.15% |
+| **ablate the 2 mech-interp-classified induction heads (L8H2, L5H0)** | **0.05%** |
+| ablate all heads in spectral-pick layers (upper bound) | 0% |
+
+A more nuanced pattern than karpathy 124M, where ablating top-6 spectral
+picks tanked induction *4× more* than matched random. On Pythia, top-6
+spectral picks ≈ matched random for induction-specific drops, because top-6
+on Pythia is dominated by self / prev-token heads (4 of 6 are L0 heads),
+not induction. The two actual induction-classified heads (L8H2 at 94×, L5H0
+at 143× selectivity) sit at integral-ranks 8 and 18 — not in the top-6.
+
+When ablation targets the **mech-interp-classified** induction heads
+specifically, the effect is dramatic: top-1 from 4.7% → 0.05%. This is
+the workflow validated:
+
+1. **Spectral signal** flags content-dependent heads broadly
+2. **Mech-interp** classifies *which capability* each pick implements
+3. **Targeted ablation** of class-specific picks tanks that specific capability
+
+On karpathy 124M, steps 1 and 3 happened to coincide for induction (because
+top-6 picks contained 3 induction heads). On Pythia, they don't — and the
+mech-interp triangulation in step 2 becomes load-bearing. This is a stronger
+cross-model finding: the *workflow* generalizes, not just the spectral
+signal.
+
 ### Time-of-emergence by capability class
 
 For each top-30 pick, when does it first cross PR=15 (mid-rise threshold)?
