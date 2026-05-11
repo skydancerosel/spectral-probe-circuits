@@ -1,0 +1,141 @@
+{
+  "tag": "s123_l0_all",
+  "ckpt_step": 10000,
+  "circuit_by_layer": {
+    "0": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "n_examples": 200,
+  "per_layer": {
+    "0": {
+      "H0": {
+        "attn_to_key": 0.054044060576707124,
+        "attn_to_self": 0.02436258739326149,
+        "attn_to_random": 0.003637653480982408,
+        "selectivity": 14.856846827013232,
+        "is_circuit": true
+      },
+      "H1": {
+        "attn_to_key": 0.04509449369739741,
+        "attn_to_self": 0.02742155540268868,
+        "attn_to_random": 0.0036608725786209106,
+        "selectivity": 12.317963198376324,
+        "is_circuit": true
+      },
+      "H2": {
+        "attn_to_key": 0.05232104202732444,
+        "attn_to_self": 0.020602097124792634,
+        "attn_to_random": 0.0036593092838302253,
+        "selectivity": 14.29806500874931,
+        "is_circuit": true
+      },
+      "H3": {
+        "attn_to_key": 0.04838342005386949,
+        "attn_to_self": 0.03971948149148375,
+        "attn_to_random": 0.0035993437678553163,
+        "selectivity": 13.442289254493451,
+        "is_circuit": true
+      },
+      "H4": {
+        "attn_to_key": 0.037606875048950314,
+        "attn_to_self": 0.08405579661950469,
+        "attn_to_random": 0.0034671242500189693,
+        "selectivity": 10.846705320337037,
+        "is_circuit": true
+      },
+      "H5": {
+        "attn_to_key": 0.05362572718411684,
+        "attn_to_self": 0.017657185157295318,
+        "attn_to_random": 0.0036657647939864544,
+        "selectivity": 14.628796498915525,
+        "is_circuit": true
+      },
+      "H6": {
+        "attn_to_key": 0.03148329722229391,
+        "attn_to_self": 0.02856310367351398,
+        "attn_to_random": 0.0037101978284772488,
+        "selectivity": 8.485611462722296,
+        "is_circuit": true
+      },
+      "H7": {
+        "attn_to_key": 0.05272931159473956,
+        "attn_to_self": 0.031233804719522595,
+        "attn_to_random": 0.00361571412649937,
+        "selectivity": 14.583374058333133,
+        "is_circuit": true
+      },
+      "H8": {
+        "attn_to_key": 0.06092174314893782,
+        "attn_to_self": 0.022621560241095722,
+        "attn_to_random": 0.003617360460339114,
+        "selectivity": 16.841490865200267,
+        "is_circuit": true
+      },
+      "H9": {
+        "attn_to_key": 0.05469447762705386,
+        "attn_to_self": 0.013281386881135403,
+        "attn_to_random": 0.0036788216477725653,
+        "selectivity": 14.867390393924097,
+        "is_circuit": true
+      },
+      "H10": {
+        "attn_to_key": 0.057302722935564814,
+        "attn_to_self": 0.019732060423120857,
+        "attn_to_random": 0.0036430890299379826,
+        "selectivity": 15.729157993303362,
+        "is_circuit": true
+      },
+      "H11": {
+        "attn_to_key": 0.05362070987932384,
+        "attn_to_self": 0.027803089120425284,
+        "attn_to_random": 0.0036257232958450914,
+        "selectivity": 14.788969125352354,
+        "is_circuit": true
+      },
+      "H12": {
+        "attn_to_key": 0.05259527507703751,
+        "attn_to_self": 0.02033323303796351,
+        "attn_to_random": 0.003659269851632416,
+        "selectivity": 14.373161097581947,
+        "is_circuit": true
+      },
+      "H13": {
+        "attn_to_key": 0.059595417864620685,
+        "attn_to_self": 0.03010175728239119,
+        "attn_to_random": 0.003593116366537288,
+        "selectivity": 16.58599716380831,
+        "is_circuit": true
+      },
+      "H14": {
+        "attn_to_key": 0.051490493877790866,
+        "attn_to_self": 0.013591020160820335,
+        "attn_to_random": 0.003690232461085543,
+        "selectivity": 13.953184364608859,
+        "is_circuit": true
+      },
+      "H15": {
+        "attn_to_key": 0.051242918004281816,
+        "attn_to_self": 0.015067824217258021,
+        "attn_to_random": 0.003685453039361164,
+        "selectivity": 13.904102821824113,
+        "is_circuit": true
+      }
+    }
+  }
+}
