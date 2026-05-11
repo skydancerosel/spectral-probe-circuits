@@ -2,7 +2,7 @@
 
 ## TL;DR
 
-Applying the spectral signal from [the probe-circuit work](probe_circuit_blog.md)
+Applying the spectral signal from [the probe-circuit work](README.md)
 to natural-text language models trained by different people on different data
 gives a strikingly consistent picture across an 8× scale range:
 
