@@ -330,6 +330,36 @@ mech-interp triangulation in step 2 becomes load-bearing. This is a stronger
 cross-model finding: the *workflow* generalizes, not just the spectral
 signal.
 
+**Same pattern on Pythia 410M** (workflow validation at the larger scale):
+
+| Condition (Pythia 410M baseline 3.7%) | top-1 |
+|---|---:|
+| baseline | 3.7% |
+| ablate top-6 spectral picks (by integral) | 2.1% |
+| ablate matched random (same layers) | 4.4% (no effect) |
+| ablate induction primary-class (L10H0) | 2.65% |
+| **ablate induction extended (incl 2nd-class >100×)** | **0.85%** ← biggest non-upper-bound drop |
+| ablate L11H14 alone (rank 5, 124× induction as 2nd class) | 1.85% (single-head effect) |
+| ablate full spectral-pick layers (upper) | 0% |
+
+L11H14 is interesting — it's the rank-5 spectral pick by integral, primary-classified
+as first-token (287×), but with strong 2nd-class induction (124×). Single-head ablation
+tanks induction 50% on its own. **Multi-purpose heads** like this contribute to multiple
+capabilities and the 2nd-class selectivities matter — extending the targeted-ablation
+condition to include them gives the largest induction-specific drop.
+
+**Cross-model workflow summary** (induction-targeted ablation effect on induction top-1):
+
+| Model | Targeting | top-1 drop |
+|---|---|---:|
+| karpathy 124M | top-6 spectral picks (incl 3 induction heads) | 16% → 0.85% (−95%) |
+| Pythia 160M | mech-interp-classified L8H2 + L5H0 | 4.7% → 0.05% (−99%) |
+| Pythia 410M | mech-interp-classified + 2nd-class induction | 3.7% → 0.85% (−77%) |
+
+In all three cases, capability-specific ablation tanks the specific capability
+by 77-99%. The spectral → mech-interp → targeted ablation workflow validates
+across an 8× scale range and two completely different training pipelines.
+
 ### Time-of-emergence by capability class
 
 For each top-30 pick, when does it first cross PR=15 (mid-rise threshold)?
