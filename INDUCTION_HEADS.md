@@ -285,12 +285,19 @@ treatment.
 
 Different layer in each model, but the methodology finds it via integral
 ranking. PR-spread would miss them all (their trajectories are
-high-but-not-the-highest-spread). The **integral ranking signal is
-essential** on Pythia: L0 heads start at PR ≈ 60 (random attention at init)
-and collapse to PR ≈ 2-30 by training end — these are
-"specialization-concentration" patterns, not capability emergence.
-PR-spread flags them as top picks; PR-integral correctly demotes them in
-favor of heads that *gain* sustained PR through training.
+high-but-not-the-highest-spread). This is a notable cross-model invariant:
+**every model has exactly one extreme prev-token head, in a different
+layer, and the integral ranking signal identifies it without prior
+knowledge of where to look.** Suggests a real architectural regularity —
+there's probably one degree of freedom per model that gets compressed
+into a single near-perfect prev-token implementation.
+
+The **integral ranking signal is essential** on Pythia: L0 heads start
+at PR ≈ 60 (random attention at init) and collapse to PR ≈ 2-30 by
+training end — these are "specialization-concentration" patterns, not
+capability emergence. PR-spread flags them as top picks; PR-integral
+correctly demotes them in favor of heads that *gain* sustained PR
+through training.
 
 So: integral-ranking + the same per-head spectral pipeline + the same
 6-class mech-interp survey give precision-at-k matching karpathy 124M
@@ -359,6 +366,57 @@ condition to include them gives the largest induction-specific drop.
 In all three cases, capability-specific ablation tanks the specific capability
 by 77-99%. The spectral → mech-interp → targeted ablation workflow validates
 across an 8× scale range and two completely different training pipelines.
+
+#### Distribution vs dilution at scale: distribution wins
+
+The 410M result above was 77% drop, lower than the 95-99% drops on smaller
+models. Two hypotheses for why:
+- **Dilution**: induction at larger scale has lower absolute selectivity per
+  head; the methodology genuinely captures less of the circuit
+- **Distribution**: induction is spread across more heads at lower individual
+  selectivity; the methodology can capture it but our targeting was incomplete
+
+To discriminate, we screened **all 384 heads** of Pythia 410M for induction
+selectivity (not just top-30 spectral picks) and ablated the full set:
+
+| Condition | top-1 | n_heads ablated | drop |
+|---|---:|---:|---:|
+| baseline | 3.7% | 0 | — |
+| previous "extended" set (primary class + 2nd-class >100×) | 0.85% | 3 | −77% |
+| **all heads with induction selectivity ≥ 100×** | **0.10%** | **8** | **−97%** |
+| **all heads with induction selectivity ≥ 50×** | **0.0%** | **11** | **−100%** |
+
+**Distribution wins decisively.** Pythia 410M has 11 heads with induction
+selectivity ≥ 50× — *more* than karpathy 124M's 6 — but at lower per-head
+selectivity (max 203× vs karpathy's 681×). The total "induction signal" is
+distributed across more heads at lower individual strength.
+
+Ablating all 11 heads with induction selectivity ≥ 50× tanks induction to 0%.
+**The methodology fully accounts for the distributed circuit when the
+ablation targets the full induction-selective set, not just the spectral
+top-k.**
+
+Importantly, **only 3 of these 11 induction-selective heads were in our
+top-30 spectral picks**. The other 8 (L8H6 at 203×, L7H1 at 177×, L8H9 at
+136×, L11H2 at 128×, L10H9 at 117×, L6H3 at 103×, L8H7 at 72×, L10H4 at
+52×) live at lower integral ranks and would be missed by a spectral-picks-
+only mech-interp survey.
+
+#### Methodological refinement (from the 410M experience)
+
+**At scale, restrict mech-interp to spectral top-k for *finding* the
+capability classes the model uses; but don't restrict capability-specific
+*ablation* to those picks alone.** Once you've identified that a particular
+class (induction, prev-token, etc.) is implemented by some head, screen
+ALL heads for that class's selectivity and ablate the full set with
+threshold ≥ 50×.
+
+**Multi-purpose heads matter.** L11H14 on Pythia 410M is primary-classified
+as first-token (287×) but has strong 2nd-class induction (124×); single-head
+ablation tanks induction by 50%. Heads with multiple non-trivial
+selectivities are common in larger models, and 2nd-class selectivities can
+be load-bearing for capability-specific ablation. The capability-specific
+screen above naturally picks these up.
 
 ### Time-of-emergence by capability class
 

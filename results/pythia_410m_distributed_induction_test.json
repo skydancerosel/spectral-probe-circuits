@@ -1,0 +1,195 @@
+{
+  "model": "EleutherAI/pythia-410m",
+  "step": 143000,
+  "induction_selective_heads_ge_50x": [
+    {
+      "layer": 8,
+      "head": 6,
+      "selectivity": 203.6023349803035
+    },
+    {
+      "layer": 7,
+      "head": 1,
+      "selectivity": 176.62952757006911
+    },
+    {
+      "layer": 8,
+      "head": 9,
+      "selectivity": 136.23897235125676
+    },
+    {
+      "layer": 11,
+      "head": 2,
+      "selectivity": 128.29022138860788
+    },
+    {
+      "layer": 11,
+      "head": 14,
+      "selectivity": 125.77511384726115
+    },
+    {
+      "layer": 10,
+      "head": 9,
+      "selectivity": 116.98635079222817
+    },
+    {
+      "layer": 6,
+      "head": 3,
+      "selectivity": 103.19258092193144
+    },
+    {
+      "layer": 9,
+      "head": 0,
+      "selectivity": 102.82151485074901
+    },
+    {
+      "layer": 10,
+      "head": 0,
+      "selectivity": 94.90190830617644
+    },
+    {
+      "layer": 8,
+      "head": 7,
+      "selectivity": 72.05963086583067
+    },
+    {
+      "layer": 10,
+      "head": 4,
+      "selectivity": 52.242197975194735
+    }
+  ],
+  "n_heads_ge_50x": 11,
+  "conditions": [
+    {
+      "name": "baseline",
+      "n_heads_ablated": 0,
+      "spec": {},
+      "loss": 8.257368087768555,
+      "acc_top1": 0.03700000047683716,
+      "acc_top5": 0.09049999713897705
+    },
+    {
+      "name": "ablate_extended_prev (primary OR 2nd >100x)",
+      "n_heads_ablated": 3,
+      "spec": {
+        "11": [
+          14
+        ],
+        "10": [
+          0
+        ],
+        "9": [
+          0
+        ]
+      },
+      "loss": 9.37632942199707,
+      "acc_top1": 0.008500000461935997,
+      "acc_top5": 0.023000000044703484
+    },
+    {
+      "name": "ablate_ALL_induction_selective_>=50x",
+      "n_heads_ablated": 11,
+      "spec": {
+        "6": [
+          3
+        ],
+        "7": [
+          1
+        ],
+        "8": [
+          6,
+          7,
+          9
+        ],
+        "9": [
+          0
+        ],
+        "10": [
+          0,
+          4,
+          9
+        ],
+        "11": [
+          2,
+          14
+        ]
+      },
+      "loss": 11.084331512451172,
+      "acc_top1": 0.0,
+      "acc_top5": 0.0005000000237487257
+    },
+    {
+      "name": "ablate_ALL_induction_selective_>=30x (11 heads)",
+      "n_heads_ablated": 11,
+      "spec": {
+        "6": [
+          3
+        ],
+        "7": [
+          1
+        ],
+        "8": [
+          6,
+          7,
+          9
+        ],
+        "9": [
+          0
+        ],
+        "10": [
+          0,
+          4,
+          9
+        ],
+        "11": [
+          2,
+          14
+        ]
+      },
+      "loss": 11.084331512451172,
+      "acc_top1": 0.0,
+      "acc_top5": 0.0005000000237487257
+    },
+    {
+      "name": "ablate_ALL_induction_selective_>=100x (8 heads)",
+      "n_heads_ablated": 8,
+      "spec": {
+        "6": [
+          3
+        ],
+        "7": [
+          1
+        ],
+        "8": [
+          6,
+          9
+        ],
+        "9": [
+          0
+        ],
+        "10": [
+          9
+        ],
+        "11": [
+          2,
+          14
+        ]
+      },
+      "loss": 10.5419921875,
+      "acc_top1": 0.0010000000474974513,
+      "acc_top5": 0.001500000013038516
+    },
+    {
+      "name": "ablate_ALL_induction_selective_>=200x (1 heads)",
+      "n_heads_ablated": 1,
+      "spec": {
+        "8": [
+          6
+        ]
+      },
+      "loss": 9.027203559875488,
+      "acc_top1": 0.01600000075995922,
+      "acc_top5": 0.03849999979138374
+    }
+  ]
+}
