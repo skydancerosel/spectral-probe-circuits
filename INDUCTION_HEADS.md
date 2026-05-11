@@ -224,10 +224,41 @@ So the spectral signal:
   named capability class
 - **Multi-capability**: the signal doesn't tell you which capability each
   pick implements — that requires the downstream mech-interp check
-- **Imperfect ranking by selectivity**: PR-spread doesn't cleanly
-  correspond to capability-strength; L6H9's 8,105× prev-token
-  selectivity sits at rank 14, while less-selective heads rank higher.
-  An alternative ranking signal might give better k-precision/recall.
+- **Imperfect ranking by selectivity** under PR-spread; we found a
+  better ranking signal — see next section.
+
+### Better ranking signal: PR-trajectory integral
+
+We tested 9 alternative trajectory features against PR-spread for
+ranking heads by capability strength. Ground truth: a head's
+"capability strength" = max selectivity across {induction,
+previous-token, self-attention} from the existing mechinterp data
+(54 of 144 heads exceed the 30× threshold).
+
+The clear winner is **the integral of the (PR − 1) trajectory over
+training** — i.e., total content-dependent computation across the run.
+
+| Ranking signal | Precision-at-30 | Mean selectivity in top-5 |
+|---|---:|---:|
+| spread (current baseline) | 0.93 | 155× |
+| **integral** | **0.97** | **5,791×** |
+| composite_sharpness (spread / rise-time) | 0.93 | 237× |
+| mean_post_grok | 0.93 | 258× |
+| max_pr (peak value) | 0.93 | 177× |
+| final_pr | 0.87 | 136× |
+| max_rate (max derivative) | 0.53 | 169× |
+
+Why integral wins: it rewards **sustained** high PR across the
+trajectory, whereas spread only measures the max-min gap. The
+previously-missed L6H9 (27,776× prev-token selectivity) has consistently
+high PR but not the highest peak — spread underrates it; integral
+surfaces it correctly at rank 5. Same pattern for L7H3 (628× selectivity,
+rank 3 by integral vs rank 11 by spread).
+
+**Practical guidance:** at top-15 either ranking is fine (both hit 100%
+precision). At larger k, prefer integral. The script
+`better_ranking_signal_124m.py` reports both rankings for any per-head
+PR trajectory file.
 
 ## What this validates
 
