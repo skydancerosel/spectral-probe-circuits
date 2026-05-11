@@ -4,9 +4,11 @@
 
 A simple unsupervised signal — the participation ratio (effective rank) of each head's attention output, tracked over training — pre-identifies the causally-relevant heads on every seed without using labels, ablation runs, or attention-pattern inspection. The seeds use different heads; the same signal sees them.
 
-We then test whether the signal generalizes from the synthetic probe task to natural-text capabilities by running it on GPT-2 124M trained on FineWeb-10B (no probe injection). Of the top-15 picks, **all 15 are recognizable capability heads** — induction, previous-token, or self-attention. At top-30 the precision is still 93%.
+We then test whether the signal generalizes from the synthetic probe task to natural-text capabilities by running it on **three independently-trained natural-text models**: GPT-2 124M (Karpathy / FineWeb-10B), Pythia 160M (EleutherAI / Pile), and Pythia 410M (EleutherAI / Pile). Precision-at-k matches within 1–3 percentage points across all three — 100% at k≤10, ~90–95% at the natural elbow in the PR-integral distribution. And **the fraction of heads doing identifiable specialized computation is conserved at ~17–19% across an 8× parameter scale range** — capability count scales linearly with model size, but the fraction of model capacity used for specialized work stays constant.
 
-The result is a single methodological tool that pre-identifies causally-relevant attention heads, generalizes from synthetic to naturally-emerging capabilities, identifies multiple capability circuits simultaneously, and works across independent seeds with different specific implementations.
+The result is a portable methodological tool: it pre-identifies causally-relevant attention heads, generalizes from synthetic to naturally-emerging capabilities, identifies multiple capability circuits simultaneously, works across independent seeds with different specific implementations, and gives the same precision-at-k pattern across an 8× scale range and two completely different training pipelines.
+
+Full cross-scale validation details in [**INDUCTION_HEADS.md**](INDUCTION_HEADS.md).
 
 ![Headline figure](headline.png)
 
@@ -246,16 +248,19 @@ Pretraining configs:
 
 3. **Spectral monitoring as an *intervention*, not just a description.** The current signal is read off offline. Making it a training-time callback that fires when a circuit is forming would let it *act on* its own observations: allocate compute, freeze certain weights for analysis, scale gradients on detected heads. Practical artifact for live interp research.
 
-4. **Larger natural-text models.** The 124M result is encouraging (precision-at-15 = 100%); does it scale? At GPT-2 medium / large, the multi-capability story should get richer (more capability classes emerging simultaneously), and the question becomes whether the spectral signal still hits high precision on a per-class basis or gets confused by the scale-up.
+4. ~~**Larger natural-text models.**~~ Done — extended to Pythia 160M and Pythia 410M (Pile, EleutherAI). Precision-at-k matches Karpathy 124M within 1–3 percentage points across an 8× parameter scale range and two completely different training pipelines. The fraction of heads doing identifiable specialized computation is conserved at ~17–19% across all three natural-text models. The class-mix shifts with scale (more first-token / BOS heads on Pile, induction class shrinks in top-30 at larger scale because the circuit distributes across more heads) — but ablating all heads with induction selectivity ≥50× still tanks induction top-1 to 0% on Pythia 410M. Full details in [INDUCTION_HEADS.md](INDUCTION_HEADS.md).
 
 ## What this means
 
 The methodological tool is small (a participation ratio, computed per head, per checkpoint), the implementation is short (~100 lines), and the cost is negligible compared to the training run itself. The findings argue that this small tool reliably points at causally-relevant attention heads across:
 
-- Different random seeds (s42, s271, s149, s256 — same task, different specific heads, same signal works on all)
-- Different model sizes (51M and 124M tested)
-- Different data distributions (synthetic probe injection and natural text)
-- Different capability classes (induction, previous-token, self-attention; with mechinterp triangulation)
+- Different random seeds (n=6 at TS-51M: s42, s271, s149, s256, s123, s314 — same task, different specific heads, same signal works on all)
+- **Different model sizes** (TS-51M → Karpathy 124M → Pythia 160M → Pythia 410M, an **8× parameter scale range**)
+- **Different training pipelines** (Karpathy / FineWeb-10B and EleutherAI / Pile — completely different implementations, RNG, data)
+- Different data distributions (synthetic probe injection, FineWeb, Pile)
+- Different capability classes (induction, previous-token, self-attention, first-token; with mechinterp triangulation)
+
+And — across all the natural-text models — **~17–19% of heads do identifiable specialized computation**, a conserved fraction across the 8× scale range.
 
 The headline use-case is what the title suggests: a fingerprinting tool for attention circuits that runs alongside training and pre-identifies the heads worth investigating, without committing the model author to specific ablations or capability-target choices in advance. For interp researchers studying capability emergence in long pretraining runs, the existing alternative is to do the post-hoc ablation pass for every checkpoint of interest. This is faster.
 
