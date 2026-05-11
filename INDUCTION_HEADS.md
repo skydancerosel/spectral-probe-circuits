@@ -227,6 +227,40 @@ So the spectral signal:
 - **Imperfect ranking by selectivity** under PR-spread; we found a
   better ranking signal — see next section.
 
+### Layer distribution on 124M: middle layers, not L0
+
+On TS-51M the spectral signal flagged L0H{3,6,14,15} as a retrieval substrate
+for 5 of 6 seeds. On natural-text 124M, **zero L0 heads are in the top-30 by
+PR-spread**. The highest-ranked L0 head is L0H10 at rank 40. All 12 L0 heads
+have selectivity < 5× on every measured capability (induction, prev-token).
+
+The top-30 picks distribute across middle layers (L4: 4, L5: 5, **L6: 7**,
+L7: 3, L8: 4, L1: 5, L2: 1, L9: 1) with no L0/L10/L11 picks at all.
+
+So **the "L0 retrieval substrate" pattern is TS-51M-specific** — it does not
+appear in this larger natural-text model. On 124M, capability circuits cluster
+in middle layers; L0 does general-LM work but isn't a specialized capability
+hub. Worth flagging in any extension of the methodology to other models —
+the spectral signal works, but where it points (which layer) depends on
+architecture/task/scale.
+
+### Time-of-emergence by capability class
+
+For each top-30 pick, when does it first cross PR=15 (mid-rise threshold)?
+
+| Class | n | mean step | range |
+|---|---:|---:|---|
+| **induction** | 5 | **840** | 800–1000 (very tight) |
+| previous-token | 9 | 1556 | 800–4600 (wide spread) |
+| self-attention | 14 | 1257 | 800–2400 |
+| unclassified | 2 | 2400 | 1400–3400 |
+
+Induction heads emerge in a narrow ~200-step window — consistent with the
+phase-transition character Olsson et al. (2022) observed. Previous-token heads
+have a much wider emergence range; some appear at step 800, others at step
+4600, suggesting prev-token specialization happens at multiple developmental
+stages rather than a single phase event.
+
 ### Better ranking signal: PR-trajectory integral
 
 We tested 9 alternative trajectory features against PR-spread for
