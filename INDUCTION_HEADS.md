@@ -1,5 +1,15 @@
 # Induction heads (and previous-token heads) on natural text
 
+> **Extended (May 2026) to 1B-class models — Pythia 1B, OLMo-1B-0724-hf (dense, DCLM), OLMoE-1B-7B-0924 (MoE, DCLM).** Same 3-step pipeline (spectral identification → mech-interp classification → causal verification with matched-random + all-head capability screen) applied across two new architecture families and two pretraining datasets. The capability screen at induction-selectivity ≥ 50× finds a 3–4 head induction circuit in *every* one of the five new models and tanks synthetic induction top-1 from ~5% → 0% in all of them. Full writeup in [**cross_architecture/README.md**](cross_architecture/README.md) · blog summary in [**cross_architecture/BLOG.md**](cross_architecture/BLOG.md).
+>
+> **Two writeup-corrections from the extension** that affect claims in this document:
+> 1. **Whole-model BOS-class fractions** were under-reported here: the "Pythia 410M: 20/384 = 5.2%" figures in the cross-model BOS-fraction table are *integral-top-K-AND-BOS-classified*, NOT whole-model. Apples-to-apples whole-model BOS at the same selectivity threshold: Pythia 160M 43% / 410M 58% / 1B 54% / OLMoE 1B-7B 68% / OLMo 1B 78%. The original "transformers have ~5% BOS" framing turns into "decoder-only LMs at 100M+ scale all have 40–80% BOS class; DCLM data adds ~20pp over Pile; MoE *reduces* BOS by ~10pp vs dense at the same scale+data."
+> 2. **"Best-class" mech-interp classification breaks down on attention-sink-heavy architectures.** When >70% of heads are BOS-class, the integral-top-K best-class survey misses capability heads (they're best-classified as BOS even though they have meaningful induction-selectivity underneath). **The all-head capability-specific screen** (already prescribed in this writeup for the "distribution wins" Pythia 410M case) becomes the rule rather than the exception. It identifies 3–4 head induction circuits in *every* model in the panel, regardless of how BOS-dominant the rest of the attention is.
+>
+> Universal: **L0 and L1 have zero BOS-classified heads across all five new models** (and consistent with the earlier Pythia 410M data). The BOS attractor kicks in from L2 onward (DCLM models) or L4–L6 onward (Pile models); the L0/L1 floor is the same in every decoder-only LM tested.
+
+---
+
 ## TL;DR
 
 Applying the spectral signal from [the probe-circuit work](README.md)
