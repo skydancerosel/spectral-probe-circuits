@@ -1,5 +1,11 @@
 # Spectral fingerprints of an attention circuit during pretraining
 
+> **New (May 2026): Cross-architecture extension to 1B-class models — Pythia 1B (dense Pile), OLMo-1B-0724-hf (dense DCLM), OLMoE-1B-7B-0924 (MoE DCLM).** The methodology ports cleanly to all five new models. The 3-4 head capability-specific screen at induction-selectivity ≥ 50× tanks synthetic-induction top-1 from ~5% → 0% across every model; on natural-text contexts the same circuit produces a 5–7× differential effect over matched-random ablations. **L0 and L1 have zero BOS-classified heads across all 5 models** — universal architectural property. Full writeup, scripts, and result JSONs in [**cross_architecture/**](cross_architecture/) · blog summary in [**cross_architecture/BLOG.md**](cross_architecture/BLOG.md).
+>
+> The corrected whole-model BOS-class fractions (the "Pythia ~5% BOS" number in older docs was integral-top-K, not whole-model): Pythia 160M 43% · 410M 58% · 1B 54% · OLMoE 1B-7B 68% · OLMo 1B 78% on synthetic; 15% · 69% · 68% · 73% · 84% on natural text. MoE *reduces* BOS by ~10pp vs dense at same scale+data; DCLM adds ~20pp over Pile at same scale+architecture.
+
+---
+
 **TL;DR.** We pretrain a small transformer six times with different random seeds, training each on the same long-range key-retrieval task. Every run learns it. Every run implements it with *different* attention heads.
 
 A simple unsupervised signal — the participation ratio (effective rank) of each head's attention output, tracked over training — pre-identifies the causally-relevant heads on every seed without using labels, ablation runs, or attention-pattern inspection. The seeds use different heads; the same signal sees them.
