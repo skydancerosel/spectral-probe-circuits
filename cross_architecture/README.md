@@ -2,7 +2,7 @@
 
 ## TL;DR
 
-The full three-step probe-circuit methodology from [`induction_heads_writeup.md`](../../analyses/induction_heads_writeup.md) — spectral identification by per-head PR integral over training, mech-interp capability classification, and causal ablation with matched-random + capability-specific all-head screen — ported to **OLMoE-1B-7B-0924** (allenai, 16L × 2048d × 16h × hd=128, 64 experts top-8, 244 intermediate-step checkpoints).
+The full three-step probe-circuit methodology from [`../INDUCTION_HEADS.md`](../INDUCTION_HEADS.md) — spectral identification by per-head PR integral over training, mech-interp capability classification, and causal ablation with matched-random + capability-specific all-head screen — ported to **OLMoE-1B-7B-0924** (allenai, 16L × 2048d × 16h × hd=128, 64 experts top-8, 244 intermediate-step checkpoints).
 
 Headline findings:
 
@@ -19,7 +19,7 @@ Headline findings:
   | OLMoE 1B-7B | DCLM | MoE | 256 | 68.0% | 73.4% |
   | OLMo 1B-0724-hf | DCLM | dense | 256 | **78.1%** | **84.0%** |
 
-  The original `induction_heads_writeup.md` reported Pythia 410M's first-token fraction as 5.2% — that was *first-token-classified-AND-in-integral-top-80, as percent of total heads*, NOT the whole-model BOS fraction. Whole-model BOS in Pythia 410M is actually ~58% (synth) / 69% (natural) — essentially the same as OLMoE 1B-7B. Pythia is *not* "low-BOS." The original framing was an apples-to-oranges artifact.
+  The original [`../INDUCTION_HEADS.md`](../INDUCTION_HEADS.md) reported Pythia 410M's first-token fraction as 5.2% — that was *first-token-classified-AND-in-integral-top-80, as percent of total heads*, NOT the whole-model BOS fraction. Whole-model BOS in Pythia 410M is actually ~58% (synth) / 69% (natural) — essentially the same as OLMoE 1B-7B. Pythia is *not* "low-BOS." The original framing was an apples-to-oranges artifact.
 
 - **L0 and L1 have ZERO BOS-classified heads across ALL 5 models** — a universal architectural property. Early layers do diverse general-purpose computation; the BOS attractor kicks in from L2 (DCLM models) or L4–L6 (Pile models). The L0/L1 universal floor was the genuine finding hiding inside the prior "OLMoE has L0–L1 unique structure" claim.
 
@@ -256,7 +256,7 @@ Same OLMoE-1B-7B-0924 `main` model loaded with eager attention; same selectivity
 
 ### Cross-model comparison — corrected whole-model BOS fractions
 
-**Important correction to the original `induction_heads_writeup.md` reporting.** The Pythia "first-token heads / total" numbers in that writeup (e.g., 5.2% at Pythia 410M) are *first-token-classified AND integral-top-K, as percent of total heads* — NOT the whole-model BOS fraction. We re-ran mech-interp classification (fp32 to avoid baseline underflow on smaller models) on Pythia 160M / 410M / 1B with `all_head_selectivity` saved, plus matching natural-text mech-interp on all five models. Final 5-model curve:
+**Important correction to the original [`../INDUCTION_HEADS.md`](../INDUCTION_HEADS.md) reporting.** The Pythia "first-token heads / total" numbers in that writeup (e.g., 5.2% at Pythia 410M) are *first-token-classified AND integral-top-K, as percent of total heads* — NOT the whole-model BOS fraction. We re-ran mech-interp classification (fp32 to avoid baseline underflow on smaller models) on Pythia 160M / 410M / 1B with `all_head_selectivity` saved, plus matching natural-text mech-interp on all five models. Final 5-model curve:
 
 | Model | Data | Arch | Heads | BOS % synth | BOS % natural | Δ (nat-synth) |
 |-------|------|------|------:|------------:|--------------:|--------------:|
@@ -526,7 +526,7 @@ The headline 96%-at-K=45 was BOS-driven. Non-BOS, OLMoE has 31 classified heads 
 ## Artifacts produced
 
 Scripts (worktree root):
-- `mamba2_per_head.py` — contains `build_induction_batch` + `compute_pr` (verbatim from `analyses/induction_heads_per_head_124m.py`)
+- `mamba2_per_head.py` — contains `build_induction_batch` + `compute_pr` (verbatim from [`../analyses/natural_text_124m/induction_heads_per_head_124m.py`](../analyses/natural_text_124m/induction_heads_per_head_124m.py))
 - `olmoe_per_head.py` — Phase 1 per-head PR per revision
 - `olmoe_mechinterp.py` — Phase 2 mech-interp classification (synthetic batch)
 - `build_natural_induction_batch.py` — builds OpenWebText induction batch with per-example positions; `--min-first-T-pos` filter for the mid-sequence control
