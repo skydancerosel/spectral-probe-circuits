@@ -17,7 +17,7 @@ script (deferred).
 from __future__ import annotations
 
 import sys, os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "shared"))  # noqa: E402
 
 import argparse
 import json
@@ -29,7 +29,7 @@ from transformers import OlmoeForCausalLM
 
 # Verbatim copies from analyses/induction_heads_per_head_124m.py
 # (kept inline so the script is self-contained — matches mamba2_per_head.py)
-from mamba2_per_head import build_induction_batch, compute_pr
+from induction_utils import build_induction_batch, compute_pr
 
 
 # Default log-spaced revision set for OLMoE-1B-7B-0924

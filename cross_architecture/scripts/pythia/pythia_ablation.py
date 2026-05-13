@@ -21,7 +21,7 @@ Metrics per condition: loss, top-1 acc, top-5 acc, mean logit-of-target-B.
 from __future__ import annotations
 
 import sys, os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "shared"))  # noqa: E402
 
 import argparse
 import json
@@ -32,7 +32,7 @@ import torch
 import torch.nn.functional as F
 from transformers import GPTNeoXForCausalLM
 
-from mamba2_per_head import build_induction_batch
+from induction_utils import build_induction_batch
 
 
 def make_pre_hook(heads_in_layer, head_dim):

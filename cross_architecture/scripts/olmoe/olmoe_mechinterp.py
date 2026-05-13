@@ -22,7 +22,7 @@ Reports top-K classifications + precision-at-k + class breakdown.
 from __future__ import annotations
 
 import sys, os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "shared"))  # noqa: E402
 
 import argparse
 import json
@@ -32,7 +32,7 @@ import numpy as np
 import torch
 from transformers import OlmoeForCausalLM
 
-from mamba2_per_head import build_induction_batch
+from induction_utils import build_induction_batch
 
 
 def reconstruct_ab_indices(tokens, targets):

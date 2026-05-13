@@ -20,7 +20,7 @@ import argparse, json, math, time
 import numpy as np
 import torch
 import torch.nn.functional as F
-from mamba2_per_head import build_induction_batch
+from induction_utils import build_induction_batch
 
 
 def make_pre_hook(heads_in_layer, head_dim):
