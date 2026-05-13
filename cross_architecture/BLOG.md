@@ -28,11 +28,9 @@ Five new test models, all run with the *same synthetic induction batch (RNG seed
 
 On natural-text contexts the same heads produce a 5–7× differential effect on the target-token logit over matched-random ablations in the same layers. The capability circuit is real, replicates the writeup's 410M finding, and survives the MoE / DCLM perturbations.
 
-## A statistic that makes cross-arch comparison clean
+## Whole-model BOS-class fractions
 
-`INDUCTION_HEADS.md` reports things like "Pythia 410M: 20 of 384 = 5.2% first-token." That number is a precision-at-K measurement: of the heads picked by integral-top-K, what fraction classified as first-token? It's the right thing to look at for "did the spectral signal pick up a first-token head?" — but it's not the same as "what fraction of *all heads* in the model classify as first-token at the same selectivity threshold?"
-
-For comparing across architectures, the whole-model fraction is the cleaner statistic. Re-running mech-interp with `all_head_selectivity` saved (fp32, to avoid baseline attention underflow on the smaller Pythia checkpoints) gives:
+Fraction of *all heads* classified as first-token at ≥30× selectivity, on synthetic and on natural text:
 
 | Model | BOS % synthetic | BOS % natural-text |
 |-------|----------------:|-------------------:|
@@ -42,7 +40,7 @@ For comparing across architectures, the whole-model fraction is the cleaner stat
 | OLMoE 1B-7B | 68.0% | 73.4% |
 | OLMo 1B | 78.1% | 84.0% |
 
-On this metric Pythia 410M's natural-text BOS (69.0%) sits very close to OLMoE's (73.4%) — the "MoE is uniquely BOS-dominated vs transformers" reading isn't supported by the whole-model number.
+Pythia 410M (69% natural) and OLMoE (73% natural) sit very close on this statistic. OLMo 1B dense is the most BOS-dominated of the five.
 
 ## Three things that move the BOS fraction
 
@@ -68,17 +66,15 @@ Per-layer BOS-class fraction, all five models on synthetic:
 
 That floor is the cleanest cross-architecture finding in this extension. It says that whatever an attention sink "is," it isn't something the model can or wants to do at L0–L1.
 
-## What the cross-arch data narrows down
+## Methodology notes from the cross-arch panel
 
-Two readings from the original writeup look different once we have whole-model BOS-class fractions across all five models:
-
-- "Pythia is mostly content-driven; OLMoE is uniquely BOS-dominated" — on the whole-model statistic, Pythia 410M and 1B sit at 54–69% and OLMoE at 68–73%, so the gap is much smaller than the precision-at-K comparison suggested. OLMo 1B dense (78–84%) is actually the most BOS-dominated of the five.
-- "Best-class mech-interp classification surfaces capability heads" — when ~70%+ of heads classify as `first-token`, the integral-top-K-by-best-class doesn't reliably surface induction or prev-token heads. The **all-head capability-specific screen** (measure capability-X selectivity in isolation, classify by capability rather than by best-class) was always the writeup's prescription for "distribution wins" cases like Pythia 410M; the cross-arch extension makes it the default rather than the exception.
+- On the whole-model BOS-class statistic, Pythia 410M / 1B (54–69%) and OLMoE (68–73%) are close; OLMo 1B dense (78–84%) is the most BOS-dominated of the five. BOS dominance is widespread across decoder-only LMs at 100M+ scale, not unique to MoE.
+- When ~70%+ of heads classify as `first-token`, integral-top-K-by-best-class doesn't reliably surface induction or prev-token heads. The **all-head capability-specific screen** (measure capability-X selectivity in isolation, classify by capability rather than by best-class) is the robust approach in that regime, and it identifies a 3–4 head induction circuit in every model in the panel.
 
 ## Methodology consequences
 
 - **The capability circuit (3–4 heads, induction-selective ≥ 50×) is the load-bearing object, not the integral-top-K.** Integral-top-K is good for the "are there real circuit heads in this model" surface question; for the actual *causal* claim, screen all heads for the capability of interest and ablate that set.
-- **For attention-sink-dominated architectures, `first-token` is a class to *exclude* from the rank-ordered analysis, not the dominant capability to track.** The non-BOS conserved-fraction is more like 12% (excluding first-token-class) — slightly below the original writeup's 17–19% transformer baseline, but still real.
+- **For attention-sink-dominated architectures, `first-token` is a class to *exclude* from the rank-ordered analysis, not the dominant capability to track.** Excluding first-token-class, the non-BOS conserved fraction is around 12% — below the Pythia transformer baseline of 17–19%, but still a real specialized fraction.
 - **The natural-text vs synthetic BOS amplification is itself a scale-related signal.** Pythia 160M is the only model where natural text *reduces* BOS (43% → 15%) — content-driven attention overrides the default. From 410M onward, real text *amplifies* BOS by 5–14pp — content-driven attention fails to override the default. There's a behavioral phase transition between 160M and 410M dense Pythia where attention organization flips from "content-driven" to "sink-dominated."
 
 ## Reproduce
