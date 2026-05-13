@@ -16,45 +16,46 @@ script (deferred).
 """
 from __future__ import annotations
 
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
+
 import argparse
 import json
 import time
 
 import numpy as np
 import torch
-from transformers import OlmoeForCausalLM
+from transformers import GPTNeoXForCausalLM
 
 # Verbatim copies from analyses/induction_heads_per_head_124m.py
 # (kept inline so the script is self-contained — matches mamba2_per_head.py)
 from mamba2_per_head import build_induction_batch, compute_pr
 
 
-# Default log-spaced revision set for OLMoE-1B-7B-0924
-# (range step5000→step1220000, ~20B→5117B tokens, every 5K steps)
+# Default log-spaced revision set for EleutherAI/pythia-1b
+# (range step1→step143000; Pythia trained on ~300B Pile tokens at 2.1M/step)
 DEFAULT_REVISIONS = [
-    "step5000-tokens20B",
-    "step10000-tokens41B",
-    "step25000-tokens104B",
-    "step50000-tokens209B",
-    "step100000-tokens418B",
-    "step200000-tokens836B",
-    "step400000-tokens1672B",
-    "step600000-tokens2508B",
-    "step1000000-tokens4181B",
-    "step1220000-tokens5117B",  # final
+    "step1",
+    "step4",
+    "step16",
+    "step64",
+    "step256",
+    "step512",
+    "step3000",
+    "step10000",
+    "step38000",
+    "step143000",  # final
 ]
 
 
 def revision_step(rev: str) -> int:
-    """step5000-tokens20B → 5000."""
-    return int(rev.split("step")[1].split("-")[0])
+    """step5000 → 5000  (Pythia format)."""
+    return int(rev[len("step"):])
 
 
 def revision_tokens_B(rev: str) -> int:
-    """step5000-tokens20B → 20."""
-    import re
-    m = re.search(r"tokens(\d+)B", rev)
-    return int(m.group(1)) if m else -1
+    """Pythia: ~2.1M tokens per step, return in B (float)."""
+    return int(revision_step(rev) * 2_097_152 / 1e9 * 1000) / 1000  # round to 0.001B
 
 
 def per_head_pr_at_last(model, tokens, n_layer, n_head, head_dim, device,
@@ -70,7 +71,7 @@ def per_head_pr_at_last(model, tokens, n_layer, n_head, head_dim, device,
         return hook
 
     handles = [
-        model.model.layers[L].self_attn.o_proj.register_forward_pre_hook(make_hook(L))
+        model.gpt_neox.layers[L].attention.dense.register_forward_pre_hook(make_hook(L))
         for L in range(n_layer)
     ]
 
@@ -100,7 +101,7 @@ def per_head_pr_at_last(model, tokens, n_layer, n_head, head_dim, device,
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="allenai/OLMoE-1B-7B-0924")
+    ap.add_argument("--model", default="EleutherAI/pythia-1b")
     ap.add_argument("--revisions", nargs="+", default=DEFAULT_REVISIONS)
     ap.add_argument("--n-examples", type=int, default=500,
                     help="smaller than Pythia's 2000 because OLMoE is 7B params")
@@ -143,7 +144,7 @@ def main():
         print(f"\n[{ck_idx+1}/{len(args.revisions)}] revision={rev} (step={step}, {toks_B}B tokens)")
         t0 = time.time()
         try:
-            model = OlmoeForCausalLM.from_pretrained(args.model, revision=rev, dtype=dtype)
+            model = GPTNeoXForCausalLM.from_pretrained(args.model, revision=rev, dtype=dtype)
             model = model.to(device).eval()
         except Exception as e:
             print(f"  SKIP: load failed: {e}")

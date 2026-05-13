@@ -10,6 +10,9 @@ direct name-mover heads (output the IO name into the residual stream).
 Output: all_head_ioi_selectivity dict (L_H -> {io_attn, subj_first, subj_second, name_mover_selectivity}).
 """
 from __future__ import annotations
+
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
 import argparse, json, time
 import numpy as np
 import torch

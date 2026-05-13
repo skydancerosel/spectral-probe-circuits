@@ -21,13 +21,16 @@ Reports top-K classifications + precision-at-k + class breakdown.
 """
 from __future__ import annotations
 
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
+
 import argparse
 import json
 import time
 
 import numpy as np
 import torch
-from transformers import GPTNeoXForCausalLM
+from transformers import OlmoeForCausalLM
 
 from mamba2_per_head import build_induction_batch
 
@@ -51,7 +54,7 @@ def reconstruct_ab_indices(tokens, targets):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="EleutherAI/pythia-1b")
+    ap.add_argument("--model", default="allenai/OLMoE-1B-7B-0924")
     ap.add_argument("--revision", default="main")
     ap.add_argument("--features-json", default="olmoe_phase1_features.json")
     ap.add_argument("--n-examples", type=int, default=2000)
@@ -60,19 +63,16 @@ def main():
     ap.add_argument("--top-k", type=int, default=45,
                     help="K for top-K mech-interp display (writeup heuristic = 17-19% = ~45 for 256 heads)")
     ap.add_argument("--selectivity-threshold", type=float, default=30.0)
-    ap.add_argument("--dtype", default="fp16", choices=["fp32", "fp16", "bf16"])
     ap.add_argument("--out", default="olmoe_mechinterp.json")
     args = ap.parse_args()
 
     device = "mps" if torch.backends.mps.is_available() else "cpu"
-    dtype_map = {"fp32": torch.float32, "fp16": torch.float16, "bf16": torch.bfloat16}
-    dtype = dtype_map[args.dtype]
-    print(f"device = {device}  dtype = {args.dtype}")
+    print(f"device = {device}")
 
     print(f"Loading {args.model}@{args.revision} (eager attention for output_attentions=True)...")
     t0 = time.time()
-    model = GPTNeoXForCausalLM.from_pretrained(args.model, revision=args.revision,
-                                              dtype=dtype,
+    model = OlmoeForCausalLM.from_pretrained(args.model, revision=args.revision,
+                                              dtype=torch.float16,
                                               attn_implementation="eager")
     model = model.to(device).eval()
     cfg = model.config

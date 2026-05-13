@@ -21,13 +21,16 @@ Reports top-K classifications + precision-at-k + class breakdown.
 """
 from __future__ import annotations
 
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
+
 import argparse
 import json
 import time
 
 import numpy as np
 import torch
-from transformers import OlmoeForCausalLM
+from transformers import OlmoForCausalLM
 
 from mamba2_per_head import build_induction_batch
 
@@ -51,7 +54,7 @@ def reconstruct_ab_indices(tokens, targets):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="allenai/OLMoE-1B-7B-0924")
+    ap.add_argument("--model", default="allenai/OLMo-1B-0724-hf")
     ap.add_argument("--revision", default="main")
     ap.add_argument("--features-json", default="olmoe_phase1_features.json")
     ap.add_argument("--n-examples", type=int, default=2000)
@@ -68,7 +71,7 @@ def main():
 
     print(f"Loading {args.model}@{args.revision} (eager attention for output_attentions=True)...")
     t0 = time.time()
-    model = OlmoeForCausalLM.from_pretrained(args.model, revision=args.revision,
+    model = OlmoForCausalLM.from_pretrained(args.model, revision=args.revision,
                                               dtype=torch.float16,
                                               attn_implementation="eager")
     model = model.to(device).eval()

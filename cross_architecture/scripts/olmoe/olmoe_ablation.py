@@ -20,6 +20,9 @@ Metrics per condition: loss, top-1 acc, top-5 acc, mean logit-of-target-B.
 """
 from __future__ import annotations
 
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
+
 import argparse
 import json
 import time
@@ -27,7 +30,7 @@ import time
 import numpy as np
 import torch
 import torch.nn.functional as F
-from transformers import GPTNeoXForCausalLM
+from transformers import OlmoeForCausalLM
 
 from mamba2_per_head import build_induction_batch
 
@@ -78,7 +81,7 @@ def run_condition(model, spec, tokens, targets, device, head_dim, batch_size):
     for layer_idx, heads in spec.items():
         if not heads:
             continue
-        h = model.gpt_neox.layers[layer_idx].attention.dense.register_forward_pre_hook(
+        h = model.model.layers[layer_idx].self_attn.o_proj.register_forward_pre_hook(
             make_pre_hook(heads, head_dim))
         handles.append(h)
     try:
@@ -90,7 +93,7 @@ def run_condition(model, spec, tokens, targets, device, head_dim, batch_size):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="EleutherAI/pythia-1b")
+    ap.add_argument("--model", default="allenai/OLMoE-1B-7B-0924")
     ap.add_argument("--revision", default="main")
     ap.add_argument("--features-json", default="olmoe_phase1_features.json")
     ap.add_argument("--mechinterp-json", default="olmoe_mechinterp.json")
@@ -112,7 +115,7 @@ def main():
 
     print(f"Loading {args.model}@{args.revision}...")
     t0 = time.time()
-    model = GPTNeoXForCausalLM.from_pretrained(args.model, revision=args.revision,
+    model = OlmoeForCausalLM.from_pretrained(args.model, revision=args.revision,
                                               dtype=torch.float16)
     model = model.to(device).eval()
     cfg = model.config
@@ -133,22 +136,12 @@ def main():
     print(f"\nTop-{args.top_k} spectral picks span layers: {sorted(spectral_picks.keys())}")
     print(f"  picks per layer: {[(L, len(spectral_picks[L])) for L in sorted(spectral_picks.keys())]}")
 
-    # Matched random: same layers, count per layer = min(picks, eligible)
-    # (caps when picks fill almost all heads in a layer; otherwise matches)
+    # Matched random: same layers, same count per layer, no overlap with picks
     rng_c = np.random.RandomState(args.random_seed)
     matched_random = {}
-    matched_random_short = False
     for L, picks in spectral_picks.items():
         eligible = [h for h in range(n_head) if h not in picks]
-        n_sample = min(len(picks), len(eligible))
-        if n_sample < len(picks):
-            matched_random_short = True
-        matched_random[L] = sorted(rng_c.choice(eligible, size=n_sample, replace=False).tolist())
-    if matched_random_short:
-        total_matched = sum(len(v) for v in matched_random.values())
-        total_picks = sum(len(v) for v in spectral_picks.values())
-        print(f"  NOTE: matched_random capped per layer (total {total_matched} vs {total_picks} picks); "
-              f"some layers had more picks than non-overlap heads")
+        matched_random[L] = sorted(rng_c.choice(eligible, size=len(picks), replace=False).tolist())
 
     # Upper bound: all heads in spec-pick layers
     upper_bound = {L: list(range(n_head)) for L in spectral_picks.keys()}

@@ -10,6 +10,9 @@ Heads are filtered:
 Then top-K by subj_max are ablated.
 """
 from __future__ import annotations
+
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
 import argparse, json, time
 import numpy as np
 import torch

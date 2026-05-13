@@ -13,6 +13,9 @@ Conditions:
   4. ablate prev-token + induction (union)
 """
 from __future__ import annotations
+
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E402
 import argparse, json, math, time
 import numpy as np
 import torch
