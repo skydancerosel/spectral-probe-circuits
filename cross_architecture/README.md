@@ -19,13 +19,13 @@ Headline findings:
   | OLMoE 1B-7B | DCLM | MoE | 256 | 68.0% | 73.4% |
   | OLMo 1B-0724-hf | DCLM | dense | 256 | **78.1%** | **84.0%** |
 
-  The original [`../INDUCTION_HEADS.md`](../INDUCTION_HEADS.md) reported Pythia 410M's first-token fraction as 5.2% — that was *first-token-classified-AND-in-integral-top-80, as percent of total heads*, NOT the whole-model BOS fraction. Whole-model BOS in Pythia 410M is actually ~58% (synth) / 69% (natural) — essentially the same as OLMoE 1B-7B. Pythia is *not* "low-BOS." The original framing was an apples-to-oranges artifact.
+  Note that the BOS-fraction numbers in [`../INDUCTION_HEADS.md`](../INDUCTION_HEADS.md) (e.g., "Pythia 410M: 20 of 384 = 5.2% first-token") count first-token-classified heads *within the integral-top-K*, which is the right denominator for "did the spectral signal pick a first-token head?" — a precision-at-K question. The table above is a different statistic: fraction of *all heads* classified into each class at the same ≥30× selectivity threshold. Both are valid; they answer different questions.
 
 - **L0 and L1 have ZERO BOS-classified heads across ALL 5 models** — a universal architectural property. Early layers do diverse general-purpose computation; the BOS attractor kicks in from L2 (DCLM models) or L4–L6 (Pile models). The L0/L1 universal floor was the genuine finding hiding inside the prior "OLMoE has L0–L1 unique structure" claim.
 
 - **Pythia 160M is anomalous in one respect:** natural text *reduces* its BOS fraction (43% → 15%, the only −Δ among all 5 models), while every other model (410M+) sees natural text *amplify* BOS by 5–14pp. There's a scale-related transition between 160M and 410M where attention organization shifts from "content-driven" (real text suppresses default BOS attention) to "sink-dominated" (real text fails to override the default).
 
-- **Scale grows BOS dominance within an architecture family** (Pythia 160M dense Pile: 43% → 410M: 58% — saturates by 1B at ~54%). **DCLM data adds ~20pp** at the same scale+architecture (OLMo 1B dense DCLM: 78% vs Pythia 1B dense Pile: 54%). **MoE *reduces* BOS by ~10pp** vs dense at the same scale+data (OLMoE 1B-7B MoE DCLM: 68% vs OLMo 1B dense DCLM: 78%). The previous claim "MoE has an unusually strong attractor" was wrong; the right claim is "scale + DCLM data produce strong attention-sinks across architectures; MoE doesn't add to and slightly reduces them."
+- **Scale grows BOS dominance within an architecture family** (Pythia 160M dense Pile: 43% → 410M: 58% — saturates by 1B at ~54%). **DCLM data adds ~20pp** at the same scale+architecture (OLMo 1B dense DCLM: 78% vs Pythia 1B dense Pile: 54%). **MoE *reduces* BOS by ~10pp** vs dense at the same scale+data (OLMoE 1B-7B MoE DCLM: 68% vs OLMo 1B dense DCLM: 78%). Scale and DCLM data appear to produce strong attention-sinks across architectures; MoE doesn't add to them, and slightly reduces them relative to its dense counterpart at the same scale+data.
 
 - **OLMoE has a BOS attractor concentrated in L3–L15.** L0–L1 have zero BOS heads — they're high-PR diverse heads. L3+ defaults to BOS attention. Natural-text re-classification (73.4%) and mid-sequence control (73.0%) confirm the attractor is position-independent. Synthetic-classified BOS heads start at PR ≈ 21 early in training and collapse to PR ≈ 9 by the final checkpoint — emerges progressively, not at initialization. Consistent with the attention-sink phenomenon (Xiao et al., StreamingLLM), present across all 100M+ models tested but most concentrated in DCLM-trained 1B+ dense models.
 - **The 4 induction heads classify as BOS on natural text** (their best-class is first-token, dominating their induction signal numerically), but they still have non-trivial natural-text induction selectivity (25–71×). **"Best-class" mech-interp breaks down on attention-sink-dominated architectures; the all-head capability-specific screen is the robust approach.**
@@ -254,9 +254,9 @@ Same OLMoE-1B-7B-0924 `main` model loaded with eager attention; same selectivity
 
 **Natural text *amplifies* BOS dominance** (73.4% vs 68.0%) rather than reducing it. The 5pp increase rules out the "synthetic-batch attractor" explanation: if BOS attention were just "default attention when no content is interesting," natural text (which has content) should reduce it. Instead, BOS goes up. The architectural BOS-attractor interpretation is the surviving one.
 
-### Cross-model comparison — corrected whole-model BOS fractions
+### Cross-model whole-model BOS-class fractions
 
-**Important correction to the original [`../INDUCTION_HEADS.md`](../INDUCTION_HEADS.md) reporting.** The Pythia "first-token heads / total" numbers in that writeup (e.g., 5.2% at Pythia 410M) are *first-token-classified AND integral-top-K, as percent of total heads* — NOT the whole-model BOS fraction. We re-ran mech-interp classification (fp32 to avoid baseline underflow on smaller models) on Pythia 160M / 410M / 1B with `all_head_selectivity` saved, plus matching natural-text mech-interp on all five models. Final 5-model curve:
+For cross-architecture comparison we want a single statistic — fraction of *all heads* that classify as first-token at the same selectivity threshold — rather than the integral-top-K precision-at-K numbers reported in [`../INDUCTION_HEADS.md`](../INDUCTION_HEADS.md). Re-running mech-interp classification with `all_head_selectivity` saved (fp32, to avoid baseline underflow on the smaller Pythia checkpoints), plus matching natural-text mech-interp on all five models, gives:
 
 | Model | Data | Arch | Heads | BOS % synth | BOS % natural | Δ (nat-synth) |
 |-------|------|------|------:|------------:|--------------:|--------------:|
@@ -268,13 +268,13 @@ Same OLMoE-1B-7B-0924 `main` model loaded with eager attention; same selectivity
 
 **Four readings:**
 
-1. **The corrected scale curve in Pythia: 43% → 58% (160M → 410M) on synthetic; nearly saturates at 1B (54%).** The original writeup's "Pythia ~5% BOS" was integral-top-K-AND-BOS-classified as percent of total — not the whole-model fraction. With proper whole-model counting, Pythia is already ~half BOS-class at 160M.
+1. **Scale curve in Pythia: 43% → 58% (160M → 410M) on synthetic; saturates near 54% at 1B.** Whole-model BOS fraction in Pythia is already around half by 160M, on this metric.
 
 2. **DCLM data adds ~20pp** at the same scale+arch: OLMo 1B dense DCLM (78%) vs Pythia 1B dense Pile (54%). Pure data effect at fixed architecture.
 
 3. **MoE *reduces* BOS by ~10pp** vs dense at same scale+data: OLMoE (68%) vs OLMo (78%) within DCLM. MoE doesn't cause attention sinks; if anything, suppresses them.
 
-4. **Pythia 160M is the anomaly: natural text REDUCES its BOS** (43% synth → 15% natural, −28pp). All other models *amplify* BOS on natural text by 5–14pp. There's a scale transition between 160M and 410M where attention organization flips from "content-driven" (BOS reduced when real content is present) to "sink-dominated" (real text content competes weakly with the BOS attractor). **Pythia 410M's natural-text BOS (69%) is essentially identical to OLMoE's (73%)**, decisively refuting the "OLMoE is unusually BOS-dominated vs transformers" framing.
+4. **Pythia 160M is the anomaly: natural text REDUCES its BOS** (43% synth → 15% natural, −28pp). All other models *amplify* BOS on natural text by 5–14pp. There's a scale transition between 160M and 410M where attention organization flips from "content-driven" (BOS reduced when real content is present) to "sink-dominated" (real text content competes weakly with the BOS attractor). On the whole-model statistic, Pythia 410M's natural-text BOS (69%) is essentially the same as OLMoE's (73%) — so the "MoE is uniquely BOS-dominated" reading isn't supported by the whole-model number.
 
 Consistent with the attention-sink phenomenon (Xiao et al., StreamingLLM). The methodology is unaffected — the all-head capability screen identifies a 3–4 head induction circuit in every model tested, regardless of how BOS-dominant the rest of the attention is.
 

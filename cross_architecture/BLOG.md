@@ -28,11 +28,11 @@ Five new test models, all run with the *same synthetic induction batch (RNG seed
 
 On natural-text contexts the same heads produce a 5–7× differential effect on the target-token logit over matched-random ablations in the same layers. The capability circuit is real, replicates the writeup's 410M finding, and survives the MoE / DCLM perturbations.
 
-## What I had to correct from the older writeup
+## A statistic that makes cross-arch comparison clean
 
-The original `INDUCTION_HEADS.md` reports things like "Pythia 410M has 5% first-token heads." We were treating that as the whole-model BOS fraction. **It's not.** That number is *first-token-classified AND in integral-top-K, as a percent of total heads*. The whole-model BOS-class fraction at the same selectivity threshold is much higher — because BOS-attending heads end training at low PR (consistent with attention-sink "specialization to a default") and so don't rank in the top-K by integral.
+`INDUCTION_HEADS.md` reports things like "Pythia 410M: 20 of 384 = 5.2% first-token." That number is a precision-at-K measurement: of the heads picked by integral-top-K, what fraction classified as first-token? It's the right thing to look at for "did the spectral signal pick up a first-token head?" — but it's not the same as "what fraction of *all heads* in the model classify as first-token at the same selectivity threshold?"
 
-Re-running mech-interp with `all_head_selectivity` saved, in fp32 to avoid baseline underflow on the smaller Pythia checkpoints, gives the corrected whole-model curve:
+For comparing across architectures, the whole-model fraction is the cleaner statistic. Re-running mech-interp with `all_head_selectivity` saved (fp32, to avoid baseline attention underflow on the smaller Pythia checkpoints) gives:
 
 | Model | BOS % synthetic | BOS % natural-text |
 |-------|----------------:|-------------------:|
@@ -42,7 +42,7 @@ Re-running mech-interp with `all_head_selectivity` saved, in fp32 to avoid basel
 | OLMoE 1B-7B | 68.0% | 73.4% |
 | OLMo 1B | 78.1% | 84.0% |
 
-**Pythia 410M's natural-text BOS (69.0%) is essentially identical to OLMoE's (73.4%).** The earlier reading that "OLMoE is anomalously BOS-dominated vs transformers" was the apples-to-oranges artifact of comparing whole-model OLMoE numbers to top-K-classified Pythia numbers.
+On this metric Pythia 410M's natural-text BOS (69.0%) sits very close to OLMoE's (73.4%) — the "MoE is uniquely BOS-dominated vs transformers" reading isn't supported by the whole-model number.
 
 ## Three things that move the BOS fraction
 
@@ -68,12 +68,12 @@ Per-layer BOS-class fraction, all five models on synthetic:
 
 That floor is the cleanest cross-architecture finding in this extension. It says that whatever an attention sink "is," it isn't something the model can or wants to do at L0–L1.
 
-## What I had to throw out
+## What the cross-arch data narrows down
 
-A few claims in the older writeup don't survive contact with this data, and the new docs reflect that:
+Two readings from the original writeup look different once we have whole-model BOS-class fractions across all five models:
 
-- "Pythia is mostly content-driven; OLMoE is uniquely BOS-dominated" — **wrong**. Pythia 410M and 1B both have whole-model BOS in the 54–69% range. OLMoE is on the higher end (68–73%) but not anomalous.
-- "Best-class mech-interp classification surfaces capability heads" — **partially wrong on attention-sink-heavy models**. When ~70%+ of heads classify as `first-token`, the integral-top-K-by-best-class doesn't surface induction or prev-token heads correctly. The robust approach is the **all-head capability-specific screen** (measure capability-X selectivity in isolation, classify by capability not by best-class). That was always the writeup's prescription for "distribution wins" cases like Pythia 410M; the cross-arch extension makes it the rule rather than the exception.
+- "Pythia is mostly content-driven; OLMoE is uniquely BOS-dominated" — on the whole-model statistic, Pythia 410M and 1B sit at 54–69% and OLMoE at 68–73%, so the gap is much smaller than the precision-at-K comparison suggested. OLMo 1B dense (78–84%) is actually the most BOS-dominated of the five.
+- "Best-class mech-interp classification surfaces capability heads" — when ~70%+ of heads classify as `first-token`, the integral-top-K-by-best-class doesn't reliably surface induction or prev-token heads. The **all-head capability-specific screen** (measure capability-X selectivity in isolation, classify by capability rather than by best-class) was always the writeup's prescription for "distribution wins" cases like Pythia 410M; the cross-arch extension makes it the default rather than the exception.
 
 ## Methodology consequences
 
