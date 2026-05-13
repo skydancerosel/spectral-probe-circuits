@@ -1,0 +1,146 @@
+{
+  "model": "allenai/OLMoE-1B-7B-0924",
+  "revision": "main",
+  "arch": "olmoe",
+  "top_k": 5,
+  "n_examples": 500,
+  "name_mover_heads": [
+    [
+      12,
+      14
+    ],
+    [
+      12,
+      3
+    ],
+    [
+      12,
+      10
+    ],
+    [
+      11,
+      8
+    ],
+    [
+      9,
+      1
+    ]
+  ],
+  "conditions": [
+    {
+      "top1": 0.5860000252723694,
+      "frac_target_gt_distractor": 0.9959999918937683,
+      "logit_diff_mean": 3.9453125,
+      "condition": "baseline",
+      "n_ablated": 0,
+      "spec": {},
+      "wall_s": 92.7168800830841
+    },
+    {
+      "top1": 0.40799999237060547,
+      "frac_target_gt_distractor": 0.9919999837875366,
+      "logit_diff_mean": 3.4609375,
+      "condition": "ablate_top5_name_movers",
+      "n_ablated": 5,
+      "spec": {
+        "12": [
+          14,
+          3,
+          10
+        ],
+        "11": [
+          8
+        ],
+        "9": [
+          1
+        ]
+      },
+      "wall_s": 86.13242888450623
+    },
+    {
+      "top1": 0.5799999833106995,
+      "frac_target_gt_distractor": 0.9980000257492065,
+      "logit_diff_mean": 4.31640625,
+      "condition": "ablate_matched_random_same_layers (5h)",
+      "n_ablated": 5,
+      "spec": {
+        "12": [
+          5,
+          8,
+          12
+        ],
+        "11": [
+          6
+        ],
+        "9": [
+          13
+        ]
+      },
+      "wall_s": 86.35850214958191
+    },
+    {
+      "top1": 0.09000000357627869,
+      "frac_target_gt_distractor": 0.9980000257492065,
+      "logit_diff_mean": 5.53125,
+      "condition": "ablate_full_name_mover_layers (upper bound, 48h)",
+      "n_ablated": 48,
+      "spec": {
+        "12": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "11": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "9": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "wall_s": 87.21739792823792
+    }
+  ]
+}

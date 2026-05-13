@@ -1,0 +1,146 @@
+{
+  "model": "allenai/OLMo-1B-0724-hf",
+  "revision": "main",
+  "arch": "olmo",
+  "top_k": 5,
+  "n_examples": 500,
+  "name_mover_heads": [
+    [
+      12,
+      9
+    ],
+    [
+      12,
+      8
+    ],
+    [
+      12,
+      4
+    ],
+    [
+      14,
+      1
+    ],
+    [
+      13,
+      10
+    ]
+  ],
+  "conditions": [
+    {
+      "top1": 0.878000020980835,
+      "frac_target_gt_distractor": 1.0,
+      "logit_diff_mean": 3.634765625,
+      "condition": "baseline",
+      "n_ablated": 0,
+      "spec": {},
+      "wall_s": 2.932957887649536
+    },
+    {
+      "top1": 0.7059999704360962,
+      "frac_target_gt_distractor": 0.9959999918937683,
+      "logit_diff_mean": 3.890625,
+      "condition": "ablate_top5_name_movers",
+      "n_ablated": 5,
+      "spec": {
+        "12": [
+          9,
+          8,
+          4
+        ],
+        "14": [
+          1
+        ],
+        "13": [
+          10
+        ]
+      },
+      "wall_s": 2.812911033630371
+    },
+    {
+      "top1": 0.7639999985694885,
+      "frac_target_gt_distractor": 0.9599999785423279,
+      "logit_diff_mean": 2.892578125,
+      "condition": "ablate_matched_random_same_layers (5h)",
+      "n_ablated": 5,
+      "spec": {
+        "12": [
+          5,
+          10,
+          13
+        ],
+        "14": [
+          7
+        ],
+        "13": [
+          13
+        ]
+      },
+      "wall_s": 2.8158631324768066
+    },
+    {
+      "top1": 0.08399999886751175,
+      "frac_target_gt_distractor": 0.6420000195503235,
+      "logit_diff_mean": 0.9794921875,
+      "condition": "ablate_full_name_mover_layers (upper bound, 48h)",
+      "n_ablated": 48,
+      "spec": {
+        "12": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "14": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "13": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "wall_s": 2.858457088470459
+    }
+  ]
+}

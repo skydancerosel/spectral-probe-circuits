@@ -1,0 +1,2968 @@
+{
+  "model": "allenai/OLMo-1B-0724-hf",
+  "revision": "step5000-tokens10B",
+  "selectivity_threshold": 30.0,
+  "ranking": "integral",
+  "n_examples_valid": 2000,
+  "n_examples": 2000,
+  "top_k": 45,
+  "classifications": [
+    {
+      "rank": 1,
+      "layer": 0,
+      "head": 1,
+      "integral": 510.91786194358815,
+      "spread": 85.2469310760498,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 7.799448013305664,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.646995778201549,
+      "all_selectivities": {
+        "induction": 0.9828718693158867,
+        "previous-token": 1.0190948247909546,
+        "duplicate-token": 2.646995778201549,
+        "first-token": 1.0120271444320679,
+        "self": 7.799448013305664,
+        "local": 1.0271470546722412
+      }
+    },
+    {
+      "rank": 2,
+      "layer": 0,
+      "head": 0,
+      "integral": 503.15806825514187,
+      "spread": 89.89891338348389,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 6.954767227172852,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.357229266473173,
+      "all_selectivities": {
+        "induction": 1.0322709141984592,
+        "previous-token": 1.035868525505066,
+        "duplicate-token": 2.357229266473173,
+        "first-token": 1.002801775932312,
+        "self": 6.954767227172852,
+        "local": 1.021044373512268
+      }
+    },
+    {
+      "rank": 3,
+      "layer": 0,
+      "head": 10,
+      "integral": 449.8814546805834,
+      "spread": 81.92075729370117,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 8.449250221252441,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.607299744352167,
+      "all_selectivities": {
+        "induction": 1.004896045005971,
+        "previous-token": 1.0847375392913818,
+        "duplicate-token": 2.607299744352167,
+        "first-token": 1.026992678642273,
+        "self": 8.449250221252441,
+        "local": 1.006144642829895
+      }
+    },
+    {
+      "rank": 4,
+      "layer": 0,
+      "head": 13,
+      "integral": 434.5586342568765,
+      "spread": 87.31943702697754,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 7.22119140625,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.273438341343584,
+      "all_selectivities": {
+        "induction": 0.9410607529452866,
+        "previous-token": 1.0405590534210205,
+        "duplicate-token": 2.273438341343584,
+        "first-token": 0.9773162007331848,
+        "self": 7.22119140625,
+        "local": 1.0115851163864136
+      }
+    },
+    {
+      "rank": 5,
+      "layer": 0,
+      "head": 2,
+      "integral": 356.93283642150806,
+      "spread": 47.93702697753906,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 8.172439575195312,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.737540673319014,
+      "all_selectivities": {
+        "induction": 0.9805899145310293,
+        "previous-token": 1.0862340927124023,
+        "duplicate-token": 2.737540673319014,
+        "first-token": 0.9510468244552612,
+        "self": 8.172439575195312,
+        "local": 0.992289662361145
+      }
+    },
+    {
+      "rank": 6,
+      "layer": 2,
+      "head": 5,
+      "integral": 320.03249130432516,
+      "spread": 49.66917610168457,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 476.90203857421875,
+      "second_class": "self",
+      "second_selectivity": 381.7966003417969,
+      "all_selectivities": {
+        "induction": 0.5899687703910951,
+        "previous-token": 476.90203857421875,
+        "duplicate-token": 0.7431345450677953,
+        "first-token": 1.273152232170105,
+        "self": 381.7966003417969,
+        "local": 89.45886993408203
+      }
+    },
+    {
+      "rank": 7,
+      "layer": 1,
+      "head": 2,
+      "integral": 312.49136227090446,
+      "spread": 51.67346000671387,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 59146.2578125,
+      "second_class": "self",
+      "second_selectivity": 734.0783081054688,
+      "all_selectivities": {
+        "induction": 0.4372633688299905,
+        "previous-token": 59146.2578125,
+        "duplicate-token": 0.5297487433353881,
+        "first-token": 0.1782926321029663,
+        "self": 734.0783081054688,
+        "local": 311.7840881347656
+      }
+    },
+    {
+      "rank": 8,
+      "layer": 0,
+      "head": 15,
+      "integral": 304.9765050150065,
+      "spread": 74.62909698486328,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 7.1921892166137695,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.660131016505818,
+      "all_selectivities": {
+        "induction": 0.9950691610329667,
+        "previous-token": 1.0430853366851807,
+        "duplicate-token": 2.660131016505818,
+        "first-token": 0.9272187352180481,
+        "self": 7.1921892166137695,
+        "local": 1.0096226930618286
+      }
+    },
+    {
+      "rank": 9,
+      "layer": 0,
+      "head": 12,
+      "integral": 272.9750626933083,
+      "spread": 81.81736183166504,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 4.3971638679504395,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.0217730617173797,
+      "all_selectivities": {
+        "induction": 0.9307882069622951,
+        "previous-token": 1.0635840892791748,
+        "duplicate-token": 2.0217730617173797,
+        "first-token": 0.9704169631004333,
+        "self": 4.3971638679504395,
+        "local": 1.0210886001586914
+      }
+    },
+    {
+      "rank": 10,
+      "layer": 1,
+      "head": 14,
+      "integral": 270.677884477289,
+      "spread": 57.87918758392334,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 68.05474853515625,
+      "second_class": "self",
+      "second_selectivity": 55.29783248901367,
+      "all_selectivities": {
+        "induction": 0.19656317790290598,
+        "previous-token": 68.05474853515625,
+        "duplicate-token": 0.17993100209376903,
+        "first-token": 0.10132430493831635,
+        "self": 55.29783248901367,
+        "local": 16.389890670776367
+      }
+    },
+    {
+      "rank": 11,
+      "layer": 3,
+      "head": 7,
+      "integral": 269.8038781149608,
+      "spread": 37.231075286865234,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 555.2040405273438,
+      "second_class": "self",
+      "second_selectivity": 40.54812240600586,
+      "all_selectivities": {
+        "induction": 0.970027366704797,
+        "previous-token": 555.2040405273438,
+        "duplicate-token": 0.562267946766964,
+        "first-token": 3.0193705558776855,
+        "self": 40.54812240600586,
+        "local": 21.253171920776367
+      }
+    },
+    {
+      "rank": 12,
+      "layer": 0,
+      "head": 6,
+      "integral": 246.61480858831422,
+      "spread": 72.21114134788513,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 4.990012168884277,
+      "second_class": "duplicate-token",
+      "second_selectivity": 1.8517761510801833,
+      "all_selectivities": {
+        "induction": 0.9742395328238781,
+        "previous-token": 1.028147578239441,
+        "duplicate-token": 1.8517761510801833,
+        "first-token": 0.9621800184249878,
+        "self": 4.990012168884277,
+        "local": 1.0459253787994385
+      }
+    },
+    {
+      "rank": 13,
+      "layer": 2,
+      "head": 2,
+      "integral": 214.60298722323574,
+      "spread": 31.929306030273438,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 176.48663330078125,
+      "second_class": "self",
+      "second_selectivity": 96.31849670410156,
+      "all_selectivities": {
+        "induction": 0.31583000525137334,
+        "previous-token": 176.48663330078125,
+        "duplicate-token": 0.34237918454986743,
+        "first-token": 0.9464292526245117,
+        "self": 96.31849670410156,
+        "local": 52.6104850769043
+      }
+    },
+    {
+      "rank": 14,
+      "layer": 14,
+      "head": 9,
+      "integral": 213.3003195325369,
+      "spread": 44.21828317642212,
+      "classification": "unclassified",
+      "best_class": "local",
+      "best_selectivity": 4.161207675933838,
+      "second_class": "previous-token",
+      "second_selectivity": 3.8872756958007812,
+      "all_selectivities": {
+        "induction": 0.43074992764449144,
+        "previous-token": 3.8872756958007812,
+        "duplicate-token": 0.4915949513905771,
+        "first-token": 0.6363068222999573,
+        "self": 2.5009407997131348,
+        "local": 4.161207675933838
+      }
+    },
+    {
+      "rank": 15,
+      "layer": 4,
+      "head": 12,
+      "integral": 213.01658593584403,
+      "spread": 43.77112340927124,
+      "classification": "induction",
+      "best_class": "induction",
+      "best_selectivity": 41.80204309929777,
+      "second_class": "local",
+      "second_selectivity": 3.614379644393921,
+      "all_selectivities": {
+        "induction": 41.80204309929777,
+        "previous-token": 2.490231990814209,
+        "duplicate-token": 0.5212267428362554,
+        "first-token": 0.8181145191192627,
+        "self": 3.4212026596069336,
+        "local": 3.614379644393921
+      }
+    },
+    {
+      "rank": 16,
+      "layer": 2,
+      "head": 11,
+      "integral": 212.16114036984038,
+      "spread": 43.7724027633667,
+      "classification": "induction",
+      "best_class": "induction",
+      "best_selectivity": 164.26225233972423,
+      "second_class": "first-token",
+      "second_selectivity": 18.720840454101562,
+      "all_selectivities": {
+        "induction": 164.26225233972423,
+        "previous-token": 0.206266388297081,
+        "duplicate-token": 0.17482643667050568,
+        "first-token": 18.720840454101562,
+        "self": 0.9486627578735352,
+        "local": 0.18704868853092194
+      }
+    },
+    {
+      "rank": 17,
+      "layer": 0,
+      "head": 11,
+      "integral": 210.9840083353179,
+      "spread": 79.04606246948242,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 7.094182968139648,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.6107693235594036,
+      "all_selectivities": {
+        "induction": 0.9573538179703526,
+        "previous-token": 1.0039763450622559,
+        "duplicate-token": 2.6107693235594036,
+        "first-token": 0.947896420955658,
+        "self": 7.094182968139648,
+        "local": 1.0354716777801514
+      }
+    },
+    {
+      "rank": 18,
+      "layer": 1,
+      "head": 1,
+      "integral": 210.31782808440323,
+      "spread": 38.71283292770386,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 64732.75390625,
+      "second_class": "local",
+      "second_selectivity": 28843.4765625,
+      "all_selectivities": {
+        "induction": 0.6735585016180095,
+        "previous-token": 64732.75390625,
+        "duplicate-token": 0.5029421244625673,
+        "first-token": 1.8415589332580566,
+        "self": 1542.8699951171875,
+        "local": 28843.4765625
+      }
+    },
+    {
+      "rank": 19,
+      "layer": 0,
+      "head": 5,
+      "integral": 207.91913678069915,
+      "spread": 92.73231410980225,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 5.266672134399414,
+      "second_class": "duplicate-token",
+      "second_selectivity": 1.9592384949295003,
+      "all_selectivities": {
+        "induction": 0.9958070611166602,
+        "previous-token": 1.0128345489501953,
+        "duplicate-token": 1.9592384949295003,
+        "first-token": 0.9381481409072876,
+        "self": 5.266672134399414,
+        "local": 1.0401464700698853
+      }
+    },
+    {
+      "rank": 20,
+      "layer": 1,
+      "head": 7,
+      "integral": 196.47244627443192,
+      "spread": 44.29088354110718,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 1352.5616455078125,
+      "second_class": "self",
+      "second_selectivity": 849.3798217773438,
+      "all_selectivities": {
+        "induction": 0.17803220831015978,
+        "previous-token": 1352.5616455078125,
+        "duplicate-token": 0.16370774586657064,
+        "first-token": 0.3039764165878296,
+        "self": 849.3798217773438,
+        "local": 443.2945556640625
+      }
+    },
+    {
+      "rank": 21,
+      "layer": 3,
+      "head": 2,
+      "integral": 194.51851656999565,
+      "spread": 39.8584098815918,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 54.19237518310547,
+      "second_class": "self",
+      "second_selectivity": 34.331302642822266,
+      "all_selectivities": {
+        "induction": 0.9326234163169713,
+        "previous-token": 54.19237518310547,
+        "duplicate-token": 0.7834305782531539,
+        "first-token": 0.11898605525493622,
+        "self": 34.331302642822266,
+        "local": 19.210161209106445
+      }
+    },
+    {
+      "rank": 22,
+      "layer": 3,
+      "head": 15,
+      "integral": 188.5770684348721,
+      "spread": 45.24875593185425,
+      "classification": "previous-token",
+      "best_class": "previous-token",
+      "best_selectivity": 315.419677734375,
+      "second_class": "self",
+      "second_selectivity": 100.11165618896484,
+      "all_selectivities": {
+        "induction": 0.5408362877897916,
+        "previous-token": 315.419677734375,
+        "duplicate-token": 0.4096198533803511,
+        "first-token": 0.2900385558605194,
+        "self": 100.11165618896484,
+        "local": 57.085731506347656
+      }
+    },
+    {
+      "rank": 23,
+      "layer": 14,
+      "head": 1,
+      "integral": 185.63561263399205,
+      "spread": 47.780184745788574,
+      "classification": "unclassified",
+      "best_class": "local",
+      "best_selectivity": 2.7230124473571777,
+      "second_class": "previous-token",
+      "second_selectivity": 2.3186447620391846,
+      "all_selectivities": {
+        "induction": 0.5071011635891749,
+        "previous-token": 2.3186447620391846,
+        "duplicate-token": 0.5182189790472282,
+        "first-token": 0.9276070594787598,
+        "self": 2.0575993061065674,
+        "local": 2.7230124473571777
+      }
+    },
+    {
+      "rank": 24,
+      "layer": 0,
+      "head": 8,
+      "integral": 183.4332204515278,
+      "spread": 59.15108299255371,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 6.476609230041504,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.353759004508452,
+      "all_selectivities": {
+        "induction": 0.9873355614995062,
+        "previous-token": 1.0130306482315063,
+        "duplicate-token": 2.353759004508452,
+        "first-token": 0.9349783062934875,
+        "self": 6.476609230041504,
+        "local": 1.0288209915161133
+      }
+    },
+    {
+      "rank": 25,
+      "layer": 0,
+      "head": 14,
+      "integral": 181.8823174829764,
+      "spread": 70.6425552368164,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 6.443245887756348,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.389644242793211,
+      "all_selectivities": {
+        "induction": 0.9558627285192373,
+        "previous-token": 1.007949709892273,
+        "duplicate-token": 2.389644242793211,
+        "first-token": 1.0744353532791138,
+        "self": 6.443245887756348,
+        "local": 1.0012503862380981
+      }
+    },
+    {
+      "rank": 26,
+      "layer": 1,
+      "head": 5,
+      "integral": 167.0453158399581,
+      "spread": 30.30117130279541,
+      "classification": "local",
+      "best_class": "local",
+      "best_selectivity": 531.9171752929688,
+      "second_class": "previous-token",
+      "second_selectivity": 158.50875854492188,
+      "all_selectivities": {
+        "induction": 0.045085720447689576,
+        "previous-token": 158.50875854492188,
+        "duplicate-token": 0.04522438148841983,
+        "first-token": 1.0757997035980225,
+        "self": 44.94129180908203,
+        "local": 531.9171752929688
+      }
+    },
+    {
+      "rank": 27,
+      "layer": 0,
+      "head": 4,
+      "integral": 162.66044890483198,
+      "spread": 89.81834745407104,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 6.442537784576416,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.150968658252712,
+      "all_selectivities": {
+        "induction": 0.9601232975728455,
+        "previous-token": 1.0790135860443115,
+        "duplicate-token": 2.150968658252712,
+        "first-token": 1.0074822902679443,
+        "self": 6.442537784576416,
+        "local": 1.0343687534332275
+      }
+    },
+    {
+      "rank": 28,
+      "layer": 1,
+      "head": 15,
+      "integral": 162.51479184319447,
+      "spread": 31.351820945739746,
+      "classification": "local",
+      "best_class": "local",
+      "best_selectivity": 584.60888671875,
+      "second_class": "previous-token",
+      "second_selectivity": 455.3455505371094,
+      "all_selectivities": {
+        "induction": 0.03192950593600276,
+        "previous-token": 455.3455505371094,
+        "duplicate-token": 0.02964948196760241,
+        "first-token": 0.18827497959136963,
+        "self": 170.04489135742188,
+        "local": 584.60888671875
+      }
+    },
+    {
+      "rank": 29,
+      "layer": 13,
+      "head": 11,
+      "integral": 158.8036819207965,
+      "spread": 28.554758071899414,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 20.053083419799805,
+      "second_class": "previous-token",
+      "second_selectivity": 12.951860427856445,
+      "all_selectivities": {
+        "induction": 1.0719744358549392,
+        "previous-token": 12.951860427856445,
+        "duplicate-token": 0.5899359628981311,
+        "first-token": 1.0978647470474243,
+        "self": 20.053083419799805,
+        "local": 12.092881202697754
+      }
+    },
+    {
+      "rank": 30,
+      "layer": 4,
+      "head": 9,
+      "integral": 157.35518923429242,
+      "spread": 41.41764450073242,
+      "classification": "unclassified",
+      "best_class": "first-token",
+      "best_selectivity": 10.628683090209961,
+      "second_class": "self",
+      "second_selectivity": 1.6791586875915527,
+      "all_selectivities": {
+        "induction": 1.039888262070555,
+        "previous-token": 1.1318614482879639,
+        "duplicate-token": 1.1103560581271201,
+        "first-token": 10.628683090209961,
+        "self": 1.6791586875915527,
+        "local": 1.0914181470870972
+      }
+    },
+    {
+      "rank": 31,
+      "layer": 2,
+      "head": 1,
+      "integral": 156.70026751024903,
+      "spread": 13.721357345581055,
+      "classification": "unclassified",
+      "best_class": "previous-token",
+      "best_selectivity": 15.59472942352295,
+      "second_class": "self",
+      "second_selectivity": 15.460633277893066,
+      "all_selectivities": {
+        "induction": 0.570857422867366,
+        "previous-token": 15.59472942352295,
+        "duplicate-token": 0.6084823047212436,
+        "first-token": 0.7026390433311462,
+        "self": 15.460633277893066,
+        "local": 10.104159355163574
+      }
+    },
+    {
+      "rank": 32,
+      "layer": 11,
+      "head": 10,
+      "integral": 156.6907553739382,
+      "spread": 35.75711154937744,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 11.383827209472656,
+      "second_class": "previous-token",
+      "second_selectivity": 10.719193458557129,
+      "all_selectivities": {
+        "induction": 0.2684108396790684,
+        "previous-token": 10.719193458557129,
+        "duplicate-token": 0.23157558521426264,
+        "first-token": 1.4202439785003662,
+        "self": 11.383827209472656,
+        "local": 9.318865776062012
+      }
+    },
+    {
+      "rank": 33,
+      "layer": 14,
+      "head": 4,
+      "integral": 150.3079380814528,
+      "spread": 35.72781848907471,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 12.863448143005371,
+      "second_class": "local",
+      "second_selectivity": 11.445638656616211,
+      "all_selectivities": {
+        "induction": 0.2541325392815187,
+        "previous-token": 7.9848713874816895,
+        "duplicate-token": 0.1941481556338732,
+        "first-token": 0.1300981640815735,
+        "self": 12.863448143005371,
+        "local": 11.445638656616211
+      }
+    },
+    {
+      "rank": 34,
+      "layer": 13,
+      "head": 1,
+      "integral": 149.19308096613935,
+      "spread": 41.1340913772583,
+      "classification": "unclassified",
+      "best_class": "local",
+      "best_selectivity": 7.855771064758301,
+      "second_class": "previous-token",
+      "second_selectivity": 7.406708240509033,
+      "all_selectivities": {
+        "induction": 0.3822025835820499,
+        "previous-token": 7.406708240509033,
+        "duplicate-token": 0.2764067593279782,
+        "first-token": 0.18939436972141266,
+        "self": 6.419694423675537,
+        "local": 7.855771064758301
+      }
+    },
+    {
+      "rank": 35,
+      "layer": 3,
+      "head": 9,
+      "integral": 147.76312951035771,
+      "spread": 42.95789337158203,
+      "classification": "unclassified",
+      "best_class": "previous-token",
+      "best_selectivity": 24.861534118652344,
+      "second_class": "self",
+      "second_selectivity": 20.903589248657227,
+      "all_selectivities": {
+        "induction": 0.8766960164168461,
+        "previous-token": 24.861534118652344,
+        "duplicate-token": 0.8856384497530291,
+        "first-token": 0.8302798867225647,
+        "self": 20.903589248657227,
+        "local": 12.382796287536621
+      }
+    },
+    {
+      "rank": 36,
+      "layer": 2,
+      "head": 12,
+      "integral": 147.71566477515069,
+      "spread": 27.954899311065674,
+      "classification": "self",
+      "best_class": "self",
+      "best_selectivity": 36.425559997558594,
+      "second_class": "previous-token",
+      "second_selectivity": 20.787582397460938,
+      "all_selectivities": {
+        "induction": 0.88016619550251,
+        "previous-token": 20.787582397460938,
+        "duplicate-token": 1.4656355677796158,
+        "first-token": 1.240777611732483,
+        "self": 36.425559997558594,
+        "local": 7.951016902923584
+      }
+    },
+    {
+      "rank": 37,
+      "layer": 1,
+      "head": 3,
+      "integral": 145.28162644438402,
+      "spread": 28.41563129425049,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 22.930631637573242,
+      "second_class": "previous-token",
+      "second_selectivity": 22.150686264038086,
+      "all_selectivities": {
+        "induction": 0.08898138818544261,
+        "previous-token": 22.150686264038086,
+        "duplicate-token": 0.10506502644724529,
+        "first-token": 0.08621302247047424,
+        "self": 22.930631637573242,
+        "local": 17.966373443603516
+      }
+    },
+    {
+      "rank": 38,
+      "layer": 14,
+      "head": 13,
+      "integral": 141.40709004762493,
+      "spread": 29.544875621795654,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 15.986775398254395,
+      "second_class": "local",
+      "second_selectivity": 9.581435203552246,
+      "all_selectivities": {
+        "induction": 0.3605957420088452,
+        "previous-token": 9.532323837280273,
+        "duplicate-token": 0.42630256429865554,
+        "first-token": 0.5828537344932556,
+        "self": 15.986775398254395,
+        "local": 9.581435203552246
+      }
+    },
+    {
+      "rank": 39,
+      "layer": 5,
+      "head": 14,
+      "integral": 137.8683946543904,
+      "spread": 41.402302265167236,
+      "classification": "unclassified",
+      "best_class": "first-token",
+      "best_selectivity": 2.117079734802246,
+      "second_class": "self",
+      "second_selectivity": 1.2748515605926514,
+      "all_selectivities": {
+        "induction": 0.9428325017373256,
+        "previous-token": 0.9613823294639587,
+        "duplicate-token": 1.0606425456350719,
+        "first-token": 2.117079734802246,
+        "self": 1.2748515605926514,
+        "local": 0.9667901992797852
+      }
+    },
+    {
+      "rank": 40,
+      "layer": 1,
+      "head": 8,
+      "integral": 133.38690005853036,
+      "spread": 23.888455867767334,
+      "classification": "self",
+      "best_class": "self",
+      "best_selectivity": 169.06597900390625,
+      "second_class": "previous-token",
+      "second_selectivity": 72.61048126220703,
+      "all_selectivities": {
+        "induction": 0.314851225336537,
+        "previous-token": 72.61048126220703,
+        "duplicate-token": 0.28966054625969245,
+        "first-token": 0.3737550973892212,
+        "self": 169.06597900390625,
+        "local": 15.15518856048584
+      }
+    },
+    {
+      "rank": 41,
+      "layer": 14,
+      "head": 0,
+      "integral": 131.0528876544647,
+      "spread": 28.60779905319214,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 16.973468780517578,
+      "second_class": "local",
+      "second_selectivity": 13.962471961975098,
+      "all_selectivities": {
+        "induction": 0.3129916884107242,
+        "previous-token": 13.758101463317871,
+        "duplicate-token": 0.3146601253288054,
+        "first-token": 0.546852707862854,
+        "self": 16.973468780517578,
+        "local": 13.962471961975098
+      }
+    },
+    {
+      "rank": 42,
+      "layer": 13,
+      "head": 10,
+      "integral": 130.39993825240393,
+      "spread": 34.147135734558105,
+      "classification": "unclassified",
+      "best_class": "first-token",
+      "best_selectivity": 1.1371138095855713,
+      "second_class": "previous-token",
+      "second_selectivity": 1.1196545362472534,
+      "all_selectivities": {
+        "induction": 1.002526970306932,
+        "previous-token": 1.1196545362472534,
+        "duplicate-token": 0.8797062538704491,
+        "first-token": 1.1371138095855713,
+        "self": 1.1071985960006714,
+        "local": 1.0952540636062622
+      }
+    },
+    {
+      "rank": 43,
+      "layer": 12,
+      "head": 8,
+      "integral": 126.22941602626142,
+      "spread": 22.913146018981934,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 10.067612648010254,
+      "second_class": "local",
+      "second_selectivity": 9.597159385681152,
+      "all_selectivities": {
+        "induction": 1.1547143187971118,
+        "previous-token": 8.918569564819336,
+        "duplicate-token": 0.42553091886238065,
+        "first-token": 0.6578584313392639,
+        "self": 10.067612648010254,
+        "local": 9.597159385681152
+      }
+    },
+    {
+      "rank": 44,
+      "layer": 0,
+      "head": 9,
+      "integral": 124.48653682819305,
+      "spread": 66.21474981307983,
+      "classification": "unclassified",
+      "best_class": "self",
+      "best_selectivity": 5.5466437339782715,
+      "second_class": "duplicate-token",
+      "second_selectivity": 2.152667978650055,
+      "all_selectivities": {
+        "induction": 1.0304800077855025,
+        "previous-token": 1.0288970470428467,
+        "duplicate-token": 2.152667978650055,
+        "first-token": 1.0179543495178223,
+        "self": 5.5466437339782715,
+        "local": 1.0349785089492798
+      }
+    },
+    {
+      "rank": 45,
+      "layer": 1,
+      "head": 13,
+      "integral": 123.48319934048854,
+      "spread": 37.29773187637329,
+      "classification": "local",
+      "best_class": "local",
+      "best_selectivity": 66.38995361328125,
+      "second_class": "previous-token",
+      "second_selectivity": 44.30004119873047,
+      "all_selectivities": {
+        "induction": 0.09959901102921472,
+        "previous-token": 44.30004119873047,
+        "duplicate-token": 0.0918160800187044,
+        "first-token": 0.21060024201869965,
+        "self": 35.676536560058594,
+        "local": 66.38995361328125
+      }
+    }
+  ],
+  "class_breakdown_topK": {
+    "unclassified": 29,
+    "previous-token": 9,
+    "induction": 2,
+    "local": 3,
+    "self": 2
+  },
+  "all_head_selectivity": {
+    "L0_H0": {
+      "induction": 1.0322709141984592,
+      "previous-token": 1.035868525505066,
+      "duplicate-token": 2.357229266473173,
+      "first-token": 1.002801775932312,
+      "self": 6.954767227172852,
+      "local": 1.021044373512268
+    },
+    "L0_H1": {
+      "induction": 0.9828718693158867,
+      "previous-token": 1.0190948247909546,
+      "duplicate-token": 2.646995778201549,
+      "first-token": 1.0120271444320679,
+      "self": 7.799448013305664,
+      "local": 1.0271470546722412
+    },
+    "L0_H2": {
+      "induction": 0.9805899145310293,
+      "previous-token": 1.0862340927124023,
+      "duplicate-token": 2.737540673319014,
+      "first-token": 0.9510468244552612,
+      "self": 8.172439575195312,
+      "local": 0.992289662361145
+    },
+    "L0_H3": {
+      "induction": 0.953087069658624,
+      "previous-token": 1.0178990364074707,
+      "duplicate-token": 2.2892301489872047,
+      "first-token": 0.999125599861145,
+      "self": 5.943728923797607,
+      "local": 1.0112704038619995
+    },
+    "L0_H4": {
+      "induction": 0.9601232975728455,
+      "previous-token": 1.0790135860443115,
+      "duplicate-token": 2.150968658252712,
+      "first-token": 1.0074822902679443,
+      "self": 6.442537784576416,
+      "local": 1.0343687534332275
+    },
+    "L0_H5": {
+      "induction": 0.9958070611166602,
+      "previous-token": 1.0128345489501953,
+      "duplicate-token": 1.9592384949295003,
+      "first-token": 0.9381481409072876,
+      "self": 5.266672134399414,
+      "local": 1.0401464700698853
+    },
+    "L0_H6": {
+      "induction": 0.9742395328238781,
+      "previous-token": 1.028147578239441,
+      "duplicate-token": 1.8517761510801833,
+      "first-token": 0.9621800184249878,
+      "self": 4.990012168884277,
+      "local": 1.0459253787994385
+    },
+    "L0_H7": {
+      "induction": 1.0340010573547878,
+      "previous-token": 1.0550305843353271,
+      "duplicate-token": 1.978289978123673,
+      "first-token": 0.9561258554458618,
+      "self": 5.44903039932251,
+      "local": 1.0516347885131836
+    },
+    "L0_H8": {
+      "induction": 0.9873355614995062,
+      "previous-token": 1.0130306482315063,
+      "duplicate-token": 2.353759004508452,
+      "first-token": 0.9349783062934875,
+      "self": 6.476609230041504,
+      "local": 1.0288209915161133
+    },
+    "L0_H9": {
+      "induction": 1.0304800077855025,
+      "previous-token": 1.0288970470428467,
+      "duplicate-token": 2.152667978650055,
+      "first-token": 1.0179543495178223,
+      "self": 5.5466437339782715,
+      "local": 1.0349785089492798
+    },
+    "L0_H10": {
+      "induction": 1.004896045005971,
+      "previous-token": 1.0847375392913818,
+      "duplicate-token": 2.607299744352167,
+      "first-token": 1.026992678642273,
+      "self": 8.449250221252441,
+      "local": 1.006144642829895
+    },
+    "L0_H11": {
+      "induction": 0.9573538179703526,
+      "previous-token": 1.0039763450622559,
+      "duplicate-token": 2.6107693235594036,
+      "first-token": 0.947896420955658,
+      "self": 7.094182968139648,
+      "local": 1.0354716777801514
+    },
+    "L0_H12": {
+      "induction": 0.9307882069622951,
+      "previous-token": 1.0635840892791748,
+      "duplicate-token": 2.0217730617173797,
+      "first-token": 0.9704169631004333,
+      "self": 4.3971638679504395,
+      "local": 1.0210886001586914
+    },
+    "L0_H13": {
+      "induction": 0.9410607529452866,
+      "previous-token": 1.0405590534210205,
+      "duplicate-token": 2.273438341343584,
+      "first-token": 0.9773162007331848,
+      "self": 7.22119140625,
+      "local": 1.0115851163864136
+    },
+    "L0_H14": {
+      "induction": 0.9558627285192373,
+      "previous-token": 1.007949709892273,
+      "duplicate-token": 2.389644242793211,
+      "first-token": 1.0744353532791138,
+      "self": 6.443245887756348,
+      "local": 1.0012503862380981
+    },
+    "L0_H15": {
+      "induction": 0.9950691610329667,
+      "previous-token": 1.0430853366851807,
+      "duplicate-token": 2.660131016505818,
+      "first-token": 0.9272187352180481,
+      "self": 7.1921892166137695,
+      "local": 1.0096226930618286
+    },
+    "L1_H0": {
+      "induction": 0.15704627477612812,
+      "previous-token": 1.4196757078170776,
+      "duplicate-token": 0.2462795391079918,
+      "first-token": 0.12073488533496857,
+      "self": 2.230487823486328,
+      "local": 3.4847800731658936
+    },
+    "L1_H1": {
+      "induction": 0.6735585016180095,
+      "previous-token": 64732.75390625,
+      "duplicate-token": 0.5029421244625673,
+      "first-token": 1.8415589332580566,
+      "self": 1542.8699951171875,
+      "local": 28843.4765625
+    },
+    "L1_H2": {
+      "induction": 0.4372633688299905,
+      "previous-token": 59146.2578125,
+      "duplicate-token": 0.5297487433353881,
+      "first-token": 0.1782926321029663,
+      "self": 734.0783081054688,
+      "local": 311.7840881347656
+    },
+    "L1_H3": {
+      "induction": 0.08898138818544261,
+      "previous-token": 22.150686264038086,
+      "duplicate-token": 0.10506502644724529,
+      "first-token": 0.08621302247047424,
+      "self": 22.930631637573242,
+      "local": 17.966373443603516
+    },
+    "L1_H4": {
+      "induction": 0.010051791671775282,
+      "previous-token": 7.97053337097168,
+      "duplicate-token": 0.010126058254758867,
+      "first-token": 0.01300245150923729,
+      "self": 5.968051910400391,
+      "local": 13.825874328613281
+    },
+    "L1_H5": {
+      "induction": 0.045085720447689576,
+      "previous-token": 158.50875854492188,
+      "duplicate-token": 0.04522438148841983,
+      "first-token": 1.0757997035980225,
+      "self": 44.94129180908203,
+      "local": 531.9171752929688
+    },
+    "L1_H6": {
+      "induction": 0.2999755311384757,
+      "previous-token": 0.036083824932575226,
+      "duplicate-token": 41.68921020280399,
+      "first-token": 0.06281780451536179,
+      "self": 1.3181160688400269,
+      "local": 1.9449453353881836
+    },
+    "L1_H7": {
+      "induction": 0.17803220831015978,
+      "previous-token": 1352.5616455078125,
+      "duplicate-token": 0.16370774586657064,
+      "first-token": 0.3039764165878296,
+      "self": 849.3798217773438,
+      "local": 443.2945556640625
+    },
+    "L1_H8": {
+      "induction": 0.314851225336537,
+      "previous-token": 72.61048126220703,
+      "duplicate-token": 0.28966054625969245,
+      "first-token": 0.3737550973892212,
+      "self": 169.06597900390625,
+      "local": 15.15518856048584
+    },
+    "L1_H9": {
+      "induction": 1.0226811089748975,
+      "previous-token": 0.12929536402225494,
+      "duplicate-token": 2.471301597289946,
+      "first-token": 0.5633535385131836,
+      "self": 0.25285452604293823,
+      "local": 0.18276748061180115
+    },
+    "L1_H10": {
+      "induction": 0.05708100059790199,
+      "previous-token": 13.331929206848145,
+      "duplicate-token": 0.061291153764727505,
+      "first-token": 0.047326963394880295,
+      "self": 11.606122016906738,
+      "local": 17.855575561523438
+    },
+    "L1_H11": {
+      "induction": 0.7079440306847011,
+      "previous-token": 3.4598512649536133,
+      "duplicate-token": 1.1358474625010953,
+      "first-token": 0.33628344535827637,
+      "self": 8.565230369567871,
+      "local": 1.8602277040481567
+    },
+    "L1_H12": {
+      "induction": 0.9703128023223381,
+      "previous-token": 1.1530190706253052,
+      "duplicate-token": 0.974664972302539,
+      "first-token": 4.642575740814209,
+      "self": 1.3555519580841064,
+      "local": 1.2259716987609863
+    },
+    "L1_H13": {
+      "induction": 0.09959901102921472,
+      "previous-token": 44.30004119873047,
+      "duplicate-token": 0.0918160800187044,
+      "first-token": 0.21060024201869965,
+      "self": 35.676536560058594,
+      "local": 66.38995361328125
+    },
+    "L1_H14": {
+      "induction": 0.19656317790290598,
+      "previous-token": 68.05474853515625,
+      "duplicate-token": 0.17993100209376903,
+      "first-token": 0.10132430493831635,
+      "self": 55.29783248901367,
+      "local": 16.389890670776367
+    },
+    "L1_H15": {
+      "induction": 0.03192950593600276,
+      "previous-token": 455.3455505371094,
+      "duplicate-token": 0.02964948196760241,
+      "first-token": 0.18827497959136963,
+      "self": 170.04489135742188,
+      "local": 584.60888671875
+    },
+    "L2_H0": {
+      "induction": 0.5845516234501296,
+      "previous-token": 13.596107482910156,
+      "duplicate-token": 1.9991380185322212,
+      "first-token": 0.30431652069091797,
+      "self": 18.18423080444336,
+      "local": 7.056329727172852
+    },
+    "L2_H1": {
+      "induction": 0.570857422867366,
+      "previous-token": 15.59472942352295,
+      "duplicate-token": 0.6084823047212436,
+      "first-token": 0.7026390433311462,
+      "self": 15.460633277893066,
+      "local": 10.104159355163574
+    },
+    "L2_H2": {
+      "induction": 0.31583000525137334,
+      "previous-token": 176.48663330078125,
+      "duplicate-token": 0.34237918454986743,
+      "first-token": 0.9464292526245117,
+      "self": 96.31849670410156,
+      "local": 52.6104850769043
+    },
+    "L2_H3": {
+      "induction": 12.575721318385217,
+      "previous-token": 1.1534096002578735,
+      "duplicate-token": 0.6527691725610385,
+      "first-token": 3.2626218795776367,
+      "self": 1.9412052631378174,
+      "local": 0.91359543800354
+    },
+    "L2_H4": {
+      "induction": 0.20988522727855957,
+      "previous-token": 31.360864639282227,
+      "duplicate-token": 0.17943985854663622,
+      "first-token": 1.07891845703125,
+      "self": 18.0436954498291,
+      "local": 28.342069625854492
+    },
+    "L2_H5": {
+      "induction": 0.5899687703910951,
+      "previous-token": 476.90203857421875,
+      "duplicate-token": 0.7431345450677953,
+      "first-token": 1.273152232170105,
+      "self": 381.7966003417969,
+      "local": 89.45886993408203
+    },
+    "L2_H6": {
+      "induction": 1.1482105185160547,
+      "previous-token": 4.843322277069092,
+      "duplicate-token": 0.9156633470183809,
+      "first-token": 1.5709502696990967,
+      "self": 7.155901908874512,
+      "local": 5.000301837921143
+    },
+    "L2_H7": {
+      "induction": 36.86100079627291,
+      "previous-token": 1.8632763624191284,
+      "duplicate-token": 0.5469468221667881,
+      "first-token": 7.791974067687988,
+      "self": 2.1237406730651855,
+      "local": 2.405024528503418
+    },
+    "L2_H8": {
+      "induction": 0.5144692873711844,
+      "previous-token": 15.106422424316406,
+      "duplicate-token": 0.555385525601546,
+      "first-token": 0.7210544943809509,
+      "self": 17.440996170043945,
+      "local": 10.024208068847656
+    },
+    "L2_H9": {
+      "induction": 0.8567353899434765,
+      "previous-token": 15.526487350463867,
+      "duplicate-token": 0.5701675924930777,
+      "first-token": 5.111874103546143,
+      "self": 14.176132202148438,
+      "local": 10.955893516540527
+    },
+    "L2_H10": {
+      "induction": 0.7350074000079401,
+      "previous-token": 5.620612621307373,
+      "duplicate-token": 0.6208929292890707,
+      "first-token": 4.604076385498047,
+      "self": 6.50447416305542,
+      "local": 4.959580898284912
+    },
+    "L2_H11": {
+      "induction": 164.26225233972423,
+      "previous-token": 0.206266388297081,
+      "duplicate-token": 0.17482643667050568,
+      "first-token": 18.720840454101562,
+      "self": 0.9486627578735352,
+      "local": 0.18704868853092194
+    },
+    "L2_H12": {
+      "induction": 0.88016619550251,
+      "previous-token": 20.787582397460938,
+      "duplicate-token": 1.4656355677796158,
+      "first-token": 1.240777611732483,
+      "self": 36.425559997558594,
+      "local": 7.951016902923584
+    },
+    "L2_H13": {
+      "induction": 0.46664493450162076,
+      "previous-token": 20.292741775512695,
+      "duplicate-token": 0.544419325613579,
+      "first-token": 1.3008447885513306,
+      "self": 24.8699893951416,
+      "local": 12.967663764953613
+    },
+    "L2_H14": {
+      "induction": 2.4463711709915104,
+      "previous-token": 7.891149520874023,
+      "duplicate-token": 0.7998209354950288,
+      "first-token": 2.542379856109619,
+      "self": 11.202923774719238,
+      "local": 5.60405158996582
+    },
+    "L2_H15": {
+      "induction": 0.6039167447335592,
+      "previous-token": 6.680212020874023,
+      "duplicate-token": 0.5723832896791936,
+      "first-token": 0.9741156697273254,
+      "self": 5.84697961807251,
+      "local": 6.88278865814209
+    },
+    "L3_H0": {
+      "induction": 3.4738792614294267,
+      "previous-token": 4.849342346191406,
+      "duplicate-token": 0.3640965066833799,
+      "first-token": 3.9430549144744873,
+      "self": 3.918752670288086,
+      "local": 6.364101409912109
+    },
+    "L3_H1": {
+      "induction": 1.237474943807851,
+      "previous-token": 1.2782950401306152,
+      "duplicate-token": 3.328740744824456,
+      "first-token": 6.712456703186035,
+      "self": 6.2264885902404785,
+      "local": 1.1514180898666382
+    },
+    "L3_H2": {
+      "induction": 0.9326234163169713,
+      "previous-token": 54.19237518310547,
+      "duplicate-token": 0.7834305782531539,
+      "first-token": 0.11898605525493622,
+      "self": 34.331302642822266,
+      "local": 19.210161209106445
+    },
+    "L3_H3": {
+      "induction": 0.8498273204781468,
+      "previous-token": 4.3578948974609375,
+      "duplicate-token": 0.9678863724588112,
+      "first-token": 2.879634141921997,
+      "self": 4.595346450805664,
+      "local": 4.916213512420654
+    },
+    "L3_H4": {
+      "induction": 1.1999302322436827,
+      "previous-token": 1.179561972618103,
+      "duplicate-token": 2.106392353391582,
+      "first-token": 14.612543106079102,
+      "self": 2.3303945064544678,
+      "local": 1.0508629083633423
+    },
+    "L3_H5": {
+      "induction": 0.28870267654864423,
+      "previous-token": 20.65866470336914,
+      "duplicate-token": 0.3403368748072786,
+      "first-token": 2.4839413166046143,
+      "self": 17.609676361083984,
+      "local": 33.74528884887695
+    },
+    "L3_H6": {
+      "induction": 0.667873580714797,
+      "previous-token": 5.207727909088135,
+      "duplicate-token": 0.75645096932801,
+      "first-token": 0.6280058026313782,
+      "self": 5.244210720062256,
+      "local": 5.617181777954102
+    },
+    "L3_H7": {
+      "induction": 0.970027366704797,
+      "previous-token": 555.2040405273438,
+      "duplicate-token": 0.562267946766964,
+      "first-token": 3.0193705558776855,
+      "self": 40.54812240600586,
+      "local": 21.253171920776367
+    },
+    "L3_H8": {
+      "induction": 0.2102838290102198,
+      "previous-token": 40.08915710449219,
+      "duplicate-token": 0.18985853222190188,
+      "first-token": 0.17770959436893463,
+      "self": 32.56493377685547,
+      "local": 58.0166130065918
+    },
+    "L3_H9": {
+      "induction": 0.8766960164168461,
+      "previous-token": 24.861534118652344,
+      "duplicate-token": 0.8856384497530291,
+      "first-token": 0.8302798867225647,
+      "self": 20.903589248657227,
+      "local": 12.382796287536621
+    },
+    "L3_H10": {
+      "induction": 1.118513281385258,
+      "previous-token": 4.339695453643799,
+      "duplicate-token": 0.7907193185806548,
+      "first-token": 1.1214416027069092,
+      "self": 7.112159729003906,
+      "local": 4.944100856781006
+    },
+    "L3_H11": {
+      "induction": 0.9692694240227823,
+      "previous-token": 1.549187421798706,
+      "duplicate-token": 6.171152963801988,
+      "first-token": 3.3072762489318848,
+      "self": 21.95073699951172,
+      "local": 2.3860650062561035
+    },
+    "L3_H12": {
+      "induction": 1.3392667011865071,
+      "previous-token": 9.284525871276855,
+      "duplicate-token": 0.7395628862728362,
+      "first-token": 0.5046821236610413,
+      "self": 11.626897811889648,
+      "local": 8.86007022857666
+    },
+    "L3_H13": {
+      "induction": 0.8352240741610468,
+      "previous-token": 3.924396514892578,
+      "duplicate-token": 0.8552402391393106,
+      "first-token": 1.4049144983291626,
+      "self": 3.4769411087036133,
+      "local": 3.980154275894165
+    },
+    "L3_H14": {
+      "induction": 0.8541483014315392,
+      "previous-token": 10.109040260314941,
+      "duplicate-token": 0.7853957088574856,
+      "first-token": 0.3938489556312561,
+      "self": 9.993853569030762,
+      "local": 8.421954154968262
+    },
+    "L3_H15": {
+      "induction": 0.5408362877897916,
+      "previous-token": 315.419677734375,
+      "duplicate-token": 0.4096198533803511,
+      "first-token": 0.2900385558605194,
+      "self": 100.11165618896484,
+      "local": 57.085731506347656
+    },
+    "L4_H0": {
+      "induction": 0.9399549714242191,
+      "previous-token": 1.1509064435958862,
+      "duplicate-token": 0.9459155379112056,
+      "first-token": 24.66562271118164,
+      "self": 0.8697253465652466,
+      "local": 1.1457937955856323
+    },
+    "L4_H1": {
+      "induction": 0.3090637343546856,
+      "previous-token": 19.708660125732422,
+      "duplicate-token": 0.3117177664569212,
+      "first-token": 1.2993172407150269,
+      "self": 23.648805618286133,
+      "local": 16.957605361938477
+    },
+    "L4_H2": {
+      "induction": 0.881642066155378,
+      "previous-token": 1.0259023904800415,
+      "duplicate-token": 0.9112039254919176,
+      "first-token": 11.207841873168945,
+      "self": 1.1130117177963257,
+      "local": 1.0531127452850342
+    },
+    "L4_H3": {
+      "induction": 1.0357508555096604,
+      "previous-token": 3.0875442028045654,
+      "duplicate-token": 1.34794606447064,
+      "first-token": 2.4980859756469727,
+      "self": 3.60265851020813,
+      "local": 2.797170400619507
+    },
+    "L4_H4": {
+      "induction": 0.794022526264873,
+      "previous-token": 1.5982670783996582,
+      "duplicate-token": 0.8298745282499349,
+      "first-token": 6.177802562713623,
+      "self": 1.6744664907455444,
+      "local": 1.72444748878479
+    },
+    "L4_H5": {
+      "induction": 1.2915805792596666,
+      "previous-token": 1.472104787826538,
+      "duplicate-token": 1.250525869308003,
+      "first-token": 19.130910873413086,
+      "self": 2.900996685028076,
+      "local": 1.4841279983520508
+    },
+    "L4_H6": {
+      "induction": 0.8947320375397235,
+      "previous-token": 1.5349671840667725,
+      "duplicate-token": 1.111143444287951,
+      "first-token": 8.404661178588867,
+      "self": 1.745141863822937,
+      "local": 1.4267899990081787
+    },
+    "L4_H7": {
+      "induction": 0.9966540386606891,
+      "previous-token": 1.0499603748321533,
+      "duplicate-token": 1.078696741635234,
+      "first-token": 10.705928802490234,
+      "self": 1.4271551370620728,
+      "local": 1.0049127340316772
+    },
+    "L4_H8": {
+      "induction": 0.9153093311217616,
+      "previous-token": 0.9901455640792847,
+      "duplicate-token": 0.9136169523323578,
+      "first-token": 9.956155776977539,
+      "self": 0.9354945421218872,
+      "local": 1.050228476524353
+    },
+    "L4_H9": {
+      "induction": 1.039888262070555,
+      "previous-token": 1.1318614482879639,
+      "duplicate-token": 1.1103560581271201,
+      "first-token": 10.628683090209961,
+      "self": 1.6791586875915527,
+      "local": 1.0914181470870972
+    },
+    "L4_H10": {
+      "induction": 1.1094725582214005,
+      "previous-token": 1.471091389656067,
+      "duplicate-token": 1.1135767845001925,
+      "first-token": 14.518902778625488,
+      "self": 1.481697678565979,
+      "local": 1.510550856590271
+    },
+    "L4_H11": {
+      "induction": 1.114245676145847,
+      "previous-token": 1.1515388488769531,
+      "duplicate-token": 1.1072119701681522,
+      "first-token": 19.808366775512695,
+      "self": 0.9606910347938538,
+      "local": 1.265495777130127
+    },
+    "L4_H12": {
+      "induction": 41.80204309929777,
+      "previous-token": 2.490231990814209,
+      "duplicate-token": 0.5212267428362554,
+      "first-token": 0.8181145191192627,
+      "self": 3.4212026596069336,
+      "local": 3.614379644393921
+    },
+    "L4_H13": {
+      "induction": 0.8454534020871185,
+      "previous-token": 1.967995285987854,
+      "duplicate-token": 1.0962324467188542,
+      "first-token": 8.620467185974121,
+      "self": 2.585142135620117,
+      "local": 1.970335602760315
+    },
+    "L4_H14": {
+      "induction": 0.7036921099100197,
+      "previous-token": 8.782604217529297,
+      "duplicate-token": 0.4890345428740416,
+      "first-token": 0.3860572278499603,
+      "self": 8.182249069213867,
+      "local": 7.69154167175293
+    },
+    "L4_H15": {
+      "induction": 1.1464941114105227,
+      "previous-token": 0.9667320847511292,
+      "duplicate-token": 1.1286826245274804,
+      "first-token": 30.604612350463867,
+      "self": 0.8372349739074707,
+      "local": 0.9411972761154175
+    },
+    "L5_H0": {
+      "induction": 1.0567985393355945,
+      "previous-token": 1.0023549795150757,
+      "duplicate-token": 1.1587856136912815,
+      "first-token": 8.636173248291016,
+      "self": 0.9436155557632446,
+      "local": 0.9734503626823425
+    },
+    "L5_H1": {
+      "induction": 1.019457126946986,
+      "previous-token": 0.9241729378700256,
+      "duplicate-token": 1.1175209238511858,
+      "first-token": 2.6187257766723633,
+      "self": 0.9247004389762878,
+      "local": 0.9374056458473206
+    },
+    "L5_H2": {
+      "induction": 1.0541032571572204,
+      "previous-token": 0.9494425654411316,
+      "duplicate-token": 1.1072725262947813,
+      "first-token": 8.86368179321289,
+      "self": 0.9265058636665344,
+      "local": 0.9551342725753784
+    },
+    "L5_H3": {
+      "induction": 0.9381124301729794,
+      "previous-token": 1.133038878440857,
+      "duplicate-token": 1.0347595518376105,
+      "first-token": 2.8787853717803955,
+      "self": 1.2514885663986206,
+      "local": 1.0994296073913574
+    },
+    "L5_H4": {
+      "induction": 0.871884068442341,
+      "previous-token": 1.6839227676391602,
+      "duplicate-token": 1.0136176346655645,
+      "first-token": 0.7056679129600525,
+      "self": 2.2452492713928223,
+      "local": 1.6841164827346802
+    },
+    "L5_H5": {
+      "induction": 1.0962179396707525,
+      "previous-token": 3.7440457344055176,
+      "duplicate-token": 0.8658258971786484,
+      "first-token": 1.373725175857544,
+      "self": 2.315274477005005,
+      "local": 3.03049898147583
+    },
+    "L5_H6": {
+      "induction": 0.994790655678012,
+      "previous-token": 0.9548137187957764,
+      "duplicate-token": 1.108753368583302,
+      "first-token": 4.764530181884766,
+      "self": 1.222389817237854,
+      "local": 0.9602188467979431
+    },
+    "L5_H7": {
+      "induction": 1.626016577456311,
+      "previous-token": 7.526340484619141,
+      "duplicate-token": 1.0856375582328177,
+      "first-token": 0.06155144423246384,
+      "self": 7.690850734710693,
+      "local": 5.394202709197998
+    },
+    "L5_H8": {
+      "induction": 0.9502870671905456,
+      "previous-token": 1.1289114952087402,
+      "duplicate-token": 1.095488015327024,
+      "first-token": 3.887211799621582,
+      "self": 1.2046692371368408,
+      "local": 1.1097145080566406
+    },
+    "L5_H9": {
+      "induction": 0.9687095251887939,
+      "previous-token": 0.8627876043319702,
+      "duplicate-token": 1.0533774005048129,
+      "first-token": 5.063128471374512,
+      "self": 0.9876093864440918,
+      "local": 0.9064489603042603
+    },
+    "L5_H10": {
+      "induction": 1.0223940193640673,
+      "previous-token": 0.8812852501869202,
+      "duplicate-token": 1.218805280839976,
+      "first-token": 3.9011266231536865,
+      "self": 1.1252305507659912,
+      "local": 0.8643010258674622
+    },
+    "L5_H11": {
+      "induction": 0.9347995570639415,
+      "previous-token": 1.2421916723251343,
+      "duplicate-token": 1.1242257299968172,
+      "first-token": 3.9928243160247803,
+      "self": 1.3304367065429688,
+      "local": 1.1367342472076416
+    },
+    "L5_H12": {
+      "induction": 1.0349242312531397,
+      "previous-token": 0.8209983706474304,
+      "duplicate-token": 1.1591713606643737,
+      "first-token": 6.50534200668335,
+      "self": 0.9393339157104492,
+      "local": 0.8341176509857178
+    },
+    "L5_H13": {
+      "induction": 0.97878578122136,
+      "previous-token": 1.1704654693603516,
+      "duplicate-token": 1.0891986084932934,
+      "first-token": 5.0034098625183105,
+      "self": 1.2382539510726929,
+      "local": 1.1124660968780518
+    },
+    "L5_H14": {
+      "induction": 0.9428325017373256,
+      "previous-token": 0.9613823294639587,
+      "duplicate-token": 1.0606425456350719,
+      "first-token": 2.117079734802246,
+      "self": 1.2748515605926514,
+      "local": 0.9667901992797852
+    },
+    "L5_H15": {
+      "induction": 1.0026288304932132,
+      "previous-token": 0.9304052591323853,
+      "duplicate-token": 1.1749831687272836,
+      "first-token": 6.494822025299072,
+      "self": 1.0601387023925781,
+      "local": 0.9342091083526611
+    },
+    "L6_H0": {
+      "induction": 1.0197423800518246,
+      "previous-token": 1.0858107805252075,
+      "duplicate-token": 1.061494801679136,
+      "first-token": 2.6906893253326416,
+      "self": 1.1539280414581299,
+      "local": 1.1606450080871582
+    },
+    "L6_H1": {
+      "induction": 0.9528152101844856,
+      "previous-token": 0.9266549944877625,
+      "duplicate-token": 1.1353888382844999,
+      "first-token": 1.6820274591445923,
+      "self": 1.1455707550048828,
+      "local": 0.9047949910163879
+    },
+    "L6_H2": {
+      "induction": 1.0905135828136217,
+      "previous-token": 0.8686020970344543,
+      "duplicate-token": 1.0872772240072606,
+      "first-token": 3.3779115676879883,
+      "self": 0.9226253628730774,
+      "local": 0.9357622861862183
+    },
+    "L6_H3": {
+      "induction": 1.0259290897847286,
+      "previous-token": 0.9295166730880737,
+      "duplicate-token": 1.1120894319073806,
+      "first-token": 1.5956995487213135,
+      "self": 1.1079285144805908,
+      "local": 0.9675663113594055
+    },
+    "L6_H4": {
+      "induction": 0.9916121523977658,
+      "previous-token": 1.2622122764587402,
+      "duplicate-token": 1.1421017756674314,
+      "first-token": 3.6875548362731934,
+      "self": 1.1823443174362183,
+      "local": 1.1613837480545044
+    },
+    "L6_H5": {
+      "induction": 0.9712867857197114,
+      "previous-token": 1.1668323278427124,
+      "duplicate-token": 1.07584259599671,
+      "first-token": 2.0878145694732666,
+      "self": 1.3708388805389404,
+      "local": 1.22669517993927
+    },
+    "L6_H6": {
+      "induction": 1.000542625011424,
+      "previous-token": 0.901714563369751,
+      "duplicate-token": 0.9855831345848926,
+      "first-token": 2.2402634620666504,
+      "self": 0.9397791624069214,
+      "local": 0.9351564645767212
+    },
+    "L6_H7": {
+      "induction": 0.989161422703293,
+      "previous-token": 1.1063175201416016,
+      "duplicate-token": 1.0687167473676582,
+      "first-token": 2.9946939945220947,
+      "self": 1.2963663339614868,
+      "local": 1.162286400794983
+    },
+    "L6_H8": {
+      "induction": 1.036372611203247,
+      "previous-token": 0.9850422739982605,
+      "duplicate-token": 1.2546446216001736,
+      "first-token": 2.6465747356414795,
+      "self": 1.1918383836746216,
+      "local": 1.0868291854858398
+    },
+    "L6_H9": {
+      "induction": 0.959469389593582,
+      "previous-token": 1.1654640436172485,
+      "duplicate-token": 1.0531311940238883,
+      "first-token": 2.2665650844573975,
+      "self": 1.3876746892929077,
+      "local": 1.1955763101577759
+    },
+    "L6_H10": {
+      "induction": 1.073649013589385,
+      "previous-token": 1.0841187238693237,
+      "duplicate-token": 1.0838185551953963,
+      "first-token": 3.756120204925537,
+      "self": 1.0397613048553467,
+      "local": 1.108766794204712
+    },
+    "L6_H11": {
+      "induction": 0.9384063062087992,
+      "previous-token": 1.2007322311401367,
+      "duplicate-token": 0.9886523778474425,
+      "first-token": 1.1513839960098267,
+      "self": 1.494336485862732,
+      "local": 1.271294116973877
+    },
+    "L6_H12": {
+      "induction": 0.9954778752975884,
+      "previous-token": 1.073526382446289,
+      "duplicate-token": 1.0567007288716097,
+      "first-token": 3.9199910163879395,
+      "self": 1.0545737743377686,
+      "local": 1.02352774143219
+    },
+    "L6_H13": {
+      "induction": 1.0138710875757992,
+      "previous-token": 0.9509953856468201,
+      "duplicate-token": 1.1129138397107639,
+      "first-token": 2.4953396320343018,
+      "self": 1.2180049419403076,
+      "local": 0.9444060921669006
+    },
+    "L6_H14": {
+      "induction": 1.006193710837424,
+      "previous-token": 0.9964019060134888,
+      "duplicate-token": 1.1462919130622908,
+      "first-token": 2.87842059135437,
+      "self": 1.0229758024215698,
+      "local": 1.0155662298202515
+    },
+    "L6_H15": {
+      "induction": 1.091842750394852,
+      "previous-token": 1.0151965618133545,
+      "duplicate-token": 1.024514077667105,
+      "first-token": 2.59127140045166,
+      "self": 1.091091275215149,
+      "local": 0.9124720096588135
+    },
+    "L7_H0": {
+      "induction": 0.9999312252139297,
+      "previous-token": 1.081903338432312,
+      "duplicate-token": 1.1271368508451753,
+      "first-token": 2.7887020111083984,
+      "self": 1.259197473526001,
+      "local": 1.1003625392913818
+    },
+    "L7_H1": {
+      "induction": 0.9291798632929384,
+      "previous-token": 1.0031704902648926,
+      "duplicate-token": 0.9679213297169209,
+      "first-token": 1.8826009035110474,
+      "self": 1.052140235900879,
+      "local": 1.0861904621124268
+    },
+    "L7_H2": {
+      "induction": 0.9947984463551554,
+      "previous-token": 1.0365873575210571,
+      "duplicate-token": 1.039025555636684,
+      "first-token": 4.449799537658691,
+      "self": 1.0417307615280151,
+      "local": 0.9358760714530945
+    },
+    "L7_H3": {
+      "induction": 1.0194176543713696,
+      "previous-token": 1.0042446851730347,
+      "duplicate-token": 1.1425879390996803,
+      "first-token": 1.4337321519851685,
+      "self": 1.1961168050765991,
+      "local": 1.0899080038070679
+    },
+    "L7_H4": {
+      "induction": 1.0420741146614616,
+      "previous-token": 0.9067597389221191,
+      "duplicate-token": 1.1055453082794169,
+      "first-token": 1.2393923997879028,
+      "self": 0.9483299851417542,
+      "local": 0.9082217812538147
+    },
+    "L7_H5": {
+      "induction": 1.0625302336835392,
+      "previous-token": 0.9222911596298218,
+      "duplicate-token": 1.12277254022647,
+      "first-token": 2.3306384086608887,
+      "self": 1.0210040807724,
+      "local": 0.9393487572669983
+    },
+    "L7_H6": {
+      "induction": 1.154146602729348,
+      "previous-token": 0.8939268589019775,
+      "duplicate-token": 1.2584673568832712,
+      "first-token": 1.930478811264038,
+      "self": 1.140036702156067,
+      "local": 0.8623360991477966
+    },
+    "L7_H7": {
+      "induction": 1.0312011176033204,
+      "previous-token": 1.051974892616272,
+      "duplicate-token": 1.500521916502132,
+      "first-token": 1.5497058629989624,
+      "self": 1.7927080392837524,
+      "local": 1.113214135169983
+    },
+    "L7_H8": {
+      "induction": 0.9927283718322168,
+      "previous-token": 0.9113540053367615,
+      "duplicate-token": 1.023856342760054,
+      "first-token": 1.9774324893951416,
+      "self": 1.0518229007720947,
+      "local": 0.8716855645179749
+    },
+    "L7_H9": {
+      "induction": 0.9934973221237489,
+      "previous-token": 1.064267873764038,
+      "duplicate-token": 1.079440477494834,
+      "first-token": 1.477644443511963,
+      "self": 1.2560877799987793,
+      "local": 0.9742015600204468
+    },
+    "L7_H10": {
+      "induction": 0.9658543309891572,
+      "previous-token": 1.27772057056427,
+      "duplicate-token": 1.0104351519130021,
+      "first-token": 1.6756725311279297,
+      "self": 1.2188043594360352,
+      "local": 1.2724064588546753
+    },
+    "L7_H11": {
+      "induction": 0.9511031453479372,
+      "previous-token": 1.1827739477157593,
+      "duplicate-token": 1.047460442815988,
+      "first-token": 2.042118787765503,
+      "self": 1.3744068145751953,
+      "local": 1.0485172271728516
+    },
+    "L7_H12": {
+      "induction": 0.9407135684444085,
+      "previous-token": 0.9842125177383423,
+      "duplicate-token": 1.0015914392455418,
+      "first-token": 3.1145777702331543,
+      "self": 1.0045092105865479,
+      "local": 0.9355567097663879
+    },
+    "L7_H13": {
+      "induction": 0.9957205075337323,
+      "previous-token": 0.9494649171829224,
+      "duplicate-token": 0.9916777686052538,
+      "first-token": 1.6628975868225098,
+      "self": 1.0802249908447266,
+      "local": 0.8970330357551575
+    },
+    "L7_H14": {
+      "induction": 1.0772439561271654,
+      "previous-token": 0.9726517200469971,
+      "duplicate-token": 1.143624100834917,
+      "first-token": 2.551112413406372,
+      "self": 1.169189214706421,
+      "local": 0.9366031885147095
+    },
+    "L7_H15": {
+      "induction": 1.0674924504470553,
+      "previous-token": 0.8360329866409302,
+      "duplicate-token": 1.263092276852195,
+      "first-token": 2.9137589931488037,
+      "self": 0.968936026096344,
+      "local": 0.8200486898422241
+    },
+    "L8_H0": {
+      "induction": 0.8075042715459569,
+      "previous-token": 3.7437610626220703,
+      "duplicate-token": 0.6475983420018213,
+      "first-token": 0.43793079257011414,
+      "self": 6.491838455200195,
+      "local": 3.731358528137207
+    },
+    "L8_H1": {
+      "induction": 1.0836112053932652,
+      "previous-token": 1.3182274103164673,
+      "duplicate-token": 1.1796811351583436,
+      "first-token": 1.1162919998168945,
+      "self": 1.7999879121780396,
+      "local": 1.1861904859542847
+    },
+    "L8_H2": {
+      "induction": 0.7724134872694873,
+      "previous-token": 2.1527915000915527,
+      "duplicate-token": 0.5952991942707498,
+      "first-token": 0.5272241234779358,
+      "self": 2.8722071647644043,
+      "local": 1.9263386726379395
+    },
+    "L8_H3": {
+      "induction": 0.9860819496709803,
+      "previous-token": 1.1074317693710327,
+      "duplicate-token": 1.0208905804963913,
+      "first-token": 1.896582007408142,
+      "self": 1.1920632123947144,
+      "local": 0.997688353061676
+    },
+    "L8_H4": {
+      "induction": 1.0656191023260522,
+      "previous-token": 0.9109865427017212,
+      "duplicate-token": 1.1595920561488797,
+      "first-token": 1.6646723747253418,
+      "self": 1.0747315883636475,
+      "local": 0.8679684400558472
+    },
+    "L8_H5": {
+      "induction": 1.0246351651618884,
+      "previous-token": 1.3336684703826904,
+      "duplicate-token": 1.0541688108979204,
+      "first-token": 1.529956340789795,
+      "self": 1.4174031019210815,
+      "local": 1.1965361833572388
+    },
+    "L8_H6": {
+      "induction": 1.0076333501406445,
+      "previous-token": 0.9371140003204346,
+      "duplicate-token": 1.1324175948038466,
+      "first-token": 1.6366651058197021,
+      "self": 1.0309102535247803,
+      "local": 0.9563047885894775
+    },
+    "L8_H7": {
+      "induction": 1.0895388149640661,
+      "previous-token": 0.9780275225639343,
+      "duplicate-token": 1.1848835491236702,
+      "first-token": 3.076643466949463,
+      "self": 1.1037334203720093,
+      "local": 1.0389158725738525
+    },
+    "L8_H8": {
+      "induction": 0.8927526056271826,
+      "previous-token": 1.293331503868103,
+      "duplicate-token": 0.9248179116059029,
+      "first-token": 2.7196285724639893,
+      "self": 1.3071726560592651,
+      "local": 1.192561388015747
+    },
+    "L8_H9": {
+      "induction": 0.9533920894375278,
+      "previous-token": 0.983686625957489,
+      "duplicate-token": 1.034896281113747,
+      "first-token": 1.6706207990646362,
+      "self": 1.1898934841156006,
+      "local": 1.0868580341339111
+    },
+    "L8_H10": {
+      "induction": 1.0511080954072263,
+      "previous-token": 1.1324199438095093,
+      "duplicate-token": 1.0262412069549531,
+      "first-token": 2.6055209636688232,
+      "self": 1.198195219039917,
+      "local": 1.1507642269134521
+    },
+    "L8_H11": {
+      "induction": 1.0217920490764691,
+      "previous-token": 0.9585551619529724,
+      "duplicate-token": 1.0716736115676113,
+      "first-token": 2.3097903728485107,
+      "self": 1.0047603845596313,
+      "local": 0.9900339245796204
+    },
+    "L8_H12": {
+      "induction": 1.0797507423351804,
+      "previous-token": 1.2224677801132202,
+      "duplicate-token": 1.0879723861961828,
+      "first-token": 1.3401989936828613,
+      "self": 1.3240796327590942,
+      "local": 1.2431302070617676
+    },
+    "L8_H13": {
+      "induction": 1.0057180331112467,
+      "previous-token": 0.9560546875,
+      "duplicate-token": 1.0787462655823632,
+      "first-token": 2.703958511352539,
+      "self": 0.9087441563606262,
+      "local": 0.9600816369056702
+    },
+    "L8_H14": {
+      "induction": 1.0911778213708245,
+      "previous-token": 0.9600387811660767,
+      "duplicate-token": 0.9780069112252758,
+      "first-token": 3.35915470123291,
+      "self": 0.9730926156044006,
+      "local": 0.9673855900764465
+    },
+    "L8_H15": {
+      "induction": 1.0366837448246773,
+      "previous-token": 0.8271992206573486,
+      "duplicate-token": 1.0403306346568855,
+      "first-token": 1.7960599660873413,
+      "self": 0.8572072982788086,
+      "local": 0.9118512272834778
+    },
+    "L9_H0": {
+      "induction": 1.1208958086711769,
+      "previous-token": 1.1345824003219604,
+      "duplicate-token": 1.3165033886610134,
+      "first-token": 1.610774278640747,
+      "self": 1.2316808700561523,
+      "local": 1.1492280960083008
+    },
+    "L9_H1": {
+      "induction": 1.0025655452823072,
+      "previous-token": 1.155738115310669,
+      "duplicate-token": 1.0910564559549332,
+      "first-token": 2.2565815448760986,
+      "self": 1.2308406829833984,
+      "local": 1.1191567182540894
+    },
+    "L9_H2": {
+      "induction": 1.0177946933835162,
+      "previous-token": 1.002105712890625,
+      "duplicate-token": 0.9087687149766006,
+      "first-token": 1.3543486595153809,
+      "self": 0.9465675354003906,
+      "local": 0.9955332279205322
+    },
+    "L9_H3": {
+      "induction": 1.0829008082032852,
+      "previous-token": 1.104300618171692,
+      "duplicate-token": 0.9539996953164436,
+      "first-token": 2.1695680618286133,
+      "self": 1.2323020696640015,
+      "local": 1.0259307622909546
+    },
+    "L9_H4": {
+      "induction": 1.0123889277198104,
+      "previous-token": 1.0365597009658813,
+      "duplicate-token": 1.0999326030650236,
+      "first-token": 1.0888859033584595,
+      "self": 1.0188772678375244,
+      "local": 0.920346200466156
+    },
+    "L9_H5": {
+      "induction": 0.9987567039485719,
+      "previous-token": 1.1647922992706299,
+      "duplicate-token": 1.0130986339758805,
+      "first-token": 1.8190494775772095,
+      "self": 1.2772074937820435,
+      "local": 1.1576178073883057
+    },
+    "L9_H6": {
+      "induction": 0.9988829788331417,
+      "previous-token": 1.1581509113311768,
+      "duplicate-token": 0.9677580829138286,
+      "first-token": 1.5006318092346191,
+      "self": 1.1745141744613647,
+      "local": 1.017323613166809
+    },
+    "L9_H7": {
+      "induction": 0.9292347202807287,
+      "previous-token": 1.0932549238204956,
+      "duplicate-token": 0.9842460006344883,
+      "first-token": 1.0002301931381226,
+      "self": 1.2509739398956299,
+      "local": 0.9988861680030823
+    },
+    "L9_H8": {
+      "induction": 1.1104949799251154,
+      "previous-token": 0.8827475905418396,
+      "duplicate-token": 1.103938598350087,
+      "first-token": 1.9196819067001343,
+      "self": 0.988229513168335,
+      "local": 0.8339576721191406
+    },
+    "L9_H9": {
+      "induction": 0.9599250566595154,
+      "previous-token": 1.0400199890136719,
+      "duplicate-token": 0.8441001434185424,
+      "first-token": 1.8947393894195557,
+      "self": 0.9637838006019592,
+      "local": 1.1345306634902954
+    },
+    "L9_H10": {
+      "induction": 1.0069261090985662,
+      "previous-token": 1.081774115562439,
+      "duplicate-token": 1.0700204278648004,
+      "first-token": 2.242771863937378,
+      "self": 1.1041985750198364,
+      "local": 1.1056358814239502
+    },
+    "L9_H11": {
+      "induction": 0.9782327979555387,
+      "previous-token": 0.909826397895813,
+      "duplicate-token": 0.9677760251313208,
+      "first-token": 1.336256980895996,
+      "self": 0.9292580485343933,
+      "local": 0.9322066307067871
+    },
+    "L9_H12": {
+      "induction": 1.1573835861137511,
+      "previous-token": 1.000491976737976,
+      "duplicate-token": 1.1373112518007964,
+      "first-token": 2.7160422801971436,
+      "self": 1.0435818433761597,
+      "local": 0.9590921401977539
+    },
+    "L9_H13": {
+      "induction": 1.0477184537986584,
+      "previous-token": 0.9041218161582947,
+      "duplicate-token": 1.0622084373747906,
+      "first-token": 1.703985333442688,
+      "self": 1.1672710180282593,
+      "local": 0.9082105159759521
+    },
+    "L9_H14": {
+      "induction": 1.0955808295942762,
+      "previous-token": 1.0639289617538452,
+      "duplicate-token": 1.1004177002749937,
+      "first-token": 1.9483888149261475,
+      "self": 1.047479271888733,
+      "local": 1.0555461645126343
+    },
+    "L9_H15": {
+      "induction": 1.0254123366281966,
+      "previous-token": 0.9538071155548096,
+      "duplicate-token": 0.9599877721293072,
+      "first-token": 2.7723350524902344,
+      "self": 1.0869266986846924,
+      "local": 1.000524878501892
+    },
+    "L10_H0": {
+      "induction": 1.0172639439686746,
+      "previous-token": 0.9812488555908203,
+      "duplicate-token": 0.9914200320037377,
+      "first-token": 3.006053924560547,
+      "self": 0.904045581817627,
+      "local": 0.8508891463279724
+    },
+    "L10_H1": {
+      "induction": 1.0643865898089246,
+      "previous-token": 0.9819891452789307,
+      "duplicate-token": 1.1243496151622479,
+      "first-token": 1.7832236289978027,
+      "self": 0.9553230404853821,
+      "local": 1.0432896614074707
+    },
+    "L10_H2": {
+      "induction": 1.4681236359824519,
+      "previous-token": 15.703965187072754,
+      "duplicate-token": 0.7807665081390063,
+      "first-token": 0.24402551352977753,
+      "self": 19.272348403930664,
+      "local": 14.068690299987793
+    },
+    "L10_H3": {
+      "induction": 0.9903081326114728,
+      "previous-token": 1.0382009744644165,
+      "duplicate-token": 1.0413561116856258,
+      "first-token": 1.8428529500961304,
+      "self": 1.06633722782135,
+      "local": 1.009482741355896
+    },
+    "L10_H4": {
+      "induction": 0.9378292694358615,
+      "previous-token": 1.6410900354385376,
+      "duplicate-token": 0.9103870674989325,
+      "first-token": 2.506683349609375,
+      "self": 1.8831593990325928,
+      "local": 1.7097634077072144
+    },
+    "L10_H5": {
+      "induction": 1.7872462887566776,
+      "previous-token": 10.533262252807617,
+      "duplicate-token": 0.8477655758459475,
+      "first-token": 0.40218397974967957,
+      "self": 14.35624885559082,
+      "local": 9.922916412353516
+    },
+    "L10_H6": {
+      "induction": 0.8335019666270205,
+      "previous-token": 1.2475488185882568,
+      "duplicate-token": 0.8875084251584091,
+      "first-token": 0.6385853886604309,
+      "self": 2.339874029159546,
+      "local": 1.3590874671936035
+    },
+    "L10_H7": {
+      "induction": 1.006336874716944,
+      "previous-token": 1.0065374374389648,
+      "duplicate-token": 1.0107333058330426,
+      "first-token": 1.9954612255096436,
+      "self": 0.9885118007659912,
+      "local": 1.0558615922927856
+    },
+    "L10_H8": {
+      "induction": 0.9689442347672965,
+      "previous-token": 0.9989404082298279,
+      "duplicate-token": 1.049170209908888,
+      "first-token": 0.994120717048645,
+      "self": 1.128005027770996,
+      "local": 0.9981262683868408
+    },
+    "L10_H9": {
+      "induction": 0.8804832334059559,
+      "previous-token": 1.096590280532837,
+      "duplicate-token": 0.9253303103824034,
+      "first-token": 2.0665507316589355,
+      "self": 1.0339709520339966,
+      "local": 1.083781123161316
+    },
+    "L10_H10": {
+      "induction": 1.0708785266094922,
+      "previous-token": 0.9129337072372437,
+      "duplicate-token": 0.973855620540842,
+      "first-token": 3.3125994205474854,
+      "self": 0.8235481977462769,
+      "local": 0.8960912227630615
+    },
+    "L10_H11": {
+      "induction": 1.0497315815867971,
+      "previous-token": 1.0553892850875854,
+      "duplicate-token": 1.0281482583637687,
+      "first-token": 1.9685478210449219,
+      "self": 1.0150675773620605,
+      "local": 1.0142840147018433
+    },
+    "L10_H12": {
+      "induction": 0.9568966207522724,
+      "previous-token": 1.0093199014663696,
+      "duplicate-token": 0.9661043948523999,
+      "first-token": 2.7411458492279053,
+      "self": 0.8411753177642822,
+      "local": 1.0445544719696045
+    },
+    "L10_H13": {
+      "induction": 0.9958059731035488,
+      "previous-token": 0.9507912397384644,
+      "duplicate-token": 1.0219225546028228,
+      "first-token": 1.3180232048034668,
+      "self": 1.0129263401031494,
+      "local": 1.0532135963439941
+    },
+    "L10_H14": {
+      "induction": 0.9514821668796021,
+      "previous-token": 1.0825413465499878,
+      "duplicate-token": 0.9809361107510756,
+      "first-token": 2.629854679107666,
+      "self": 1.1322470903396606,
+      "local": 1.0345910787582397
+    },
+    "L10_H15": {
+      "induction": 1.0053478646885619,
+      "previous-token": 0.9788926839828491,
+      "duplicate-token": 0.916193687256142,
+      "first-token": 1.8045789003372192,
+      "self": 0.946799099445343,
+      "local": 1.0287699699401855
+    },
+    "L11_H0": {
+      "induction": 0.9782755374001082,
+      "previous-token": 5.827230930328369,
+      "duplicate-token": 0.5795424290908623,
+      "first-token": 0.39251577854156494,
+      "self": 8.379677772521973,
+      "local": 5.8398308753967285
+    },
+    "L11_H1": {
+      "induction": 0.6833503099861175,
+      "previous-token": 1.6451027393341064,
+      "duplicate-token": 0.6582336359013639,
+      "first-token": 1.2825288772583008,
+      "self": 1.8578169345855713,
+      "local": 1.6139777898788452
+    },
+    "L11_H2": {
+      "induction": 1.0348079423529313,
+      "previous-token": 0.8396132588386536,
+      "duplicate-token": 0.9944638002240525,
+      "first-token": 1.1997051239013672,
+      "self": 0.8436285853385925,
+      "local": 0.926684558391571
+    },
+    "L11_H3": {
+      "induction": 1.072926188809244,
+      "previous-token": 1.0952296257019043,
+      "duplicate-token": 1.0170400465758336,
+      "first-token": 0.8420781493186951,
+      "self": 1.1558490991592407,
+      "local": 1.1015242338180542
+    },
+    "L11_H4": {
+      "induction": 0.9302529032885869,
+      "previous-token": 1.1268552541732788,
+      "duplicate-token": 0.8626611958906936,
+      "first-token": 2.5117452144622803,
+      "self": 0.9856323003768921,
+      "local": 1.0364623069763184
+    },
+    "L11_H5": {
+      "induction": 1.0008042253157892,
+      "previous-token": 0.9055649638175964,
+      "duplicate-token": 0.976630854109468,
+      "first-token": 3.0465471744537354,
+      "self": 0.9736393690109253,
+      "local": 0.8793222904205322
+    },
+    "L11_H6": {
+      "induction": 1.0047341854493685,
+      "previous-token": 1.0908516645431519,
+      "duplicate-token": 1.0286638049191523,
+      "first-token": 3.1698215007781982,
+      "self": 1.1820577383041382,
+      "local": 1.0400159358978271
+    },
+    "L11_H7": {
+      "induction": 1.0389897044740968,
+      "previous-token": 1.1514480113983154,
+      "duplicate-token": 1.0285245372870235,
+      "first-token": 2.1220827102661133,
+      "self": 1.1704885959625244,
+      "local": 1.0810786485671997
+    },
+    "L11_H8": {
+      "induction": 1.0316634084168224,
+      "previous-token": 0.9588735103607178,
+      "duplicate-token": 1.0060820788645966,
+      "first-token": 1.1128404140472412,
+      "self": 1.031419277191162,
+      "local": 1.0349692106246948
+    },
+    "L11_H9": {
+      "induction": 1.0754087535720178,
+      "previous-token": 0.999865710735321,
+      "duplicate-token": 1.1060467441114739,
+      "first-token": 1.3625779151916504,
+      "self": 1.0048532485961914,
+      "local": 1.098748803138733
+    },
+    "L11_H10": {
+      "induction": 0.2684108396790684,
+      "previous-token": 10.719193458557129,
+      "duplicate-token": 0.23157558521426264,
+      "first-token": 1.4202439785003662,
+      "self": 11.383827209472656,
+      "local": 9.318865776062012
+    },
+    "L11_H11": {
+      "induction": 1.017998163925444,
+      "previous-token": 1.0340303182601929,
+      "duplicate-token": 0.9854436228170994,
+      "first-token": 6.222813129425049,
+      "self": 0.918062686920166,
+      "local": 1.0386613607406616
+    },
+    "L11_H12": {
+      "induction": 1.0192934449403581,
+      "previous-token": 1.1032723188400269,
+      "duplicate-token": 0.8613889356565384,
+      "first-token": 2.746138572692871,
+      "self": 0.8953234553337097,
+      "local": 1.0286622047424316
+    },
+    "L11_H13": {
+      "induction": 0.9845848876106874,
+      "previous-token": 1.0137568712234497,
+      "duplicate-token": 0.7788662706549866,
+      "first-token": 6.433913230895996,
+      "self": 0.8917744755744934,
+      "local": 0.9563852548599243
+    },
+    "L11_H14": {
+      "induction": 1.0148631044697474,
+      "previous-token": 0.7638563513755798,
+      "duplicate-token": 1.0837444585427056,
+      "first-token": 3.383873701095581,
+      "self": 0.8589914441108704,
+      "local": 0.9105371832847595
+    },
+    "L11_H15": {
+      "induction": 0.9327813213165239,
+      "previous-token": 0.9363787174224854,
+      "duplicate-token": 0.9846984678334818,
+      "first-token": 1.5719020366668701,
+      "self": 1.0286767482757568,
+      "local": 0.8672390580177307
+    },
+    "L12_H0": {
+      "induction": 1.07533627542616,
+      "previous-token": 1.1411478519439697,
+      "duplicate-token": 1.1676421610376246,
+      "first-token": 0.9476036429405212,
+      "self": 1.304717779159546,
+      "local": 1.2066794633865356
+    },
+    "L12_H1": {
+      "induction": 1.0226326277282176,
+      "previous-token": 0.9076498746871948,
+      "duplicate-token": 0.952369778187791,
+      "first-token": 1.3225020170211792,
+      "self": 0.9732608199119568,
+      "local": 0.9197075963020325
+    },
+    "L12_H2": {
+      "induction": 0.8893447748670226,
+      "previous-token": 1.3052964210510254,
+      "duplicate-token": 1.063849060333692,
+      "first-token": 0.8813243508338928,
+      "self": 2.773923873901367,
+      "local": 1.3446775674819946
+    },
+    "L12_H3": {
+      "induction": 0.9834358823104699,
+      "previous-token": 1.1016743183135986,
+      "duplicate-token": 0.9392053442492507,
+      "first-token": 1.2436875104904175,
+      "self": 1.0715909004211426,
+      "local": 1.1052005290985107
+    },
+    "L12_H4": {
+      "induction": 3.354595819977572,
+      "previous-token": 5.78847599029541,
+      "duplicate-token": 1.0073074933102064,
+      "first-token": 0.5901963114738464,
+      "self": 7.646167755126953,
+      "local": 5.892122745513916
+    },
+    "L12_H5": {
+      "induction": 1.0265538023108323,
+      "previous-token": 1.065524697303772,
+      "duplicate-token": 0.9400751072585536,
+      "first-token": 0.937812864780426,
+      "self": 1.1273045539855957,
+      "local": 1.0407240390777588
+    },
+    "L12_H6": {
+      "induction": 0.9932526035515471,
+      "previous-token": 0.955027163028717,
+      "duplicate-token": 0.987146357624232,
+      "first-token": 1.904928207397461,
+      "self": 1.0829734802246094,
+      "local": 0.9037948846817017
+    },
+    "L12_H7": {
+      "induction": 1.0143436023781005,
+      "previous-token": 1.1984339952468872,
+      "duplicate-token": 0.9625805356574183,
+      "first-token": 1.658633828163147,
+      "self": 1.1027871370315552,
+      "local": 1.1306524276733398
+    },
+    "L12_H8": {
+      "induction": 1.1547143187971118,
+      "previous-token": 8.918569564819336,
+      "duplicate-token": 0.42553091886238065,
+      "first-token": 0.6578584313392639,
+      "self": 10.067612648010254,
+      "local": 9.597159385681152
+    },
+    "L12_H9": {
+      "induction": 0.9993183555790746,
+      "previous-token": 1.0982743501663208,
+      "duplicate-token": 0.9435717346615236,
+      "first-token": 2.048614263534546,
+      "self": 0.9086659550666809,
+      "local": 1.1312333345413208
+    },
+    "L12_H10": {
+      "induction": 0.7632876928613024,
+      "previous-token": 2.346177816390991,
+      "duplicate-token": 0.9822580468320444,
+      "first-token": 1.470339298248291,
+      "self": 5.036211013793945,
+      "local": 2.474508762359619
+    },
+    "L12_H11": {
+      "induction": 1.0016519693924744,
+      "previous-token": 0.9720118045806885,
+      "duplicate-token": 0.9200336136520084,
+      "first-token": 2.023808002471924,
+      "self": 0.952844500541687,
+      "local": 0.9711185693740845
+    },
+    "L12_H12": {
+      "induction": 1.094105842683488,
+      "previous-token": 0.8714198470115662,
+      "duplicate-token": 1.188706597513304,
+      "first-token": 1.7940348386764526,
+      "self": 0.9390760660171509,
+      "local": 0.9118292331695557
+    },
+    "L12_H13": {
+      "induction": 0.7500350569610245,
+      "previous-token": 5.752678394317627,
+      "duplicate-token": 0.9488598495540301,
+      "first-token": 0.3838461935520172,
+      "self": 4.618202209472656,
+      "local": 6.785048007965088
+    },
+    "L12_H14": {
+      "induction": 0.9616107067225019,
+      "previous-token": 0.8530746102333069,
+      "duplicate-token": 0.9185566530383856,
+      "first-token": 2.6410088539123535,
+      "self": 0.8120490908622742,
+      "local": 0.8078233003616333
+    },
+    "L12_H15": {
+      "induction": 0.9547142419403647,
+      "previous-token": 1.0814595222473145,
+      "duplicate-token": 0.9120539903735438,
+      "first-token": 1.1052439212799072,
+      "self": 1.0122672319412231,
+      "local": 1.146312952041626
+    },
+    "L13_H0": {
+      "induction": 1.2802177595670767,
+      "previous-token": 0.5717138648033142,
+      "duplicate-token": 1.5402521830754885,
+      "first-token": 1.2334660291671753,
+      "self": 0.8236702084541321,
+      "local": 0.6765202879905701
+    },
+    "L13_H1": {
+      "induction": 0.3822025835820499,
+      "previous-token": 7.406708240509033,
+      "duplicate-token": 0.2764067593279782,
+      "first-token": 0.18939436972141266,
+      "self": 6.419694423675537,
+      "local": 7.855771064758301
+    },
+    "L13_H2": {
+      "induction": 1.1139045315921896,
+      "previous-token": 1.0452977418899536,
+      "duplicate-token": 0.9309464889921444,
+      "first-token": 2.8301239013671875,
+      "self": 0.9308815598487854,
+      "local": 0.9123902916908264
+    },
+    "L13_H3": {
+      "induction": 0.9852497559085072,
+      "previous-token": 0.9037410020828247,
+      "duplicate-token": 0.8545762179146825,
+      "first-token": 3.883404016494751,
+      "self": 0.7086362838745117,
+      "local": 1.0150363445281982
+    },
+    "L13_H4": {
+      "induction": 0.32001523551504524,
+      "previous-token": 3.8974452018737793,
+      "duplicate-token": 0.3307906395054956,
+      "first-token": 0.33209970593452454,
+      "self": 5.105717182159424,
+      "local": 4.127745628356934
+    },
+    "L13_H5": {
+      "induction": 0.6541581125664186,
+      "previous-token": 7.858814716339111,
+      "duplicate-token": 0.2900565614152474,
+      "first-token": 0.23214390873908997,
+      "self": 8.924869537353516,
+      "local": 8.756172180175781
+    },
+    "L13_H6": {
+      "induction": 0.2623686616226232,
+      "previous-token": 5.060642242431641,
+      "duplicate-token": 0.33477256077195366,
+      "first-token": 0.3869481384754181,
+      "self": 8.822990417480469,
+      "local": 6.07937479019165
+    },
+    "L13_H7": {
+      "induction": 0.7515180990876275,
+      "previous-token": 1.3328949213027954,
+      "duplicate-token": 0.8005325775309958,
+      "first-token": 1.0950068235397339,
+      "self": 1.698478102684021,
+      "local": 1.4514352083206177
+    },
+    "L13_H8": {
+      "induction": 0.8648943514066472,
+      "previous-token": 1.0821260213851929,
+      "duplicate-token": 0.9651809038685725,
+      "first-token": 0.9930769205093384,
+      "self": 1.5198103189468384,
+      "local": 1.1554604768753052
+    },
+    "L13_H9": {
+      "induction": 1.034277683992667,
+      "previous-token": 1.060563325881958,
+      "duplicate-token": 1.1211967997010117,
+      "first-token": 2.2300894260406494,
+      "self": 1.269026756286621,
+      "local": 0.9916960000991821
+    },
+    "L13_H10": {
+      "induction": 1.002526970306932,
+      "previous-token": 1.1196545362472534,
+      "duplicate-token": 0.8797062538704491,
+      "first-token": 1.1371138095855713,
+      "self": 1.1071985960006714,
+      "local": 1.0952540636062622
+    },
+    "L13_H11": {
+      "induction": 1.0719744358549392,
+      "previous-token": 12.951860427856445,
+      "duplicate-token": 0.5899359628981311,
+      "first-token": 1.0978647470474243,
+      "self": 20.053083419799805,
+      "local": 12.092881202697754
+    },
+    "L13_H12": {
+      "induction": 0.8514640583823708,
+      "previous-token": 31.703277587890625,
+      "duplicate-token": 0.48947954484124473,
+      "first-token": 2.1545093059539795,
+      "self": 29.957889556884766,
+      "local": 24.963441848754883
+    },
+    "L13_H13": {
+      "induction": 0.32337334827247016,
+      "previous-token": 51.92084884643555,
+      "duplicate-token": 0.48671116069618076,
+      "first-token": 0.6708471775054932,
+      "self": 32.25191116333008,
+      "local": 27.92333984375
+    },
+    "L13_H14": {
+      "induction": 1.022377764242655,
+      "previous-token": 0.9485706686973572,
+      "duplicate-token": 1.1147266275968997,
+      "first-token": 1.0800913572311401,
+      "self": 1.0624439716339111,
+      "local": 0.999530017375946
+    },
+    "L13_H15": {
+      "induction": 0.7913375817176097,
+      "previous-token": 9.327947616577148,
+      "duplicate-token": 0.634982665933374,
+      "first-token": 0.07900051772594452,
+      "self": 10.225357055664062,
+      "local": 8.422646522521973
+    },
+    "L14_H0": {
+      "induction": 0.3129916884107242,
+      "previous-token": 13.758101463317871,
+      "duplicate-token": 0.3146601253288054,
+      "first-token": 0.546852707862854,
+      "self": 16.973468780517578,
+      "local": 13.962471961975098
+    },
+    "L14_H1": {
+      "induction": 0.5071011635891749,
+      "previous-token": 2.3186447620391846,
+      "duplicate-token": 0.5182189790472282,
+      "first-token": 0.9276070594787598,
+      "self": 2.0575993061065674,
+      "local": 2.7230124473571777
+    },
+    "L14_H2": {
+      "induction": 0.3539969724450358,
+      "previous-token": 2.332676649093628,
+      "duplicate-token": 0.37062052912825866,
+      "first-token": 0.28547948598861694,
+      "self": 3.8631296157836914,
+      "local": 3.118743896484375
+    },
+    "L14_H3": {
+      "induction": 0.9560125895112731,
+      "previous-token": 1.017544150352478,
+      "duplicate-token": 0.9364320398123349,
+      "first-token": 1.274577021598816,
+      "self": 1.117221713066101,
+      "local": 1.0480772256851196
+    },
+    "L14_H4": {
+      "induction": 0.2541325392815187,
+      "previous-token": 7.9848713874816895,
+      "duplicate-token": 0.1941481556338732,
+      "first-token": 0.1300981640815735,
+      "self": 12.863448143005371,
+      "local": 11.445638656616211
+    },
+    "L14_H5": {
+      "induction": 0.5332604178327527,
+      "previous-token": 4.798641204833984,
+      "duplicate-token": 0.6088637350556209,
+      "first-token": 0.5052722692489624,
+      "self": 8.312716484069824,
+      "local": 4.838146686553955
+    },
+    "L14_H6": {
+      "induction": 0.881273409696548,
+      "previous-token": 5.638515949249268,
+      "duplicate-token": 0.5145465057342056,
+      "first-token": 1.3856630325317383,
+      "self": 7.289057731628418,
+      "local": 5.608564376831055
+    },
+    "L14_H7": {
+      "induction": 0.7378872266380674,
+      "previous-token": 11.846762657165527,
+      "duplicate-token": 0.3683540200365698,
+      "first-token": 0.21003587543964386,
+      "self": 16.210603713989258,
+      "local": 11.615447044372559
+    },
+    "L14_H8": {
+      "induction": 0.3294149468481339,
+      "previous-token": 3.611600160598755,
+      "duplicate-token": 0.3217609985163707,
+      "first-token": 0.1872633695602417,
+      "self": 4.142195701599121,
+      "local": 4.045126914978027
+    },
+    "L14_H9": {
+      "induction": 0.43074992764449144,
+      "previous-token": 3.8872756958007812,
+      "duplicate-token": 0.4915949513905771,
+      "first-token": 0.6363068222999573,
+      "self": 2.5009407997131348,
+      "local": 4.161207675933838
+    },
+    "L14_H10": {
+      "induction": 0.3438272419916264,
+      "previous-token": 15.151129722595215,
+      "duplicate-token": 0.40124844553139727,
+      "first-token": 0.46679964661598206,
+      "self": 8.649460792541504,
+      "local": 17.556371688842773
+    },
+    "L14_H11": {
+      "induction": 1.0294210034053313,
+      "previous-token": 0.9398764371871948,
+      "duplicate-token": 0.8855920668815593,
+      "first-token": 1.671304702758789,
+      "self": 0.9733884930610657,
+      "local": 0.9285510182380676
+    },
+    "L14_H12": {
+      "induction": 0.9051317747476225,
+      "previous-token": 0.9626763463020325,
+      "duplicate-token": 0.9264496799398588,
+      "first-token": 1.5127170085906982,
+      "self": 0.9653647541999817,
+      "local": 0.865921139717102
+    },
+    "L14_H13": {
+      "induction": 0.3605957420088452,
+      "previous-token": 9.532323837280273,
+      "duplicate-token": 0.42630256429865554,
+      "first-token": 0.5828537344932556,
+      "self": 15.986775398254395,
+      "local": 9.581435203552246
+    },
+    "L14_H14": {
+      "induction": 0.8193363719075021,
+      "previous-token": 1.4609918594360352,
+      "duplicate-token": 0.9166216388832035,
+      "first-token": 1.1360933780670166,
+      "self": 1.896084189414978,
+      "local": 1.3925092220306396
+    },
+    "L14_H15": {
+      "induction": 0.9290137354302501,
+      "previous-token": 0.9386166930198669,
+      "duplicate-token": 0.8068499228383537,
+      "first-token": 1.4809870719909668,
+      "self": 0.8009361624717712,
+      "local": 0.9330571889877319
+    },
+    "L15_H0": {
+      "induction": 0.15624282736927722,
+      "previous-token": 104.2868423461914,
+      "duplicate-token": 0.16888161935495888,
+      "first-token": 0.14496095478534698,
+      "self": 45.16706085205078,
+      "local": 27.581798553466797
+    },
+    "L15_H1": {
+      "induction": 0.19381557249913992,
+      "previous-token": 20.829130172729492,
+      "duplicate-token": 0.27540303812395955,
+      "first-token": 0.3009941875934601,
+      "self": 26.34917640686035,
+      "local": 22.08111000061035
+    },
+    "L15_H2": {
+      "induction": 0.14564805123550492,
+      "previous-token": 6.3784685134887695,
+      "duplicate-token": 0.15567198653762945,
+      "first-token": 0.09689287096261978,
+      "self": 10.707134246826172,
+      "local": 8.763446807861328
+    },
+    "L15_H3": {
+      "induction": 0.2486045590990758,
+      "previous-token": 8.926478385925293,
+      "duplicate-token": 0.2823817900173064,
+      "first-token": 0.2899307608604431,
+      "self": 17.358840942382812,
+      "local": 8.697558403015137
+    },
+    "L15_H4": {
+      "induction": 0.535197681203195,
+      "previous-token": 2.838948965072632,
+      "duplicate-token": 0.5837312568354603,
+      "first-token": 0.4674580693244934,
+      "self": 3.5966665744781494,
+      "local": 2.955111026763916
+    },
+    "L15_H5": {
+      "induction": 0.6425669065023025,
+      "previous-token": 4.105681896209717,
+      "duplicate-token": 0.3540107987660434,
+      "first-token": 1.1402125358581543,
+      "self": 5.661477088928223,
+      "local": 4.1469597816467285
+    },
+    "L15_H6": {
+      "induction": 0.2397793331245844,
+      "previous-token": 31.336660385131836,
+      "duplicate-token": 0.5827751004621115,
+      "first-token": 0.9022064805030823,
+      "self": 36.029869079589844,
+      "local": 23.767105102539062
+    },
+    "L15_H7": {
+      "induction": 0.5470377843000516,
+      "previous-token": 7.249309539794922,
+      "duplicate-token": 0.3533338570008826,
+      "first-token": 0.5383472442626953,
+      "self": 6.639134407043457,
+      "local": 7.455351829528809
+    },
+    "L15_H8": {
+      "induction": 0.15381599586199127,
+      "previous-token": 5.637298107147217,
+      "duplicate-token": 0.18150082299257925,
+      "first-token": 0.08157601952552795,
+      "self": 5.843400478363037,
+      "local": 7.1877923011779785
+    },
+    "L15_H9": {
+      "induction": 0.2843700356191003,
+      "previous-token": 35.24885177612305,
+      "duplicate-token": 0.33663405849405464,
+      "first-token": 0.43977367877960205,
+      "self": 24.378103256225586,
+      "local": 32.610660552978516
+    },
+    "L15_H10": {
+      "induction": 0.23565462009383673,
+      "previous-token": 6.914135932922363,
+      "duplicate-token": 0.22301156940059266,
+      "first-token": 0.21071796119213104,
+      "self": 7.4749321937561035,
+      "local": 8.648041725158691
+    },
+    "L15_H11": {
+      "induction": 0.7296346298785064,
+      "previous-token": 1.4862290620803833,
+      "duplicate-token": 0.8288762136502198,
+      "first-token": 0.550606369972229,
+      "self": 1.996224045753479,
+      "local": 1.5966917276382446
+    },
+    "L15_H12": {
+      "induction": 0.19035292119542663,
+      "previous-token": 13.460365295410156,
+      "duplicate-token": 0.18346055691361893,
+      "first-token": 0.05331479012966156,
+      "self": 13.842768669128418,
+      "local": 16.11226463317871
+    },
+    "L15_H13": {
+      "induction": 0.3773830820853679,
+      "previous-token": 2.648418426513672,
+      "duplicate-token": 0.3519648174053991,
+      "first-token": 0.6428645253181458,
+      "self": 3.6030113697052,
+      "local": 3.0525035858154297
+    },
+    "L15_H14": {
+      "induction": 0.4454772279389396,
+      "previous-token": 2.543637990951538,
+      "duplicate-token": 0.4161098749735518,
+      "first-token": 0.6665361523628235,
+      "self": 2.7652063369750977,
+      "local": 2.7499256134033203
+    },
+    "L15_H15": {
+      "induction": 0.25871101775664535,
+      "previous-token": 3.529836416244507,
+      "duplicate-token": 0.28068757981431486,
+      "first-token": 0.25830772519111633,
+      "self": 4.440549850463867,
+      "local": 3.65329647064209
+    }
+  }
+}

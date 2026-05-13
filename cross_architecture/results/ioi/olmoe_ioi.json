@@ -1,0 +1,130 @@
+{
+  "model": "allenai/OLMoE-1B-7B-0924",
+  "revision": "main",
+  "arch": "olmoe",
+  "n_examples": 500,
+  "tokens_shape": [
+    500,
+    14
+  ],
+  "n_layer": 16,
+  "n_head": 16,
+  "head_dim": 128,
+  "conditions": [
+    {
+      "top1": 0.5860000252723694,
+      "frac_target_gt_distractor": 0.9959999918937683,
+      "logit_diff_mean": 3.9453125,
+      "logit_diff_median": 3.85546875,
+      "logit_target_mean": 12.0390625,
+      "logit_distractor_mean": 8.09375,
+      "condition": "baseline",
+      "n_ablated": 0,
+      "spec": {},
+      "wall_s": 87.06975483894348
+    },
+    {
+      "top1": 0.8500000238418579,
+      "frac_target_gt_distractor": 1.0,
+      "logit_diff_mean": 3.09765625,
+      "logit_diff_median": 3.03515625,
+      "logit_target_mean": 12.5859375,
+      "logit_distractor_mean": 9.484375,
+      "condition": "ablate_prev_token_circuit (8h)",
+      "n_ablated": 8,
+      "spec": {
+        "0": [
+          1,
+          5
+        ],
+        "1": [
+          5
+        ],
+        "2": [
+          6
+        ],
+        "4": [
+          12
+        ],
+        "6": [
+          6
+        ],
+        "8": [
+          10,
+          13
+        ]
+      },
+      "wall_s": 93.00043988227844
+    },
+    {
+      "top1": 0.5759999752044678,
+      "frac_target_gt_distractor": 0.9980000257492065,
+      "logit_diff_mean": 3.5703125,
+      "logit_diff_median": 3.46484375,
+      "logit_target_mean": 11.9140625,
+      "logit_distractor_mean": 8.34375,
+      "condition": "ablate_induction_circuit (4h)",
+      "n_ablated": 4,
+      "spec": {
+        "5": [
+          10
+        ],
+        "7": [
+          0
+        ],
+        "9": [
+          8
+        ],
+        "12": [
+          14
+        ]
+      },
+      "wall_s": 93.88987421989441
+    },
+    {
+      "top1": 0.8659999966621399,
+      "frac_target_gt_distractor": 1.0,
+      "logit_diff_mean": 2.76953125,
+      "logit_diff_median": 2.640625,
+      "logit_target_mean": 12.546875,
+      "logit_distractor_mean": 9.78125,
+      "condition": "ablate_prev+induction_union (12h)",
+      "n_ablated": 12,
+      "spec": {
+        "0": [
+          1,
+          5
+        ],
+        "1": [
+          5
+        ],
+        "2": [
+          6
+        ],
+        "4": [
+          12
+        ],
+        "6": [
+          6
+        ],
+        "8": [
+          10,
+          13
+        ],
+        "5": [
+          10
+        ],
+        "7": [
+          0
+        ],
+        "9": [
+          8
+        ],
+        "12": [
+          14
+        ]
+      },
+      "wall_s": 94.56568717956543
+    }
+  ]
+}

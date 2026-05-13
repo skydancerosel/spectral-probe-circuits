@@ -1,0 +1,97 @@
+{
+  "model": "allenai/OLMo-1B-0724-hf",
+  "revision": "main",
+  "arch": "olmo",
+  "n_layer": 16,
+  "n_head": 16,
+  "head_dim": 128,
+  "prev_token_threshold": 100.0,
+  "induction_threshold": 50.0,
+  "n_prev_token_circuit": 9,
+  "n_induction_circuit": 3,
+  "n_matched_random": 9,
+  "conditions": [
+    {
+      "loss": 9.4765625,
+      "acc_top1": 0.009999999776482582,
+      "acc_top5": 0.024000000208616257,
+      "mean_logit_B": 2.5567066650390626,
+      "condition": "baseline",
+      "n_ablated": 0,
+      "spec": {},
+      "wall_s": 124.95406699180603
+    },
+    {
+      "loss": 11.0078125,
+      "acc_top1": 0.0,
+      "acc_top5": 0.0010000000474974513,
+      "mean_logit_B": 1.5252005157470703,
+      "condition": "ablate_prev_token_circuit (9h)",
+      "n_ablated": 9,
+      "spec": {
+        "0": [
+          5,
+          6,
+          12
+        ],
+        "1": [
+          1,
+          2,
+          5,
+          7,
+          14
+        ],
+        "11": [
+          10
+        ]
+      },
+      "wall_s": 128.6860752105713
+    },
+    {
+      "loss": 9.2734375,
+      "acc_top1": 0.02199999988079071,
+      "acc_top5": 0.0560000017285347,
+      "mean_logit_B": 3.176256103515625,
+      "condition": "ablate_matched_random_same_layers (9h)",
+      "n_ablated": 9,
+      "spec": {
+        "0": [
+          4,
+          9,
+          13
+        ],
+        "1": [
+          4,
+          8,
+          9,
+          10,
+          12
+        ],
+        "11": [
+          9
+        ]
+      },
+      "wall_s": 135.68262124061584
+    },
+    {
+      "loss": 10.5,
+      "acc_top1": 0.0005000000237487257,
+      "acc_top5": 0.006500000134110451,
+      "mean_logit_B": 1.5844522399902343,
+      "condition": "ablate_induction_circuit (3h)",
+      "n_ablated": 3,
+      "spec": {
+        "2": [
+          11
+        ],
+        "4": [
+          12
+        ],
+        "12": [
+          8
+        ]
+      },
+      "wall_s": 141.89771914482117
+    }
+  ]
+}

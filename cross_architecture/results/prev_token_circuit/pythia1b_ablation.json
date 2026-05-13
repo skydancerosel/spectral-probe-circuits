@@ -1,0 +1,97 @@
+{
+  "model": "EleutherAI/pythia-1b",
+  "revision": "main",
+  "arch": "pythia",
+  "n_layer": 16,
+  "n_head": 8,
+  "head_dim": 256,
+  "prev_token_threshold": 100.0,
+  "induction_threshold": 50.0,
+  "n_prev_token_circuit": 8,
+  "n_induction_circuit": 3,
+  "n_matched_random": 8,
+  "conditions": [
+    {
+      "loss": 8.390625,
+      "acc_top1": 0.04050000011920929,
+      "acc_top5": 0.0885000005364418,
+      "mean_logit_B": 3.516547119140625,
+      "condition": "baseline",
+      "n_ablated": 0,
+      "spec": {},
+      "wall_s": 77.81523299217224
+    },
+    {
+      "loss": 11.046875,
+      "acc_top1": 0.0,
+      "acc_top5": 0.0005000000237487257,
+      "mean_logit_B": 1.2979429321289062,
+      "condition": "ablate_prev_token_circuit (8h)",
+      "n_ablated": 8,
+      "spec": {
+        "1": [
+          3
+        ],
+        "2": [
+          1,
+          3,
+          5
+        ],
+        "3": [
+          2,
+          5,
+          6
+        ],
+        "6": [
+          3
+        ]
+      },
+      "wall_s": 78.72699093818665
+    },
+    {
+      "loss": 8.640625,
+      "acc_top1": 0.04399999976158142,
+      "acc_top5": 0.0925000011920929,
+      "mean_logit_B": 3.373770355224609,
+      "condition": "ablate_matched_random_same_layers (8h)",
+      "n_ablated": 8,
+      "spec": {
+        "1": [
+          1
+        ],
+        "2": [
+          0,
+          4,
+          7
+        ],
+        "3": [
+          0,
+          4,
+          7
+        ],
+        "6": [
+          4
+        ]
+      },
+      "wall_s": 86.38938593864441
+    },
+    {
+      "loss": 10.3828125,
+      "acc_top1": 0.0024999999441206455,
+      "acc_top5": 0.006000000052154064,
+      "mean_logit_B": 1.7320133056640625,
+      "condition": "ablate_induction_circuit (3h)",
+      "n_ablated": 3,
+      "spec": {
+        "4": [
+          4
+        ],
+        "7": [
+          0,
+          1
+        ]
+      },
+      "wall_s": 92.83060693740845
+    }
+  ]
+}
