@@ -1,0 +1,122 @@
+{
+  "ioi_nm": {
+    "label": "IOI name-mover",
+    "pythia1b": {
+      "screen_top1_delta_pp": 7.200002670288086,
+      "screen_logit_delta": 0.3984375,
+      "mr_top1_delta_mean_pp": 2.70000159740448,
+      "mr_top1_delta_std_pp": 4.049965680269105,
+      "mr_logit_delta_mean": -0.07265625,
+      "mr_logit_delta_std": 0.2898397723596488,
+      "n_seeds": 10
+    },
+    "olmo": {
+      "screen_top1_delta_pp": -17.200005054473877,
+      "screen_logit_delta": 0.255859375,
+      "mr_top1_delta_mean_pp": -9.640001654624939,
+      "mr_top1_delta_std_pp": 8.76193747400137,
+      "mr_logit_delta_mean": -0.3236328125,
+      "mr_logit_delta_std": 0.4932490773463848,
+      "n_seeds": 10
+    },
+    "olmoe": {
+      "screen_top1_delta_pp": -17.80000329017639,
+      "screen_logit_delta": -0.484375,
+      "mr_top1_delta_mean_pp": -0.5200016498565674,
+      "mr_top1_delta_std_pp": 5.113990292727133,
+      "mr_logit_delta_mean": 0.202734375,
+      "mr_logit_delta_std": 0.1923424348666566,
+      "n_seeds": 10
+    }
+  },
+  "ioi_si": {
+    "label": "IOI S-Inhibition",
+    "pythia1b": {
+      "screen_top1_delta_pp": -32.59999752044678,
+      "screen_logit_delta": -3.595703125,
+      "mr_top1_delta_mean_pp": -4.419998526573181,
+      "mr_top1_delta_std_pp": 7.259905287259547,
+      "mr_logit_delta_mean": 0.0515625,
+      "mr_logit_delta_std": 0.36831953710434695,
+      "n_seeds": 10
+    },
+    "olmo": {
+      "screen_top1_delta_pp": -31.800001859664917,
+      "screen_logit_delta": -3.27783203125,
+      "mr_top1_delta_mean_pp": -6.580002307891846,
+      "mr_top1_delta_std_pp": 9.308275315625774,
+      "mr_logit_delta_mean": -0.030859375,
+      "mr_logit_delta_std": 0.342126948758557,
+      "n_seeds": 10
+    },
+    "olmoe": {
+      "screen_top1_delta_pp": 0.5999982357025146,
+      "screen_logit_delta": -2.99267578125,
+      "mr_top1_delta_mean_pp": -10.640002936124802,
+      "mr_top1_delta_std_pp": 13.488694575116211,
+      "mr_logit_delta_mean": 0.19296875,
+      "mr_logit_delta_std": 0.39054339425362056,
+      "n_seeds": 10
+    }
+  },
+  "gt": {
+    "label": "Greater-than",
+    "pythia1b": {
+      "screen_top1_delta_pp": -68.6,
+      "screen_logit_delta": -4.2739843749999995,
+      "mr_top1_delta_mean_pp": 0.0,
+      "mr_top1_delta_std_pp": 0.0,
+      "mr_logit_delta_mean": -0.36923046875,
+      "mr_logit_delta_std": 0.3208049899177462,
+      "n_seeds": 10
+    },
+    "olmo": {
+      "screen_top1_delta_pp": -0.6000000000000005,
+      "screen_logit_delta": -1.9781796875000004,
+      "mr_top1_delta_mean_pp": 0.0,
+      "mr_top1_delta_std_pp": 0.0,
+      "mr_logit_delta_mean": 0.040917968749999555,
+      "mr_logit_delta_std": 0.1676609044788083,
+      "n_seeds": 10
+    },
+    "olmoe": {
+      "screen_top1_delta_pp": -4.600000000000004,
+      "screen_logit_delta": -2.3314179687500003,
+      "mr_top1_delta_mean_pp": -0.020000000000000018,
+      "mr_top1_delta_std_pp": 0.06324555320336764,
+      "mr_logit_delta_mean": -0.021482421875000046,
+      "mr_logit_delta_std": 0.14015417243649103,
+      "n_seeds": 10
+    }
+  },
+  "succ": {
+    "label": "Successor",
+    "pythia1b": {
+      "screen_top1_delta_pp": -38.13559322033898,
+      "screen_logit_delta": -3.2868010957362284,
+      "mr_top1_delta_mean_pp": -21.016949152542374,
+      "mr_top1_delta_std_pp": 29.47019597972943,
+      "mr_logit_delta_mean": -0.9087737519862294,
+      "mr_logit_delta_std": 1.4662489947164457,
+      "n_seeds": 10
+    },
+    "olmo": {
+      "screen_top1_delta_pp": -80.50847457627118,
+      "screen_logit_delta": -7.354152873411017,
+      "mr_top1_delta_mean_pp": -57.542372881355924,
+      "mr_top1_delta_std_pp": 18.063420110673192,
+      "mr_logit_delta_mean": -1.6374697927701276,
+      "mr_logit_delta_std": 1.121994858409032,
+      "n_seeds": 10
+    },
+    "olmoe": {
+      "screen_top1_delta_pp": -1.6949152542372836,
+      "screen_logit_delta": -0.3828414658368633,
+      "mr_top1_delta_mean_pp": -21.271186440677962,
+      "mr_top1_delta_std_pp": 31.73776271334483,
+      "mr_logit_delta_mean": -2.212113422458454,
+      "mr_logit_delta_std": 3.469265491038079,
+      "n_seeds": 10
+    }
+  }
+}

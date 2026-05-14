@@ -375,23 +375,32 @@ These are separable in OLMoE in a way they are not in Pythia or OLMo. Future wor
 
 ### 7.5 The matched-random differential as specificity guarantee
 
-A skeptical reading of the multi-screen procedure would be that trying many screens until one produces a large ablation effect is a fishing expedition with no specificity guarantee. The matched-random differential — same layers, equal head count, no overlap with the picks — addresses this directly.
+A skeptical reading of the multi-screen procedure would be that trying many screens until one produces a large ablation effect is a fishing expedition with no specificity guarantee. The matched-random differential — same layers, equal head count, no overlap with the picks — addresses this directly. *Updated, n = 10 random seeds per cell*: for every (task, model, screen) combination where the screen produces a top-1 effect, we re-ran the matched-random control with 10 different random seeds and report mean ± std. The screen-specific result is reported as the value from the original seed-123 run; the matched-random column below is the n=10 mean ± std.
 
-For each (task, model, screen) combination, the differential between the screen ablation and the matched-random ablation in the same layers tells you whether the screen is identifying something specific. A fishing-expedition result would have screen effects close to matched-random effects (the layer-level computation matters, the specific picks within the layer don't). The IOI results across the four screens × three models give differentials of:
+For IOI across all 4 screens × 3 models, and for greater-than / successor on the same 3 models:
 
-| | screen Δ | random Δ | differential |
-|---|---:|---:|---|
-| Pythia prev-token | −82 | (no same-layer random for capability screen) | screen-only effect, dominant |
-| Pythia name-mover | +7 | −4 | screen helps; correlate, not cause |
-| Pythia S-Inhibition | −33 | −6 | 5× — real secondary |
-| OLMo prev-token | +6 | — | screen helps; not the circuit |
-| OLMo name-mover | −17 | −11 | 1.5× — weakly specific |
-| OLMo S-Inhibition | **−32** | **+5** | ∞ — primary |
-| OLMoE prev-token | +26 | — | screen helps; not the circuit |
-| OLMoE name-mover | **−18** | **−0.6** | 30× — primary (top-1) |
-| OLMoE S-Inhibition | +0.6 | −1.6 | no top-1 effect; logit_diff −3pp |
+| Task | Screen | Pythia 1B (screen / MR ± std) | OLMo 1B (screen / MR ± std) | OLMoE 1B-7B (screen / MR ± std) |
+|---|---|---|---|---|
+| IOI | top-5 name-mover | +7 / **+2.7 ± 4.0** (correlate) | −17 / **−9.6 ± 8.8** (1.8×) | **−18 / −0.5 ± 5.1 (34×)** |
+| IOI | top-5 S-Inhibition | **−33 / −4.4 ± 7.3** (7.4×) | **−32 / −6.6 ± 9.3** (4.8×) | +1 / **−10.6 ± 13.5** (none) |
+| Greater-than | top-5 GT-specific | **−69 / +0.0 ± 0.0 (∞)** | −1 / **+0.0 ± 0.0** (margin-only) | −5 / **−0.0 ± 0.1** (specific-but-small) |
+| Successor | top-5 self-attention | −38 / **−21.0 ± 29.5** (1.8×) | **−81 / −57.5 ± 18.1** (1.4×; L0-concentrated) | −2 / **−21.3 ± 31.7** (none) |
 
-The differentials cluster sharply: a screen is either weakly specific (≤2× differential, e.g., OLMo's name-mover), strongly specific (5–30× differential, e.g., Pythia's S-Inhibition or OLMoE's name-mover), saturated (∞ differential when matched-random points the opposite direction, e.g., OLMo's S-Inhibition), or null (matched-random matches or exceeds the screen effect, e.g., OLMo's name-mover would-be-but-for-the-1.5×). This is a well-defined search procedure with sharp validation criteria, not a fishing expedition.
+Δtop-1 in percentage points; "X×" = ratio of screen-Δ to matched-random-mean-Δ where both are sizable.
+
+**What the n = 10 sweep adds beyond single-seed.** Three refinements:
+
+1. **The OLMoE × IOI-name-mover specificity holds dramatically.** Single-seed gave 30×; the n = 10 sweep gives matched-random mean = −0.5 ± 5.1pp, refining the specificity to **34×**. The largest screen-vs-random differential in the panel.
+
+2. **The L0-concentrated screens have large matched-random variance, requiring more careful interpretation.** OLMo × Successor: matched-random mean −57.5pp with std 18.1pp; the screen at −80.5pp is 1.4× the random mean — real, but a 23pp gap on a >50pp baseline, not the 2× the single-seed comparison suggested. Pythia × Successor: matched-random mean −21.0 ± 29.5pp (range [−73, +1]); the screen at −38pp is 1.8× the random mean. **L0 heads do critical input processing in these models**: removing any 5 of them is destructive regardless of which 5, so the specificity bound is weaker than for screens whose heads spread across many layers.
+
+3. **For Pythia × Greater-than, the matched-random std is essentially zero (0.0 ± 0.0pp), confirming an effectively infinite specificity ratio for the GT-specific screen.** Of the 12 cells, the GT cases have the cleanest specificity differentials because the screen heads are distributed across 5 layers (L4, L6, L7, L8, L11) — ablating any 5 random heads in those non-L0 layers does almost nothing.
+
+The differentials still cluster into the four categories — weakly specific, strongly specific, saturated, or null — but with the n = 10 sweep we can report mean and std rather than a single comparison. The "screen is finding something specific" claim survives this stronger control in every cell where the original single-seed comparison was strong; in cells where the single-seed comparison looked moderate (e.g., OLMo × IOI-name-mover at 1.5×), the n = 10 specificity is similar (1.8×) — the conclusion stands but the ratio shouldn't be over-interpreted.
+
+The single most important methodology consequence: **L0-concentrated screens cannot use same-layer matched-random as a tight null.** For OLMo and OLMoE successor in particular, the *prev-token-circuit ablation* (which is not L0-concentrated and has its own clean matched-random control) is the more reliable causal claim than the L0-concentrated successor screen.
+
+Aggregated results: [`figures/mr_sweep_summary.json`](figures/mr_sweep_summary.json); per-cell raw sweeps: [`cross_architecture/results/matched_random_sweep/`](cross_architecture/results/matched_random_sweep/).
 
 ### 7.6 Scope statement
 
