@@ -151,8 +151,8 @@ axA.set_xscale("log")
 axA.set_yscale("log")
 axA.set_xlabel("fraction of training (Pythia 1B; total 300B tokens)")
 axA.set_ylabel("per-head spectral signal  max(PR − 1, 0)")
-axA.set_title("A   |   Spectral signal rises before capability selectivity crosses threshold",
-              loc="left", fontsize=11.5, pad=8, fontweight="bold")
+axA.set_title("A   Spectral signal rises before capability selectivity crosses threshold",
+              loc="left", fontsize=11.0, pad=8, fontweight="bold")
 axA.set_xlim(5e-6, 1.4)
 axA.set_ylim(0.05, 200)
 axA.grid(True, which="major", alpha=0.3, ls="--", lw=0.6)
@@ -202,7 +202,7 @@ axB.set_ylim(2e-3, 0.3)
 axB.set_yticks([0.003, 0.01, 0.03, 0.1])
 axB.set_yticklabels(["0.3%", "1%", "3%", "10%"])
 axB.set_ylabel("training fraction at circuit formation")
-axB.set_title("B   |   Task circuits form within ~2% of training across configurations; attention sinks form later",
+axB.set_title("B   Task circuits form within ~2% of training; attention sinks form later",
               loc="left", fontsize=11.0, pad=8, fontweight="bold")
 axB.grid(True, which="major", axis="y", alpha=0.3, ls="--", lw=0.6)
 
