@@ -202,8 +202,8 @@ axB.set_ylim(2e-3, 0.3)
 axB.set_yticks([0.003, 0.01, 0.03, 0.1])
 axB.set_yticklabels(["0.3%", "1%", "3%", "10%"])
 axB.set_ylabel("training fraction at circuit formation")
-axB.set_title("B   |   Capability circuits form within ~2% of training across configurations",
-              loc="left", fontsize=11.5, pad=8, fontweight="bold")
+axB.set_title("B   |   Task circuits form within ~2% of training across configurations; attention sinks form later",
+              loc="left", fontsize=11.0, pad=8, fontweight="bold")
 axB.grid(True, which="major", axis="y", alpha=0.3, ls="--", lw=0.6)
 
 # Direct labels for circuits (inside the panel, top area)
