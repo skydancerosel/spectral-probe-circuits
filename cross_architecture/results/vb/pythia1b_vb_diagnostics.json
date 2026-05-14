@@ -1,0 +1,96 @@
+{
+  "model": "EleutherAI/pythia-1b",
+  "arch": "pythia",
+  "conditions": [
+    {
+      "top1": 0.49000000953674316,
+      "frac_target_gt_distractor": 0.7319999933242798,
+      "logit_diff_mean": 0.3896484375,
+      "condition": "baseline",
+      "spec": {},
+      "wall_s": 2.406999111175537
+    },
+    {
+      "top1": 0.6959999799728394,
+      "frac_target_gt_distractor": 0.7099999785423279,
+      "logit_diff_mean": 0.352783203125,
+      "condition": "ablate_L8H5_only",
+      "spec": {
+        "8": [
+          5
+        ]
+      },
+      "wall_s": 2.0407040119171143
+    },
+    {
+      "top1": 0.7200000286102295,
+      "frac_target_gt_distractor": 0.7400000095367432,
+      "logit_diff_mean": 0.5673828125,
+      "condition": "ablate_L13H1_only",
+      "spec": {
+        "13": [
+          1
+        ]
+      },
+      "wall_s": 2.0410869121551514
+    },
+    {
+      "top1": 0.6819999814033508,
+      "frac_target_gt_distractor": 0.7200000286102295,
+      "logit_diff_mean": 0.378662109375,
+      "condition": "ablate_L7H2_only",
+      "spec": {
+        "7": [
+          2
+        ]
+      },
+      "wall_s": 2.0480451583862305
+    },
+    {
+      "top1": 0.621999979019165,
+      "frac_target_gt_distractor": 0.7680000066757202,
+      "logit_diff_mean": 0.5419921875,
+      "condition": "ablate_L8H7_only",
+      "spec": {
+        "8": [
+          7
+        ]
+      },
+      "wall_s": 2.0540711879730225
+    },
+    {
+      "top1": 0.7139999866485596,
+      "frac_target_gt_distractor": 0.7459999918937683,
+      "logit_diff_mean": 0.411376953125,
+      "condition": "ablate_L12H1_only",
+      "spec": {
+        "12": [
+          1
+        ]
+      },
+      "wall_s": 2.0794057846069336
+    },
+    {
+      "top1": 0.328000009059906,
+      "frac_target_gt_distractor": 0.6100000143051147,
+      "logit_diff_mean": 0.405517578125,
+      "condition": "ablate_filtered_top5_non-BOS (5h)",
+      "spec": {
+        "7": [
+          2,
+          0
+        ],
+        "4": [
+          4
+        ],
+        "13": [
+          3
+        ],
+        "0": [
+          2
+        ]
+      },
+      "wall_s": 2.055903911590576
+    }
+  ]
+}
