@@ -1,0 +1,131 @@
+{
+  "model": "allenai/OLMo-1B-0724-hf",
+  "arch": "olmo",
+  "revision": "main",
+  "top_k": 5,
+  "n_examples": 118,
+  "succ_heads": [
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      10
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      13
+    ]
+  ],
+  "conditions": [
+    {
+      "top1_acc": 0.8050847457627118,
+      "target_logit_mean": 13.701014631885593,
+      "target_rank_mean": 42.80508474576271,
+      "target_rank_median": 0.0,
+      "condition": "baseline",
+      "n_ablated": 0,
+      "spec": {},
+      "wall_s": 0.6842870712280273
+    },
+    {
+      "top1_acc": 0.0,
+      "target_logit_mean": 6.346861758474576,
+      "target_rank_mean": 335.364406779661,
+      "target_rank_median": 135.0,
+      "condition": "ablate_top5_succ_heads",
+      "n_ablated": 5,
+      "spec": {
+        "0": [
+          2,
+          10,
+          1,
+          0,
+          13
+        ]
+      },
+      "wall_s": 0.4982001781463623
+    },
+    {
+      "top1_acc": 0.3983050847457627,
+      "target_logit_mean": 12.798132944915254,
+      "target_rank_mean": 10.508474576271187,
+      "target_rank_median": 1.0,
+      "condition": "ablate_matched_random_same_layers (5h)",
+      "n_ablated": 5,
+      "spec": {
+        "0": [
+          3,
+          7,
+          8,
+          11,
+          12
+        ]
+      },
+      "wall_s": 0.4845731258392334
+    },
+    {
+      "top1_acc": 0.8050847457627118,
+      "target_logit_mean": 13.642925715042374,
+      "target_rank_mean": 45.601694915254235,
+      "target_rank_median": 0.0,
+      "condition": "ablate_induction_circuit (4h)",
+      "n_ablated": 4,
+      "spec": {
+        "5": [
+          10
+        ],
+        "7": [
+          0
+        ],
+        "9": [
+          8
+        ],
+        "12": [
+          14
+        ]
+      },
+      "wall_s": 0.47755002975463867
+    },
+    {
+      "top1_acc": 0.7627118644067796,
+      "target_logit_mean": 13.193897311970339,
+      "target_rank_mean": 69.11016949152543,
+      "target_rank_median": 0.0,
+      "condition": "ablate_prev_token_circuit (8h)",
+      "n_ablated": 8,
+      "spec": {
+        "0": [
+          1,
+          5
+        ],
+        "1": [
+          5
+        ],
+        "2": [
+          6
+        ],
+        "4": [
+          12
+        ],
+        "6": [
+          6
+        ],
+        "8": [
+          10,
+          13
+        ]
+      },
+      "wall_s": 0.4843440055847168
+    }
+  ]
+}

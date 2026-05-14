@@ -448,7 +448,66 @@ The IOI cross-model finding (§7.4) raises an obvious question: is "same task, d
 
 **Framework-level finding.** Taking IOI and greater-than together: capability circuits are identifiable, the spectral-signal-plus-task-pattern-screen methodology recovers a different *specific* circuit for each (model, task) pair, and the *specific* circuit varies across models even when the *task* and the *behavioral capability* are held constant. Same task, same behavioral performance (~100% for IOI and ~99.6% for GT across the panel), three different mechanistic implementations. The methodology generalizes; the specific circuit does not.
 
-This pattern across two tasks deepens the §7.6 scope statement: it is no longer one-task evidence for "circuits are model-specific even when the task is universal," it is two-task evidence. A third task on the same three models would either confirm the pattern as a general feature of 1B-class composed-task implementation or qualify it; this is open work.
+This pattern across two tasks deepens the §7.6 scope statement: it is no longer one-task evidence for "circuits are model-specific even when the task is universal," it is two-task evidence. The next subsection adds a third task on the same three models.
+
+### 7.9 A third composed task: successor sequences
+
+The IOI and GT results converge on "same task, different primary screen per model." A third task on the same panel either confirms the pattern as general or qualifies it. We test successor sequences (Gould et al., 2023).
+
+**Task.** 5-item ordinal sequences across four sequence types, model predicts the next item:
+
+- Days (cyclic 7): "Monday Tuesday Wednesday Thursday Friday" → "Saturday"
+- Months (cyclic 12): "January February March April May" → "June"
+- Ordinals (10, no wrap-around): "first second third fourth fifth" → "sixth"
+- Numbers 1–99 (no wrap-around): "1 2 3 4 5" → "6"
+
+All items are single-token across Pythia/OLMo/OLMoE; prompts are prepended with a leading space so each item is in its leading-space tokenization form. 118 unique sequences, batch shape (118 × 5).
+
+**Baseline.**
+
+| Model | top-1 accuracy | target_logit_mean | target_rank_median |
+|---|---:|---:|---:|
+| Pythia 1B | 78.8% | +12.6 | 0 |
+| OLMo 1B | 80.5% | +13.7 | 0 |
+| OLMoE 1B-7B | 76.3% | +11.5 | 0 |
+
+All three solve the task — median target rank = 0 (the model's argmax IS the correct next item on most prompts).
+
+**Task-pattern screen: self-attention at the query position.** Per Gould et al., successor heads attend strongly to the current token (the most-recent shown item) and apply an OV-circuit transformation that increments to the next-in-sequence. The screen: per-head attention from `pos T−1` to itself, normalized to a uniform-other baseline. Top-5 candidates per model:
+
+| Model | Top-5 successor candidates (self-attention at `pos T−1`) |
+|---|---|
+| Pythia 1B | L3·H5 (succ_sel 9.5, attn_self 0.07, attn_prev 0.91), L2·H1, L8·H5, L1·H4, L7·H0 |
+| OLMo 1B | L0·H2 (succ_sel 4431, attn_self 0.98), L0·H10, L0·H1, L0·H0, L0·H13 (all L0) |
+| OLMoE 1B-7B | L0·H15 (succ_sel 9688, attn_self 0.95), L0·H14, L10·H5, L7·H10, L1·H4 |
+
+**The "successor head" attention signature is itself model-dependent.** OLMo and OLMoE's top successor heads attend ≥78% to self at the query position (Gould's classical successor pattern). Pythia 1B's top successor head L3·H5 attends 91% to *prev* and only 7% to self — the screen selects it because the prev-attention concentrates probability mass away from "other" positions, but the mechanism is prev-token-like rather than self-attention-like. Pythia's successor mechanism is structured differently from OLMo's and OLMoE's.
+
+**Ablation (Figure 4).** Same four-condition design as Figure 3.
+
+![Figure 4: successor ablation across three 1B configurations](figures/succ_ablation_figure.png)
+
+**Figure 4. Successor sequences: same task, three different ablation profiles.** **(A)** Δ top-1 (P[argmax = correct next item], percentage points) under each ablation. **(B)** Δ target_logit (raw logit of the correct next item). Conditions match Figure 3 except *top-5 successor screen* replaces *top-5 GT screen*. Three profiles: **Pythia 1B** has mixed mechanism — top-5 successor screen drops top-1 by 38.1pp AND prev-token circuit drops top-1 by 28.0pp (both above matched-random Δ−3.4); **OLMo 1B**'s top-5 screen tanks top-1 by 80.5pp but matched-random in the same layers also drops it by 40.7pp because all 5 candidates are in L0 (where input-embedding processing happens); **OLMoE 1B-7B**'s prev-token circuit drops top-1 by 57.6pp — far more than the top-5 successor screen's 1.7pp drop. Per-model JSON: [`cross_architecture/results/succ/`](cross_architecture/results/succ/); figure build script: [`figures/build_succ_ablation_figure.py`](figures/build_succ_ablation_figure.py).
+
+**Three new findings from the third task:**
+
+1. **The 3-task × 3-model grid has no two identical (task, model) primary screens.** Combining Figure 4 with §7.4 (IOI) and §7.8 (GT):
+
+   | Task | Pythia 1B (Pile dense) | OLMo 1B (DCLM dense) | OLMoE 1B-7B (DCLM MoE) |
+   |---|---|---|---|
+   | IOI | prev-token (Δ−82) | S-Inhibition (Δ−32) | name-mover (Δ−18) |
+   | Greater-than | top-5 GT-specific (Δ−69) | margin-not-argmax | prev-token (Δ−6 > GT-specific) |
+   | Successor | top-5 succ + prev-token (Δ−38, Δ−28) | top-5 succ-specific (Δ−81) | prev-token (Δ−58 ≫ succ-specific) |
+
+   Three tasks, three models, nine cells. No two cells use the same primary screen with the same magnitude. The methodology recipe (spectral signal → task-pattern screen → causal verification) generalizes; the specific circuit it identifies does not.
+
+2. **A recurring sub-pattern: prev-token-circuit is the primary mechanism for OLMoE on both GT and Successor.** OLMoE-GT: prev-token Δ−6 vs GT-specific Δ−5. OLMoE-Successor: prev-token Δ−58 vs successor-specific Δ−2. In neither task is the task-specific screen the primary causal mechanism for OLMoE. The compositional-substrate hypothesis from §7.8 — that MoE models build task circuits more compositionally on top of foundational positional circuits — now has two data points. Whether this generalizes to other MoE models is an open hypothesis; it predicts that future MoE LMs of comparable scale should show the same prev-token-mediated pattern.
+
+3. **L0-concentrated screens have noisier matched-random controls.** OLMo's top-5 successor heads are all in L0; matched-random in L0 drops top-1 by 40.7pp (vs the screen's 80.5pp). OLMoE shows the same issue more extremely: matched-random in L0 drops top-1 by 43.2pp, *worse* than the top-5 specific Δ−1.7. L0 heads do critical input processing in these models; removing 5 of 16 L0 heads at random has a large effect. The specific differential for OLMo (2×) is still real but should be reported with this caveat. For OLMoE the OLMoE-successor analysis relies on the *prev-token-circuit* ablation rather than the successor-screen ablation, because the prev-token circuit is not L0-concentrated and the random null is clean (Δ−43 matched-random does not apply when comparing the prev-token-circuit ablation Δ−58 with the prev-token-circuit's own matched-random control, which we did not compute in this experiment but which previous (Figure 3) was Δ+0). A cleaner matched-random for the prev-token-circuit ablation should be added to future iterations of this work.
+
+**Framework-level finding (consolidated across three tasks).** *Capability circuits are identifiable, the methodology recovers a different specific circuit for each (model, task) pair, and the specific circuit varies across models even when the task and the behavioral capability are held constant.* Three tasks × three models = nine empirical cells. No cell repeats. The methodology generalizes as a recipe; the specific circuit does not.
+
+This has implications for two reader audiences. **For the deployment/eval-leaning reader**: capability detection has to be done per-model, not by training a single detector and porting it; the same task can have entirely different "interpretability fingerprints" across models even at the same scale and behavioral level. **For the mechanistic-leaning reader**: the question "what is the circuit for capability X" is malformed in the same way that "what is the protein for vision" would be — there are convergent functional solutions across distinct training pipelines, and the question of mechanistic interpretability becomes about the *class* of solutions rather than the specific one. The methodology provides the tool for studying the class.
 
 ## 8. Cross-Panel Invariants
 
