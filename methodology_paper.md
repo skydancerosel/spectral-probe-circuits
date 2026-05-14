@@ -299,26 +299,17 @@ Recall of the final-checkpoint induction circuit by the capability-specific scre
 
 The screen identifies most of the final-checkpoint induction circuit using 0.3–2% of total training tokens. The final model is not required.
 
-### 6.5 PR rises before induction selectivity for final-checkpoint induction heads
+### 6.5 PR rises at or before capability-selectivity formation, across all three 1B configurations
 
-For each final-checkpoint induction head, the per-revision PR trajectory and induction-selectivity trajectory align such that PR rises first. Example, Pythia 1B L4H4 (a top induction head, induction selectivity 181× at final checkpoint):
+For each top-selective head of each capability class, the per-revision PR trajectory aligns with the per-revision capability-selectivity trajectory such that PR is elevated *at or before* the formation event (the first revision where that head's capability selectivity exceeds its threshold). The pattern holds across all three 1B-class configurations, across all three of the capability classes plotted (induction, previous-token, BOS-attractor):
 
-| tokens (B) | PR | induction selectivity |
-|---:|---:|---:|
-| 0.002 | 1.96 | 1.0 |
-| 0.008 | 1.96 | 1.0 |
-| 0.033 | 1.32 | 1.0 |
-| 0.134 | 2.58 | 1.0 |
-| 0.536 | **27.35** | 0.2 |
-| 1.073 | 13.21 | 3.9 |
-| 6.291 | 48.05 | **171.8** |
-| 20.971 | 35.62 | 150.7 |
-| 79.691 | 26.38 | 147.9 |
-| 299.892 | 28.29 | 181.6 |
+![Figure 2: PR rises at or before capability-selectivity formation across three 1B configurations](figures/developmental_three_panel.png)
 
-PR rises sharply at 0.5B tokens; induction selectivity crosses 50× at 6B tokens — a ~12× lead in token count. The same pattern holds for the other final-checkpoint induction heads (Pythia L7H1, L7H0; OLMo L2H11, L4H12, L12H8; OLMoE L7H0, L9H8, L5H10, L12H14): PR is elevated by the time induction selectivity crosses threshold.
+**Figure 2. PR rises at or before capability-selectivity formation, across three 1B-class configurations.** Per-head spectral signal `max(PR_t − 1, 0)` over fraction of training, for one top-selective head per capability class per model: induction (red), previous-token (blue), BOS / attention-sink (grey). Identifiers under each curve give the (layer, head) coordinates in each model. X markers indicate the formation event — the first checkpoint at which that head's capability selectivity exceeds its threshold (≥50× for induction, ≥100× for prev-token, ≥30× for first-token). In every panel and every curve, the spectral signal is elevated at or before the formation event. The temporal structure is consistent across (Pile · dense), (DCLM · dense), and (DCLM · MoE) configurations.
 
-**Important scope note.** PR rising before induction selectivity holds for *heads that end up induction-selective*. It does not mean the PR-integral top-K identifies induction heads specifically — in attention-sink-dominated 1B models the top-K by PR-integral is dominated by L0/L1 generic content-dependent heads, not the induction circuit. PR-integral is a *general* indicator of specialized computation; the capability-specific screen disambiguates which kind of specialization.
+Specific lead times in the 10-checkpoint log-spaced grid: induction heads lead by 1–2 checkpoints across all three models; previous-token heads co-emerge with their capability selectivity (lead = 0); BOS-attractor heads lead by 2–4 checkpoints (longest in Pythia 1B and OLMoE; shortest in OLMo 1B where the BOS phase transition is sharp). The cross-configuration consistency of the *qualitative* claim (PR ≥ at or before formation) is what the figure surfaces; the *specific* lead-time numbers vary with the data, architecture, and the granularity of the checkpoint grid.
+
+**Important scope note.** PR rising at or before capability formation holds for *heads that end up capability-selective*. It does not mean the PR-integral top-K identifies capability-specific heads — in attention-sink-dominated 1B models the top-K by PR-integral is dominated by L0/L1 generic content-dependent heads, not the induction or prev-token circuits. PR-integral is a *general* indicator of specialized computation; the capability-specific screen of Step 2 disambiguates which kind of specialization each head is doing.
 
 ## 7. Pattern selectivity vs task-specific causal structure: the IOI extension
 
