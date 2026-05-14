@@ -1,0 +1,10 @@
+{
+  "model": "allenai/OLMo-1B-0724-hf",
+  "arch": "olmo",
+  "n_examples": 500,
+  "top1_above": 0.996,
+  "prob_above": 0.9751527776122093,
+  "prob_below": 0.024016556340735407,
+  "logit_diff_above_below": 4.4852578125,
+  "wall_s": 4.34142279624939
+}

@@ -1,0 +1,10 @@
+{
+  "model": "EleutherAI/pythia-1b",
+  "arch": "pythia",
+  "n_examples": 500,
+  "top1_above": 0.996,
+  "prob_above": 0.9734748646020889,
+  "prob_below": 0.025665243452880532,
+  "logit_diff_above_below": 5.013296875,
+  "wall_s": 9.142045974731445
+}

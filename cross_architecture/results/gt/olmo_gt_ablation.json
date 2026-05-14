@@ -1,0 +1,143 @@
+{
+  "model": "allenai/OLMo-1B-0724-hf",
+  "arch": "olmo",
+  "revision": "main",
+  "top_k": 5,
+  "n_examples": 500,
+  "gt_heads": [
+    [
+      12,
+      8
+    ],
+    [
+      2,
+      7
+    ],
+    [
+      2,
+      11
+    ],
+    [
+      4,
+      12
+    ],
+    [
+      8,
+      1
+    ]
+  ],
+  "conditions": [
+    {
+      "top1_above": 0.996,
+      "prob_above": 0.9751527776122093,
+      "prob_below": 0.024016556340735407,
+      "logit_diff_above_below": 4.4852578125,
+      "condition": "baseline",
+      "n_ablated": 0,
+      "spec": {},
+      "wall_s": 4.233601808547974
+    },
+    {
+      "top1_above": 0.99,
+      "prob_above": 0.8675287149492651,
+      "prob_below": 0.13099337379075587,
+      "logit_diff_above_below": 2.507078125,
+      "condition": "ablate_top5_gt_heads",
+      "n_ablated": 5,
+      "spec": {
+        "12": [
+          8
+        ],
+        "2": [
+          7,
+          11
+        ],
+        "4": [
+          12
+        ],
+        "8": [
+          1
+        ]
+      },
+      "wall_s": 3.302502155303955
+    },
+    {
+      "top1_above": 0.996,
+      "prob_above": 0.9736603268682956,
+      "prob_below": 0.025561573604121805,
+      "logit_diff_above_below": 4.45559375,
+      "condition": "ablate_matched_random_same_layers (5h)",
+      "n_ablated": 5,
+      "spec": {
+        "12": [
+          7
+        ],
+        "2": [
+          5,
+          6
+        ],
+        "4": [
+          11
+        ],
+        "8": [
+          8
+        ]
+      },
+      "wall_s": 3.308424949645996
+    },
+    {
+      "top1_above": 0.996,
+      "prob_above": 0.9725169092267751,
+      "prob_below": 0.026683629096718505,
+      "logit_diff_above_below": 4.1101875,
+      "condition": "ablate_induction_circuit (4h)",
+      "n_ablated": 4,
+      "spec": {
+        "5": [
+          10
+        ],
+        "7": [
+          0
+        ],
+        "9": [
+          8
+        ],
+        "12": [
+          14
+        ]
+      },
+      "wall_s": 3.2922139167785645
+    },
+    {
+      "top1_above": 0.994,
+      "prob_above": 0.9570719892084598,
+      "prob_below": 0.03784344992390834,
+      "logit_diff_above_below": 3.8705078125,
+      "condition": "ablate_prev_token_circuit (8h)",
+      "n_ablated": 8,
+      "spec": {
+        "0": [
+          1,
+          5
+        ],
+        "1": [
+          5
+        ],
+        "2": [
+          6
+        ],
+        "4": [
+          12
+        ],
+        "6": [
+          6
+        ],
+        "8": [
+          10,
+          13
+        ]
+      },
+      "wall_s": 3.3110270500183105
+    }
+  ]
+}

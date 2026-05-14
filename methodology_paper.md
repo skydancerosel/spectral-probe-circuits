@@ -416,6 +416,40 @@ The IOI cross-architecture results raise several questions that are open in this
 
 The methodology recipe ports; the specific circuit findings come with the per-model caveats above.
 
+### 7.8 A second composed task: greater-than across configurations
+
+The IOI cross-model finding (§7.4) raises an obvious question: is "same task, different primary circuit per model" an IOI-specific accident, or a general feature of how 1B-class models implement composed tasks? Testing the methodology on a second composed task — greater-than (Hanna et al., 2023) — answers it.
+
+**Task.** "The {noun} lasted from the year {Y1} to the year {CC}___" where Y1 = {CC}{DD} with DD ∈ [02, 88]. Model must complete with a 2-digit token > DD. Cross-tokenizer-compatible synthetic batch: 23 single-token nouns, 6 centuries (14–18; 19xx years BPE-merge in all three tokenizers and are excluded), 87 decades. 500-prompt batch, RNG seed 42.
+
+**Baseline.** All three 1B models solve greater-than essentially perfectly: top-1 = 99.6% across the panel; P(year > start) = 97–98%; logit_diff (above − below) = +4.3 to +5.0.
+
+**Task-pattern screen.** Attention from the final query position (`pos 11`) to the start-decade position (`pos 7`) in each prompt. High selectivity = candidate greater-than head. Top-5 candidates per model:
+
+| Model | Top-5 GT candidates (by attn(query → start-decade) / mean-other) |
+|---|---|
+| Pythia 1B | L8·H5, L7·H0, L6·H7, L11·H6, L4·H1 |
+| OLMo 1B | L12·H8, L2·H7, L2·H11, L4·H12, L8·H1 |
+| OLMoE 1B-7B | L10·H5, L10·H2, L5·H10, L12·H10, L7·H0 |
+
+**Ablation (Figure 3).** Four conditions per model: top-5 GT screen, matched-random in the same layers, induction circuit (≥50× induction sel from §4.3), prev-token circuit (best-class prev-token, ≥100× sel from §5).
+
+![Figure 3: greater-than ablation effects across three 1B configurations](figures/gt_ablation_figure.png)
+
+**Figure 3. Greater-than: same task, three different ablation profiles across configurations.** **(A)** Δ top-1 (P[argmax is a 2-digit number > start], percentage points) on each ablation condition vs baseline, for the three 1B-class configurations. **(B)** Δ logit_diff (mean[logit over above] − mean[logit over below]) on the same conditions. Conditions: *top-5 GT screen* (heads selected by attention from query position to start-decade position; task-specific), *matched-random* (5 random heads in the same layers as the top-5 GT picks, no overlap; null control), *induction circuit* (heads from §4.3 with induction selectivity ≥50× on the synthetic induction batch; a different screen on a different task), *prev-token circuit* (heads from §5 with best-class prev-token and selectivity ≥100×; another different screen). Three different ablation profiles emerge: Pythia 1B's GT is concentrated in the 5 GT-specific heads (Δtop-1 = −68.6pp; everything else < 1pp); OLMo 1B is top-1-robust to every ablation we tried but the GT-screen compresses the logit margin (Δlogit_diff = −1.98 with Δtop-1 only −0.6); OLMoE 1B-7B's prev-token circuit ablation hurts greater-than *more* than the GT-specific screen does (Δtop-1 = −6.0 vs −4.6; both above the matched-random null of 0). Per-model JSON: [`cross_architecture/results/gt/`](cross_architecture/results/gt/); figure build script: [`figures/build_gt_ablation_figure.py`](figures/build_gt_ablation_figure.py).
+
+**Three new findings beyond the methodology point:**
+
+1. **The Pythia 1B GT-specific heads are heterogeneous on the standard 6-class screen.** Of the 5 GT-specific heads, one (L7·H0) is a canonical induction head (induction-sel 113×), one (L4·H1) is a strong BOS attention-sink with multi-role classification (first-token 1433×, prev-token 73×, self 70×, local 39×), two (L8·H5, L6·H7) are weak first-token heads, and one (L11·H6) is unclassified at the 30× threshold. The GT screen selects them not because they share a single capability class but because they all route attention from `pos 11` to `pos 7` on this prompt structure. Crucially, the strongest Pythia induction head L4·H4 is *not* in the GT top-5 — it does induction-pattern routing on the synthetic induction batch (where the routing target is "after the duplicate") but not on the greater-than prompt structure (where the target is "decade of the first year"). So "attention pattern" and "task-causal role" are dissociable in Pythia 1B not because pattern-heads aren't causal heads, but because the *same head* can be both, neither, or one-but-not-the-other depending on the prompt structure and target task.
+
+2. **The OLMo margin-not-argmax signature now appears in two (model, task) pairs.** In OLMoE 1B-7B on IOI (§7.4), S-Inhibition ablation shifted logit_diff from +3.95 to +0.95 without changing top-1. In OLMo 1B on greater-than, the top-5 GT-screen ablation shifts logit_diff by −1.98 with top-1 changing by only −0.6pp. Two data points, two different (model, task) pairs, same signature: ablating the screen-identified circuit compresses the output-distribution margin while leaving the argmax robust. Top-1 accuracy is the wrong primary metric for ablation studies in these models; logit-margin or distributional measures are needed to see the effect. The mechanistic implication is that some capabilities in larger/more redundant models are implemented as biases on the output distribution rather than as gating decisions about the argmax — a distributed-redundant architecture where ablating the primary heads weakens but does not remove the capability.
+
+3. **OLMoE 1B-7B builds greater-than on top of the prev-token circuit.** Ablating OLMoE's prev-token circuit (8 heads identified by the standard prev-token-best-class screen at ≥100× selectivity) hurts greater-than top-1 by 6.0pp (and logit_diff by −2.21), *more* than ablating the top-5 GT-specific heads identified by the GT screen (Δtop-1 −4.6, Δlogit_diff −2.33). The same prev-token circuit ablation hurts top-1 by 0 in Pythia 1B and by 0.2pp in OLMo 1B, so the effect is OLMoE-specific. The compositional reading: OLMoE's greater-than computation is built on top of a positional substrate (the prev-token mechanism for routing back to the start-year position) rather than on a dedicated GT mechanism. The GT-specific heads identified by the screen do something secondary — perhaps the comparison itself or the final readout — but the heavy lifting is upstream in the prev-token circuit. This is one data point; whether MoE models in general build task circuits more compositionally on top of foundational positional circuits than dense models do is an open hypothesis.
+
+**Framework-level finding.** Taking IOI and greater-than together: capability circuits are identifiable, the spectral-signal-plus-task-pattern-screen methodology recovers a different *specific* circuit for each (model, task) pair, and the *specific* circuit varies across models even when the *task* and the *behavioral capability* are held constant. Same task, same behavioral performance (~100% for IOI and ~99.6% for GT across the panel), three different mechanistic implementations. The methodology generalizes; the specific circuit does not.
+
+This pattern across two tasks deepens the §7.6 scope statement: it is no longer one-task evidence for "circuits are model-specific even when the task is universal," it is two-task evidence. A third task on the same three models would either confirm the pattern as a general feature of 1B-class composed-task implementation or qualify it; this is open work.
+
 ## 8. Cross-Panel Invariants
 
 Three findings hold across the entire panel, independent of the task-causal decoupling above:
