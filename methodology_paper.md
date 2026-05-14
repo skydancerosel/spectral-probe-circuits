@@ -18,6 +18,10 @@ Three findings:
 
 In addition, three cross-panel invariants hold: L0–L1 produce zero BOS-classified heads in every model tested at every training checkpoint sampled; whole-model BOS-class fraction at the final checkpoint scales with training data (DCLM > Pile by ~20pp) and architecture (dense > MoE by ~10pp at the same scale+data); capability circuit size scales sublinearly with parameter count.
 
+![Headline figure: spectral signal predicts circuit formation; cross-configuration consistency at 1B](figures/headline_two_panel.png)
+
+**Figure 1.** **(A)** Per-head spectral signal `max(PR − 1, 0)` over training for three named heads in Pythia 1B (Pile, dense): the induction head L4·H4, the prev-token head L3·H5, and a BOS / attention-sink head L4·H1. X marks the formation event — the first training revision where the head's capability selectivity crosses its threshold (induction ≥ 50×, prev-token ≥ 100×, first-token ≥ 30×). On every head the spectral signal rises *before* the formation crossing. **(B)** Cross-configuration timing of three named circuits across the three 1B-class configurations — Pythia 1B (Pile · dense), OLMo 1B-0724-hf (DCLM · dense), OLMoE 1B-7B-0924 (DCLM · MoE). The induction and previous-token circuits both form within 0.3–2.1% of total training in every configuration; the BOS attractor's timing varies sharply (0.8% in OLMoE, 2.1% in Pythia, 8.7% in OLMo — the same DCLM-dense "phase transition" visible in §6.2). Per-revision raw data and circuit definitions in [`cross_architecture/developmental_note.md`](cross_architecture/developmental_note.md); figure build script in [`figures/build_headline_figure.py`](figures/build_headline_figure.py).
+
 ---
 
 ## 1. Introduction
