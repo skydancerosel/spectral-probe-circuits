@@ -1,0 +1,130 @@
+{
+  "model": "allenai/OLMo-1B-0724-hf",
+  "arch": "olmo",
+  "revision": "main",
+  "top_k": 5,
+  "n_examples": 500,
+  "vb_heads": [
+    [
+      2,
+      7
+    ],
+    [
+      13,
+      1
+    ],
+    [
+      12,
+      8
+    ],
+    [
+      12,
+      9
+    ],
+    [
+      14,
+      15
+    ]
+  ],
+  "conditions": [
+    {
+      "top1": 0.7900000214576721,
+      "frac_target_gt_distractor": 0.9120000004768372,
+      "logit_diff_mean": 1.5361328125,
+      "condition": "baseline",
+      "n_ablated": 0,
+      "spec": {},
+      "wall_s": 2.940871238708496
+    },
+    {
+      "top1": 0.5239999890327454,
+      "frac_target_gt_distractor": 0.8640000224113464,
+      "logit_diff_mean": 1.80078125,
+      "condition": "ablate_top5_vb_heads",
+      "n_ablated": 5,
+      "spec": {
+        "2": [
+          7
+        ],
+        "13": [
+          1
+        ],
+        "12": [
+          8,
+          9
+        ],
+        "14": [
+          15
+        ]
+      },
+      "wall_s": 2.7958948612213135
+    },
+    {
+      "top1": 0.8500000238418579,
+      "frac_target_gt_distractor": 0.9120000004768372,
+      "logit_diff_mean": 1.6083984375,
+      "condition": "ablate_matched_random_same_layers (5h)",
+      "n_ablated": 5,
+      "spec": {
+        "2": [
+          8
+        ],
+        "13": [
+          7
+        ],
+        "12": [
+          12,
+          13
+        ],
+        "14": [
+          7
+        ]
+      },
+      "wall_s": 2.77842378616333
+    },
+    {
+      "top1": 0.6140000224113464,
+      "frac_target_gt_distractor": 0.8600000143051147,
+      "logit_diff_mean": 1.1162109375,
+      "condition": "ablate_induction_circuit (3h)",
+      "n_ablated": 3,
+      "spec": {
+        "2": [
+          11
+        ],
+        "4": [
+          12
+        ],
+        "12": [
+          8
+        ]
+      },
+      "wall_s": 2.7766590118408203
+    },
+    {
+      "top1": 0.4699999988079071,
+      "frac_target_gt_distractor": 0.6899999976158142,
+      "logit_diff_mean": 0.65771484375,
+      "condition": "ablate_prev_token_circuit (9h)",
+      "n_ablated": 9,
+      "spec": {
+        "0": [
+          5,
+          6,
+          12
+        ],
+        "1": [
+          1,
+          2,
+          5,
+          7,
+          14
+        ],
+        "11": [
+          10
+        ]
+      },
+      "wall_s": 2.8020780086517334
+    }
+  ]
+}

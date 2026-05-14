@@ -514,9 +514,56 @@ All three solve the task — median target rank = 0 (the model's argmax IS the c
 
 3. **L0-concentrated screens have noisier matched-random controls.** OLMo's top-5 successor heads are all in L0; matched-random in L0 drops top-1 by 40.7pp (vs the screen's 80.5pp). OLMoE shows the same issue more extremely: matched-random in L0 drops top-1 by 43.2pp, *worse* than the top-5 specific Δ−1.7. L0 heads do critical input processing in these models; removing 5 of 16 L0 heads at random has a large effect. The specific differential for OLMo (2×) is still real but should be reported with this caveat. For OLMoE the OLMoE-successor analysis relies on the *prev-token-circuit* ablation rather than the successor-screen ablation, because the prev-token circuit is not L0-concentrated and the random null is clean (Δ−43 matched-random does not apply when comparing the prev-token-circuit ablation Δ−58 with the prev-token-circuit's own matched-random control, which we did not compute in this experiment but which previous (Figure 3) was Δ+0). A cleaner matched-random for the prev-token-circuit ablation should be added to future iterations of this work.
 
-**Framework-level finding (consolidated across three tasks).** *Capability circuits are identifiable, the methodology recovers a different specific circuit for each (model, task) pair, and the specific circuit varies across models even when the task and the behavioral capability are held constant.* Three tasks × three models = nine empirical cells. No cell repeats. The methodology generalizes as a recipe; the specific circuit does not.
+**Framework-level finding (across three tasks).** *Capability circuits are identifiable, the methodology recovers a different specific circuit for each (model, task) pair, and the specific circuit varies across models even when the task and the behavioral capability are held constant.* Three tasks × three models = nine empirical cells. No cell repeats. The methodology generalizes as a recipe; the specific circuit does not.
 
 This has implications for two reader audiences. **For the deployment/eval-leaning reader**: capability detection has to be done per-model, not by training a single detector and porting it; the same task can have entirely different "interpretability fingerprints" across models even at the same scale and behavioral level. **For the mechanistic-leaning reader**: the question "what is the circuit for capability X" is malformed in the same way that "what is the protein for vision" would be — there are convergent functional solutions across distinct training pipelines, and the question of mechanistic interpretability becomes about the *class* of solutions rather than the specific one. The methodology provides the tool for studying the class.
+
+### 7.10 A fourth task: variable binding — and a new screen-outcome category
+
+Variable binding is the fourth task in the cross-task panel, and it produces a result we hadn't yet seen: a screen that identifies heads whose ablation *improves* the task. This adds an "interferer" category to the screen-outcome taxonomy alongside "primary cause," "secondary cause," "correlate," and "null."
+
+**Task.** Prompt: `" {name_A} lives in {city_A}. {name_B} lives in {city_B}. {query_name} lives in"` → predict the city bound to query_name. 13-token deterministic prompt; query_name ∈ {name_A, name_B}, 50/50; 42 single-token names × 30 single-token cities. 500-prompt batch.
+
+**Baseline.**
+
+| Model | top-1 (correct city) | logit_diff | frac(target > distractor) |
+|---|---:|---:|---:|
+| Pythia 1B | 49.0% | +0.39 | 73.2% |
+| OLMo 1B | 79.0% | +1.54 | 91.2% |
+| OLMoE 1B-7B | 91.0% | +1.15 | 91.4% |
+
+Pythia's baseline is striking — 49% top-1 (essentially chance against the two-city choice) despite logit_diff = +0.39 and frac(t>d) = 73%. The model has a weak preference for the correct city but produces non-name tokens often enough that top-1 doesn't reflect it. OLMo and OLMoE both solve VB cleanly.
+
+**Task-pattern screen.** Attention from query position (pos 12) → binding-value position (pos 3 or 8, example-dependent based on which variable is queried). High selectivity = candidate binding-resolution head.
+
+**Ablation (Figure 5).**
+
+![Figure 5: variable-binding ablation across three 1B configurations](figures/vb_ablation_figure.png)
+
+**Figure 5. Variable binding: an interferer screen in Pythia, prev-token-primary in OLMo and OLMoE.** Same two-panel design as Figures 3 and 4. Three patterns:
+
+- **Pythia 1B**: top-5 VB screen ablation *increases* top-1 by +37.4pp (49% → 86.4%), and the logit_diff rises by +1.04. The screen identifies heads that *hurt* the task. Matched-random in the same layers drops top-1 by 7.6pp (the layers do contain useful computation); induction circuit −13.8pp; prev-token circuit −5.8pp.
+- **OLMo 1B**: prev-token-circuit ablation hurts top-1 by 32.0pp; top-5 VB screen ablation hurts 26.6pp; induction circuit 17.6pp. The prev-token-circuit is primary; the VB screen is secondary; both above the matched-random null of +6.0pp.
+- **OLMoE 1B-7B**: prev-token-circuit ablation hurts top-1 by 37.6pp; top-5 VB screen ablation hurts 9.2pp; induction and matched-random both around −6pp. The prev-token-circuit is overwhelmingly primary; the VB-specific screen is only weakly specific over the random baseline.
+
+Per-model JSON: [`cross_architecture/results/vb/`](cross_architecture/results/vb/); figure build script: [`figures/build_vb_ablation_figure.py`](figures/build_vb_ablation_figure.py).
+
+**Two new findings from variable binding:**
+
+1. **A screen can identify *interferer* heads.** In Pythia 1B the top-5 VB-screen heads (L8·H5, L13·H1, L7·H2, L8·H7, L12·H1) all attend roughly equally to both the binding-value and the distractor positions (attn_bind ≈ 0.30–0.40, attn_dist ≈ 0.20–0.34, ratios 1.2–1.4×). They *do* preferentially attend to the correct binding value (which is why the screen picks them), but their downstream contribution to the task is negative — they pull both cities into the residual stream rather than disambiguating. Ablating them removes the interference and the model's accuracy nearly doubles. This is qualitatively different from the four categories previously seen: **causes** (Pythia GT-specific, Δ−69), **secondary causes** (Pythia S-Inh, Δ−33), **correlates** (Pythia name-mover for IOI, Δ+7), and **nulls** (matched-random, ~0). Adding an **interferer** category (Pythia VB, Δ+37) makes the taxonomy four-way and reframes the methodology's empirical claim: the screen identifies heads with a specific attention pattern; their *valence* for the downstream task — supporting, irrelevant, or competing — is read off from the sign of the ablation Δ.
+
+2. **OLMoE's prev-token-circuit primacy now extends to three of four tasks.** Following the §7.8 / §7.9 pattern, OLMoE's variable-binding mechanism is again dominated by the prev-token circuit (Δ−37.6 vs Δ−9.2 for the VB-specific screen — 4× ratio in top-1, 5× in logit_diff). The compositional-substrate hypothesis from §7.8 now has three data points: GT (Δ−6 vs Δ−5), Successor (Δ−58 vs Δ−2), Variable binding (Δ−38 vs Δ−9). The exception is IOI, where OLMoE's primary screen is name-mover rather than prev-token. The hypothesis: MoE models build task circuits on top of a foundational prev-token positional substrate, *except* when the task structure directly probes a different attention pattern (IOI, which is built around name-copying at the final position).
+
+**Updated 4-task × 3-model grid.**
+
+| Task | Pythia 1B (Pile dense) | OLMo 1B (DCLM dense) | OLMoE 1B-7B (DCLM MoE) |
+|---|---|---|---|
+| IOI | prev-token (Δ−82) | S-Inhibition (Δ−32) | name-mover (Δ−18) |
+| Greater-than | top-5 GT-specific (Δ−69) | margin-not-argmax | prev-token (Δ−6 > GT-specific Δ−5) |
+| Successor | top-5 succ + prev-token (Δ−38, Δ−28) | top-5 succ-specific (Δ−81) | prev-token (Δ−58 ≫ succ-specific Δ−2) |
+| **Variable binding** | **VB-screen is INTERFERER (Δ+37); prev-token mild Δ−6** | **prev-token primary (Δ−32) > VB-specific (Δ−27)** | **prev-token primary (Δ−38 ≫ VB-specific Δ−9)** |
+
+Twelve (task, model) cells; **the OLMoE column now uses prev-token as primary on 3 of 4 tasks** (GT, Successor, VB), and Pythia VB demonstrates that the same screen logic can find interferer rather than supporter heads. The "non-uniqueness across models" framework-level claim is robust across four tasks.
 
 ## 8. Cross-Panel Invariants
 
