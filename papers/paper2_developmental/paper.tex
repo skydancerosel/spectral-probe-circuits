@@ -14,8 +14,10 @@
 
 \bibliographystyle{plainnat}
 
-\setlength{\parskip}{4pt}
-\setlength{\parindent}{12pt}
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parskip}{0.6\baselineskip}
+\setlength{\parindent}{0pt}
 
 \newcommand{\ind}[1]{\textsc{#1}}
 \newcommand{\prtxt}{\mathrm{PR}}
@@ -849,14 +851,14 @@ on the same batch. Both quantities are activation-side, not
 weight-side.
 
 A complementary program studies the same emergence event from the
-parameter-side. The Spectral Emergence Dynamics paper \citep{xu2026sed}
-tracks the singular-value geometry of attention weight matrices through
-training, and reports phase-transition-like changes in the spectral
-distribution at training-token counts that coincide, in their panel,
-with capability-emergence events identified by downstream evaluation.
-The Local Curvature Hypothesis paper \citep{xu2026lch} examines the
-local loss-Hessian during training and finds curvature signatures at
-the same training-token counts. The picture both papers develop is that
+parameter-side. \citet{xu2026sed} tracks low-dimensional optimizer-induced
+drift and transverse dynamics through training, and reports
+phase-transition-like changes in the parameter-space geometry at
+training-token counts that coincide, in their panel, with
+capability-emergence events identified by downstream evaluation.
+\citet{xu2026lch} examines spectral-edge dynamics of training
+trajectories and finds signal--noise geometry signatures at the same
+training-token counts. The picture both papers develop is that
 parameter-space and activation-space both register the emergence event,
 and that the parameter-space signature can be read out without
 constructing a task-specific evaluation.
