@@ -652,6 +652,66 @@ final budget is sufficient if circuit identification is the only goal;
 achievable on intermediate checkpoints that already exist on
 HuggingFace for the three studied models.
 
+\section{Finding 4: The Selectivity Noise Floor Is Approximately Stable Across Training}
+\label{sec:f4}
+
+The methodology paper~\citep{paper1_methodology} introduces a per-model
+null-selectivity calibration in which induction-selectivity is computed
+against a random non-special target position rather than the true
+induction target. The null distribution gives the per-model noise floor
+for selectivity. For circuit-identification claims at any checkpoint,
+the natural question is: does this noise floor drift over training, or
+is a single calibration (at the final checkpoint) approximately
+applicable throughout the developmental panel?
+
+Direct measurement on Pythia~1B at five log-spaced revisions
+(step1000, step5000, step20000, step80000, step143000) with 500
+null draws per revision:
+
+\begin{center}
+\footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+Revision & null$_{p99}$ & null$_{\max}$ & real$_{\max}$ & $K@>$null$_{p99}$ \\
+\midrule
+step1000   & 1.47 & 7.33   & 125.47 & 20 \\
+step5000   & 1.86 & 256.15 & 177.59 & 33 \\
+step20000  & 2.08 & 74.16  & 192.35 & 33 \\
+step80000  & 1.45 & 767.51 & 152.02 & 43 \\
+step143000 & 1.98 & 482.27 & 181.60 & 33 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{null$_{p99}$ is stable across training.} The 99th-percentile
+of the null distribution stays in the 1.45--2.08$\times$ band across
+$\sim$140K training steps (a factor of 1.4 between extremes). A
+threshold calibrated at the final checkpoint (null$_{p99} = 1.98$ in
+Pythia~1B) applies, with no more than $\sim$0.5 units of variation, at
+every intermediate revision tested. The methodology's threshold-based
+circuit-membership rule does not require recalibration per checkpoint --
+a single per-model threshold applies throughout training.
+
+\paragraph{null$_{\max}$ is unstable across training.} The maximum null
+selectivity wanders by two orders of magnitude (7.3 to 767) across the
+same revision range. This confirms that null$_{\max}$ is driven by
+isolated pathological null draws (concentrated heads whose preferred
+target happens to align with a randomly-drawn null position) and is not
+a robust statistic. Threshold rules based on null$_{p99}$ are
+checkpoint-stable; rules based on null$_{\max}$ are not. The
+methodology paper adopts null$_{p99}$ as the defended pre-filter
+threshold; the per-checkpoint data here reinforces that choice.
+
+\paragraph{The induction-active circuit grows over training.} The
+count of heads with real induction-selectivity above the per-checkpoint
+null$_{p99}$ grows from 20 at step1000 to 33--43 at step5000 and beyond.
+Most circuit formation occurs in the first $\sim$5000 training steps
+(Finding~3), and the threshold-based count plateaus at 33--43 heads
+thereafter -- consistent with Finding~3's 0.3--2.1\% training fraction
+at circuit formation. The threshold rule and the circuit-formation
+timing are consistent measurements of the same underlying phenomenon,
+computed by independent procedures.
+
 \section{Finding 5: PR Rises at or Before Capability Selectivity}
 \label{sec:f5}
 

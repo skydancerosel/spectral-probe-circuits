@@ -470,6 +470,40 @@ Running the same diagnostic on the other two models reveals that the prescriptio
 \paragraph{General refined prescription: individual head ablations.}
 The BOS-class filter is one useful tool but it does not generalize. The reliable methodological move is to run individual head ablations on every screen-identified circuit, especially in BOS-dominated regimes. Heads whose individual ablation hurts the task are \textbf{supporters}; heads whose individual ablation helps are \textbf{interferers}; heads with no individual effect are \textbf{nulls}. The group-ablation effect is approximately the sum of individual effects. The three model patterns underneath the same VB-screen output --- confound (Pythia), multi-role (OLMo), no-specific-circuit (OLMoE) --- illustrate that the screen output alone does not tell you which interpretation applies; the individual ablations do.
 
+\subsection{A second interferer instance: BOS-attractor suppression of induction in Pythia 1B}
+\label{sec:bos_suppression_induction}
+
+The Pythia VB result documents the interferer category surfaced \emph{via the screen output} (BOS-class heads sneaking into a non-BOS task-pattern screen via their secondary attention). A second instance of the same underlying phenomenon -- BOS-attractor heads suppressing a capability computation in the same layers -- appears in Pythia~1B's \emph{induction} circuit, but is surfaced via the \emph{matched-random control} rather than via the screen output. Documented in the methodology paper~\citep[\S5.5]{paper1_methodology}; recapped here as the second confirmed interferer instance in the panel.
+
+A per-model ablation-floor sweep on Pythia~1B at induction-selectivity thresholds $T \in \{2, 10, 30, 50, 100\}\times$, with matched-random per threshold (layer-matched, fixed seed):
+
+\begin{center}
+\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+Pythia 1B condition & $n$ heads ablated & top-1 & $\Delta$ vs baseline \\
+\midrule
+baseline                                       & 0  & 4.05\%       & --- \\
+matched-random at size-of-$\geq 50\times$      & 3  & 4.25\%       & $+0.20$pp \\
+matched-random at size-of-$\geq 30\times$      & 6  & 16.70\%      & $\mathbf{+12.65}$pp \\
+matched-random at size-of-$\geq 10\times$      & 11 & \textbf{36.05\%} & $\mathbf{+32.00}$pp \\
+matched-random at size-of-$\geq 2\times$       & 32 & 0.40\%       & $-3.65$pp \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+A random ablation of 11 heads in Pythia~1B's induction-circuit layers (L4--L8) brings induction performance to 36\% -- a 9$\times$ improvement over baseline. The pattern is monotone in $N$ up to $N=11$, then reverses at $N=32$ when enough heads are removed that the induction circuit itself is dismantled.
+
+The mechanism is the same as the VB case: a layer-specific population of BOS-class heads is suppressing the actual capability computation. Ablating BOS-attractor heads releases the suppression, surfacing a capability performance that the model is structurally capable of but does not exhibit in normal forward passes. The induction circuit identified by $\geq 50\times$ selectivity is causally necessary, but it operates against a 32-percentage-point headwind from competing BOS-attractor heads in the same layers.
+
+\paragraph{The matched-random differential as a positive diagnostic.}
+In the methodology, the matched-random control plays a specificity role -- it rules out the explanation ``ablating any 3--6 heads in those layers would have produced a similar effect.'' The Pythia~1B induction result shows that matched-random can also play a \emph{positive diagnostic} role: when matched-random ablation \emph{increases} the task metric monotonically in $N$, it signals BOS-attractor suppression of capability in the affected layers. This generalizes the interferer category beyond the screen output: interferer heads can be detected via the matched-random control even when they do not appear in the screen's top-$K$.
+
+\paragraph{Pythia-specific in our panel coverage.}
+The same matched-random pattern is mild in OLMoE~1B-7B ($+0.55$pp at $N=4$, $+1.85$pp at $N=10$) and absent in OLMo~1B (matched-random at all sizes within $\pm 0.2$pp of baseline, despite OLMo having the highest whole-model BOS-classified fraction at 78\%). The strongest signature requires the combination of (Pile training, dense architecture, 1B scale, $\sim 54\%$ BOS-classified heads); disentangling whether Pile, 1B-scale, or dense-Pile-1B is the relevant axis would require additional panel coverage.
+
+Two confirmed instances of the interferer pattern in the panel -- VB in Pythia~1B (screen-output route) and induction in Pythia~1B (matched-random route) -- raise the interferer category from a one-observation note to a recurring methodological category, both instances in Pythia~1B specifically. This is consistent with the broader claim of the panel: model-specific mechanisms produce qualitatively different screen outcomes, and the taxonomy of those outcomes is what the cross-architecture panel is designed to expose.
+
 \section{The 4-task $\times$ 3-model grid and the screen-outcome taxonomy}
 \label{sec:taxonomy}
 
