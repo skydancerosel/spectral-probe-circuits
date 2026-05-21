@@ -185,9 +185,25 @@ for ci, (circ_label, cap, _, _, _, marker, color) in enumerate(CIRCUITS_B):
             continue
         axB.scatter(xi + dx, y, s=210, marker=marker, color=color,
                     edgecolors="black", linewidths=1.3, zorder=5)
-        # Optional small text near the point
-        axB.text(xi + dx, y * 0.78, f"{y*100:.2f}%", ha="center", va="top",
-                 fontsize=7.8, color="0.25")
+
+# Place value labels, consolidating when multiple markers share the same y.
+# Group (xi, y_rounded) so that same-y markers within a config get a single label.
+label_groups: dict[tuple[int, float], list[float]] = {}
+for ci, (_, cap, _, _, _, _, _) in enumerate(CIRCUITS_B):
+    dx = (ci - (N_CIRCUITS - 1) / 2) * DODGE
+    for xi, (label, *_rest) in enumerate(CONFIGS):
+        y = b_data[label][cap]
+        if y is None:
+            continue
+        key = (xi, round(y, 4))
+        label_groups.setdefault(key, []).append(dx)
+
+for (xi, y), dxs in label_groups.items():
+    n_in_group = len(dxs)
+    avg_dx = sum(dxs) / n_in_group
+    txt = f"{y*100:.2f}%" if n_in_group == 1 else f"{y*100:.2f}% ($\\times${n_in_group})"
+    axB.text(xi + avg_dx, y * 0.78, txt, ha="center", va="top",
+             fontsize=7.8, color="0.25")
 
 # Reference horizontal lines at 1% and 0.1%
 for ref, ref_label, ls in [(0.01, "1% of training", (0, (4, 3))),
