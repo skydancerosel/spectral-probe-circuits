@@ -1,0 +1,2176 @@
+{
+  "threshold_x": 30.0,
+  "models": {
+    "olmo_1b": {
+      "n_layer": 16,
+      "n_head_per_layer": 16,
+      "n_revisions": 10,
+      "L0_ever_has_sink": false,
+      "L1_ever_has_sink": false,
+      "first_sink_per_layer": [
+        {
+          "layer": 0,
+          "first_sink_revision": null
+        },
+        {
+          "layer": 1,
+          "first_sink_revision": null
+        },
+        {
+          "layer": 2,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 3,
+          "first_sink_revision": {
+            "step": 56000,
+            "label": "step56000",
+            "tokens_B": 117.0,
+            "training_fraction": 0.038385826771653545
+          }
+        },
+        {
+          "layer": 4,
+          "first_sink_revision": {
+            "step": 5000,
+            "label": "step5000",
+            "tokens_B": 10.0,
+            "training_fraction": 0.0032808398950131233
+          }
+        },
+        {
+          "layer": 5,
+          "first_sink_revision": {
+            "step": 56000,
+            "label": "step56000",
+            "tokens_B": 117.0,
+            "training_fraction": 0.038385826771653545
+          }
+        },
+        {
+          "layer": 6,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 7,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 8,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 9,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 10,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 11,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 12,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 13,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 14,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        },
+        {
+          "layer": 15,
+          "first_sink_revision": {
+            "step": 126000,
+            "label": "step126000",
+            "tokens_B": 264.0,
+            "training_fraction": 0.08661417322834646
+          }
+        }
+      ],
+      "per_revision_summary": [
+        {
+          "step": 1000,
+          "label": "step1000",
+          "tokens_B": 2.0,
+          "training_fraction": 0.0006561679790026247,
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 2000,
+          "label": "step2000",
+          "tokens_B": 4.0,
+          "training_fraction": 0.0013123359580052493,
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 5000,
+          "label": "step5000",
+          "tokens_B": 10.0,
+          "training_fraction": 0.0032808398950131233,
+          "total_sink": 1,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 11000,
+          "label": "step11000",
+          "tokens_B": 23.0,
+          "training_fraction": 0.007545931758530184,
+          "total_sink": 0,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 25000,
+          "label": "step25000",
+          "tokens_B": 52.0,
+          "training_fraction": 0.01706036745406824,
+          "total_sink": 0,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 56000,
+          "label": "step56000",
+          "tokens_B": 117.0,
+          "training_fraction": 0.038385826771653545,
+          "total_sink": 19,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 126000,
+          "label": "step126000",
+          "tokens_B": 264.0,
+          "training_fraction": 0.08661417322834646,
+          "total_sink": 180,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 11
+        },
+        {
+          "step": 285000,
+          "label": "step285000",
+          "tokens_B": 597.0,
+          "training_fraction": 0.19586614173228348,
+          "total_sink": 199,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 14
+        },
+        {
+          "step": 644000,
+          "label": "step644000",
+          "tokens_B": 1350.0,
+          "training_fraction": 0.44291338582677164,
+          "total_sink": 207,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 14
+        },
+        {
+          "step": 1454000,
+          "label": "step1454000",
+          "tokens_B": 3048.0,
+          "training_fraction": 1.0,
+          "total_sink": 207,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 14
+        }
+      ],
+      "per_revision_full": [
+        {
+          "step": 1000,
+          "label": "step1000",
+          "tokens_B": 2.0,
+          "training_fraction": 0.0006561679790026247,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 2000,
+          "label": "step2000",
+          "tokens_B": 4.0,
+          "training_fraction": 0.0013123359580052493,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 5000,
+          "label": "step5000",
+          "tokens_B": 10.0,
+          "training_fraction": 0.0032808398950131233,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 1,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 11000,
+          "label": "step11000",
+          "tokens_B": 23.0,
+          "training_fraction": 0.007545931758530184,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 25000,
+          "label": "step25000",
+          "tokens_B": 52.0,
+          "training_fraction": 0.01706036745406824,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 56000,
+          "label": "step56000",
+          "tokens_B": 117.0,
+          "training_fraction": 0.038385826771653545,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            3,
+            9,
+            7,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 19,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 126000,
+          "label": "step126000",
+          "tokens_B": 264.0,
+          "training_fraction": 0.08661417322834646,
+          "n_sink_per_layer": [
+            0,
+            0,
+            11,
+            11,
+            15,
+            13,
+            15,
+            15,
+            13,
+            15,
+            16,
+            16,
+            12,
+            13,
+            9,
+            6
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 180,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 11
+        },
+        {
+          "step": 285000,
+          "label": "step285000",
+          "tokens_B": 597.0,
+          "training_fraction": 0.19586614173228348,
+          "n_sink_per_layer": [
+            0,
+            0,
+            14,
+            15,
+            15,
+            14,
+            16,
+            15,
+            16,
+            16,
+            16,
+            16,
+            15,
+            14,
+            11,
+            6
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 199,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 14
+        },
+        {
+          "step": 644000,
+          "label": "step644000",
+          "tokens_B": 1350.0,
+          "training_fraction": 0.44291338582677164,
+          "n_sink_per_layer": [
+            0,
+            0,
+            14,
+            16,
+            16,
+            15,
+            16,
+            16,
+            15,
+            16,
+            16,
+            15,
+            15,
+            15,
+            14,
+            8
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 207,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 14
+        },
+        {
+          "step": 1454000,
+          "label": "step1454000",
+          "tokens_B": 3048.0,
+          "training_fraction": 1.0,
+          "n_sink_per_layer": [
+            0,
+            0,
+            14,
+            16,
+            16,
+            15,
+            16,
+            16,
+            15,
+            16,
+            16,
+            15,
+            15,
+            16,
+            14,
+            7
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 207,
+          "total_induction": 3,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 14
+        }
+      ]
+    },
+    "olmoe_1b_7b": {
+      "n_layer": 16,
+      "n_head_per_layer": 16,
+      "n_revisions": 10,
+      "L0_ever_has_sink": false,
+      "L1_ever_has_sink": false,
+      "first_sink_per_layer": [
+        {
+          "layer": 0,
+          "first_sink_revision": null
+        },
+        {
+          "layer": 1,
+          "first_sink_revision": null
+        },
+        {
+          "layer": 2,
+          "first_sink_revision": {
+            "step": 600000,
+            "label": "step600000",
+            "tokens_B": 2516.0,
+            "training_fraction": 0.49169435215946844
+          }
+        },
+        {
+          "layer": 3,
+          "first_sink_revision": {
+            "step": 200000,
+            "label": "step200000",
+            "tokens_B": 838.0,
+            "training_fraction": 0.16376783271448114
+          }
+        },
+        {
+          "layer": 4,
+          "first_sink_revision": {
+            "step": 200000,
+            "label": "step200000",
+            "tokens_B": 838.0,
+            "training_fraction": 0.16376783271448114
+          }
+        },
+        {
+          "layer": 5,
+          "first_sink_revision": {
+            "step": 100000,
+            "label": "step100000",
+            "tokens_B": 419.0,
+            "training_fraction": 0.08188391635724057
+          }
+        },
+        {
+          "layer": 6,
+          "first_sink_revision": {
+            "step": 25000,
+            "label": "step25000",
+            "tokens_B": 104.0,
+            "training_fraction": 0.020324408833300764
+          }
+        },
+        {
+          "layer": 7,
+          "first_sink_revision": {
+            "step": 5000,
+            "label": "step5000",
+            "tokens_B": 20.0,
+            "training_fraction": 0.003908540160250147
+          }
+        },
+        {
+          "layer": 8,
+          "first_sink_revision": {
+            "step": 5000,
+            "label": "step5000",
+            "tokens_B": 20.0,
+            "training_fraction": 0.003908540160250147
+          }
+        },
+        {
+          "layer": 9,
+          "first_sink_revision": {
+            "step": 5000,
+            "label": "step5000",
+            "tokens_B": 20.0,
+            "training_fraction": 0.003908540160250147
+          }
+        },
+        {
+          "layer": 10,
+          "first_sink_revision": {
+            "step": 5000,
+            "label": "step5000",
+            "tokens_B": 20.0,
+            "training_fraction": 0.003908540160250147
+          }
+        },
+        {
+          "layer": 11,
+          "first_sink_revision": {
+            "step": 10000,
+            "label": "step10000",
+            "tokens_B": 41.0,
+            "training_fraction": 0.0080125073285128
+          }
+        },
+        {
+          "layer": 12,
+          "first_sink_revision": {
+            "step": 5000,
+            "label": "step5000",
+            "tokens_B": 20.0,
+            "training_fraction": 0.003908540160250147
+          }
+        },
+        {
+          "layer": 13,
+          "first_sink_revision": {
+            "step": 5000,
+            "label": "step5000",
+            "tokens_B": 20.0,
+            "training_fraction": 0.003908540160250147
+          }
+        },
+        {
+          "layer": 14,
+          "first_sink_revision": {
+            "step": 10000,
+            "label": "step10000",
+            "tokens_B": 41.0,
+            "training_fraction": 0.0080125073285128
+          }
+        },
+        {
+          "layer": 15,
+          "first_sink_revision": {
+            "step": 25000,
+            "label": "step25000",
+            "tokens_B": 104.0,
+            "training_fraction": 0.020324408833300764
+          }
+        }
+      ],
+      "per_revision_summary": [
+        {
+          "step": 5000,
+          "label": "step5000",
+          "tokens_B": 20.0,
+          "training_fraction": 0.003908540160250147,
+          "total_sink": 9,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 10000,
+          "label": "step10000",
+          "tokens_B": 41.0,
+          "training_fraction": 0.0080125073285128,
+          "total_sink": 40,
+          "total_induction": 7,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 25000,
+          "label": "step25000",
+          "tokens_B": 104.0,
+          "training_fraction": 0.020324408833300764,
+          "total_sink": 108,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 50000,
+          "label": "step50000",
+          "tokens_B": 209.0,
+          "training_fraction": 0.04084424467461403,
+          "total_sink": 111,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 100000,
+          "label": "step100000",
+          "tokens_B": 419.0,
+          "training_fraction": 0.08188391635724057,
+          "total_sink": 130,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 200000,
+          "label": "step200000",
+          "tokens_B": 838.0,
+          "training_fraction": 0.16376783271448114,
+          "total_sink": 179,
+          "total_induction": 5,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 400000,
+          "label": "step400000",
+          "tokens_B": 1677.0,
+          "training_fraction": 0.3277310924369748,
+          "total_sink": 183,
+          "total_induction": 5,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 600000,
+          "label": "step600000",
+          "tokens_B": 2516.0,
+          "training_fraction": 0.49169435215946844,
+          "total_sink": 187,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 4
+        },
+        {
+          "step": 800000,
+          "label": "step800000",
+          "tokens_B": 3355.0,
+          "training_fraction": 0.655657611881962,
+          "total_sink": 190,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 9
+        },
+        {
+          "step": 1220000,
+          "label": "step1220000",
+          "tokens_B": 5117.0,
+          "training_fraction": 1.0,
+          "total_sink": 194,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 10
+        }
+      ],
+      "per_revision_full": [
+        {
+          "step": 5000,
+          "label": "step5000",
+          "tokens_B": 20.0,
+          "training_fraction": 0.003908540160250147,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            1,
+            2,
+            1,
+            0,
+            1,
+            2,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            3,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 9,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 10000,
+          "label": "step10000",
+          "tokens_B": 41.0,
+          "training_fraction": 0.0080125073285128,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            4,
+            6,
+            5,
+            5,
+            8,
+            4,
+            1,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            3,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 40,
+          "total_induction": 7,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 25000,
+          "label": "step25000",
+          "tokens_B": 104.0,
+          "training_fraction": 0.020324408833300764,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            12,
+            13,
+            12,
+            12,
+            16,
+            14,
+            12,
+            12,
+            4
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 108,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 50000,
+          "label": "step50000",
+          "tokens_B": 209.0,
+          "training_fraction": 0.04084424467461403,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            13,
+            13,
+            13,
+            12,
+            16,
+            13,
+            11,
+            10,
+            8
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 111,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 100000,
+          "label": "step100000",
+          "tokens_B": 419.0,
+          "training_fraction": 0.08188391635724057,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            6,
+            15,
+            14,
+            13,
+            13,
+            15,
+            15,
+            15,
+            13,
+            9
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 130,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 200000,
+          "label": "step200000",
+          "tokens_B": 838.0,
+          "training_fraction": 0.16376783271448114,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            10,
+            12,
+            11,
+            14,
+            16,
+            15,
+            15,
+            15,
+            16,
+            15,
+            15,
+            15,
+            10
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 179,
+          "total_induction": 5,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 400000,
+          "label": "step400000",
+          "tokens_B": 1677.0,
+          "training_fraction": 0.3277310924369748,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            11,
+            15,
+            12,
+            14,
+            15,
+            14,
+            16,
+            15,
+            16,
+            15,
+            15,
+            15,
+            10
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 183,
+          "total_induction": 5,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 600000,
+          "label": "step600000",
+          "tokens_B": 2516.0,
+          "training_fraction": 0.49169435215946844,
+          "n_sink_per_layer": [
+            0,
+            0,
+            4,
+            12,
+            12,
+            13,
+            15,
+            15,
+            14,
+            15,
+            16,
+            16,
+            15,
+            16,
+            14,
+            10
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 187,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 4
+        },
+        {
+          "step": 800000,
+          "label": "step800000",
+          "tokens_B": 3355.0,
+          "training_fraction": 0.655657611881962,
+          "n_sink_per_layer": [
+            0,
+            0,
+            9,
+            12,
+            14,
+            12,
+            15,
+            14,
+            14,
+            15,
+            15,
+            16,
+            15,
+            16,
+            14,
+            9
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 190,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 9
+        },
+        {
+          "step": 1220000,
+          "label": "step1220000",
+          "tokens_B": 5117.0,
+          "training_fraction": 1.0,
+          "n_sink_per_layer": [
+            0,
+            0,
+            10,
+            13,
+            14,
+            13,
+            15,
+            14,
+            14,
+            15,
+            15,
+            16,
+            14,
+            16,
+            15,
+            10
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 194,
+          "total_induction": 4,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 10
+        }
+      ]
+    },
+    "pythia_1b": {
+      "n_layer": 16,
+      "n_head_per_layer": 8,
+      "n_revisions": 10,
+      "L0_ever_has_sink": false,
+      "L1_ever_has_sink": false,
+      "first_sink_per_layer": [
+        {
+          "layer": 0,
+          "first_sink_revision": null
+        },
+        {
+          "layer": 1,
+          "first_sink_revision": null
+        },
+        {
+          "layer": 2,
+          "first_sink_revision": null
+        },
+        {
+          "layer": 3,
+          "first_sink_revision": null
+        },
+        {
+          "layer": 4,
+          "first_sink_revision": {
+            "step": 10000,
+            "label": "step10000",
+            "tokens_B": 20.97152,
+            "training_fraction": 0.06993024155362598
+          }
+        },
+        {
+          "layer": 5,
+          "first_sink_revision": {
+            "step": 10000,
+            "label": "step10000",
+            "tokens_B": 20.97152,
+            "training_fraction": 0.06993024155362598
+          }
+        },
+        {
+          "layer": 6,
+          "first_sink_revision": {
+            "step": 3000,
+            "label": "step3000",
+            "tokens_B": 6.291456,
+            "training_fraction": 0.02097907246608779
+          }
+        },
+        {
+          "layer": 7,
+          "first_sink_revision": {
+            "step": 3000,
+            "label": "step3000",
+            "tokens_B": 6.291456,
+            "training_fraction": 0.02097907246608779
+          }
+        },
+        {
+          "layer": 8,
+          "first_sink_revision": {
+            "step": 3000,
+            "label": "step3000",
+            "tokens_B": 6.291456,
+            "training_fraction": 0.02097907246608779
+          }
+        },
+        {
+          "layer": 9,
+          "first_sink_revision": {
+            "step": 10000,
+            "label": "step10000",
+            "tokens_B": 20.97152,
+            "training_fraction": 0.06993024155362598
+          }
+        },
+        {
+          "layer": 10,
+          "first_sink_revision": {
+            "step": 3000,
+            "label": "step3000",
+            "tokens_B": 6.291456,
+            "training_fraction": 0.02097907246608779
+          }
+        },
+        {
+          "layer": 11,
+          "first_sink_revision": {
+            "step": 3000,
+            "label": "step3000",
+            "tokens_B": 6.291456,
+            "training_fraction": 0.02097907246608779
+          }
+        },
+        {
+          "layer": 12,
+          "first_sink_revision": {
+            "step": 3000,
+            "label": "step3000",
+            "tokens_B": 6.291456,
+            "training_fraction": 0.02097907246608779
+          }
+        },
+        {
+          "layer": 13,
+          "first_sink_revision": {
+            "step": 3000,
+            "label": "step3000",
+            "tokens_B": 6.291456,
+            "training_fraction": 0.02097907246608779
+          }
+        },
+        {
+          "layer": 14,
+          "first_sink_revision": {
+            "step": 3000,
+            "label": "step3000",
+            "tokens_B": 6.291456,
+            "training_fraction": 0.02097907246608779
+          }
+        },
+        {
+          "layer": 15,
+          "first_sink_revision": {
+            "step": 10000,
+            "label": "step10000",
+            "tokens_B": 20.97152,
+            "training_fraction": 0.06993024155362598
+          }
+        }
+      ],
+      "per_revision_summary": [
+        {
+          "step": 1,
+          "label": "step1",
+          "tokens_B": 0.0020971519999999997,
+          "training_fraction": 6.9930241553625964e-06,
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 4,
+          "label": "step4",
+          "tokens_B": 0.008388607999999999,
+          "training_fraction": 2.7972096621450386e-05,
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 16,
+          "label": "step16",
+          "tokens_B": 0.033554431999999995,
+          "training_fraction": 0.00011188838648580154,
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 64,
+          "label": "step64",
+          "tokens_B": 0.13421772799999998,
+          "training_fraction": 0.00044755354594320617,
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 256,
+          "label": "step256",
+          "tokens_B": 0.5368709119999999,
+          "training_fraction": 0.0017902141837728247,
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 512,
+          "label": "step512",
+          "tokens_B": 1.0737418239999998,
+          "training_fraction": 0.0035804283675456494,
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 3000,
+          "label": "step3000",
+          "tokens_B": 6.291456,
+          "training_fraction": 0.02097907246608779,
+          "total_sink": 14,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 10000,
+          "label": "step10000",
+          "tokens_B": 20.97152,
+          "training_fraction": 0.06993024155362598,
+          "total_sink": 38,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 38000,
+          "label": "step38000",
+          "tokens_B": 79.691776,
+          "training_fraction": 0.26573491790377873,
+          "total_sink": 59,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 143000,
+          "label": "step143000",
+          "tokens_B": 299.89273599999996,
+          "training_fraction": 1.0000024542168513,
+          "total_sink": 74,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        }
+      ],
+      "per_revision_full": [
+        {
+          "step": 1,
+          "label": "step1",
+          "tokens_B": 0.0020971519999999997,
+          "training_fraction": 6.9930241553625964e-06,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 4,
+          "label": "step4",
+          "tokens_B": 0.008388607999999999,
+          "training_fraction": 2.7972096621450386e-05,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 16,
+          "label": "step16",
+          "tokens_B": 0.033554431999999995,
+          "training_fraction": 0.00011188838648580154,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 64,
+          "label": "step64",
+          "tokens_B": 0.13421772799999998,
+          "training_fraction": 0.00044755354594320617,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 256,
+          "label": "step256",
+          "tokens_B": 0.5368709119999999,
+          "training_fraction": 0.0017902141837728247,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 512,
+          "label": "step512",
+          "tokens_B": 1.0737418239999998,
+          "training_fraction": 0.0035804283675456494,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 0,
+          "total_induction": 0,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 3000,
+          "label": "step3000",
+          "tokens_B": 6.291456,
+          "training_fraction": 0.02097907246608779,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            1,
+            0,
+            4,
+            1,
+            3,
+            1,
+            1,
+            0
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 14,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 10000,
+          "label": "step10000",
+          "tokens_B": 20.97152,
+          "training_fraction": 0.06993024155362598,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            7,
+            3,
+            3,
+            3,
+            2,
+            2,
+            4,
+            4,
+            3,
+            3,
+            2,
+            2
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            1,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 38,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 38000,
+          "label": "step38000",
+          "tokens_B": 79.691776,
+          "training_fraction": 0.26573491790377873,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            7,
+            6,
+            6,
+            5,
+            5,
+            4,
+            6,
+            6,
+            3,
+            4,
+            2,
+            5
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            1,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 59,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        },
+        {
+          "step": 143000,
+          "label": "step143000",
+          "tokens_B": 299.89273599999996,
+          "training_fraction": 1.0000024542168513,
+          "n_sink_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            8,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            5,
+            4,
+            4,
+            5
+          ],
+          "n_induction_per_layer": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            0,
+            2,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_sink": 74,
+          "total_induction": 6,
+          "L0_sink": 0,
+          "L1_sink": 0,
+          "L2_sink": 0
+        }
+      ]
+    }
+  }
+}

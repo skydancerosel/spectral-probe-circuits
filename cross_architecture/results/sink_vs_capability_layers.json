@@ -1,0 +1,1103 @@
+{
+  "threshold_x": 30.0,
+  "models": {
+    "Pythia 160M": {
+      "model": "Pythia 160M",
+      "n_layer": 12,
+      "n_head_per_layer": 12,
+      "n_heads_total": 144,
+      "total_sink_heads_geq30x": 75,
+      "total_induction_heads_geq30x": 9,
+      "sink_fraction": 0.5208333333333334,
+      "zero_bos_layers": [
+        0,
+        1,
+        2
+      ],
+      "pure_sink_layers": [
+        3,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "pure_induction_layers": [],
+      "overlap_layers (sink + induction)": [
+        4,
+        5,
+        8
+      ],
+      "per_layer": [
+        {
+          "layer": 0,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 0.3229963779449463,
+          "max_induction_sel": 0.6220104432120294,
+          "max_prev_token_sel": 327.7217102050781,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 1,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 8.167179107666016,
+          "max_induction_sel": 1.4488985210512308,
+          "max_prev_token_sel": 6273.88623046875,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 2,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 7,
+          "max_first_token_sel": 1.1176015138626099,
+          "max_induction_sel": 1.2533143971486893,
+          "max_prev_token_sel": 2806.899658203125,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 3,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 1,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 7,
+          "max_first_token_sel": 30.6018009185791,
+          "max_induction_sel": 3.222492275621762,
+          "max_prev_token_sel": 82804.9375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 4,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 11,
+          "n_induction_heads_geq30x": 4,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 892.3862915039062,
+          "max_induction_sel": 199.88792698780892,
+          "max_prev_token_sel": 402.8711853027344,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 5,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 10,
+          "n_induction_heads_geq30x": 3,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1084.9349365234375,
+          "max_induction_sel": 144.02298048264603,
+          "max_prev_token_sel": 717.7315673828125,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 6,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 7,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 683.1325073242188,
+          "max_induction_sel": 4.536380600825767,
+          "max_prev_token_sel": 94.6677474975586,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 7,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 10,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 1560.3770751953125,
+          "max_induction_sel": 3.3325596105608226,
+          "max_prev_token_sel": 20864.751953125,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 8,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 9,
+          "n_induction_heads_geq30x": 2,
+          "n_prev_token_heads_geq30x": 1,
+          "max_first_token_sel": 1027.27490234375,
+          "max_induction_sel": 91.72914017311055,
+          "max_prev_token_sel": 31.70787811279297,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 9,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 8,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1603.5888671875,
+          "max_induction_sel": 25.59751030655707,
+          "max_prev_token_sel": 61.45366287231445,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 10,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 9,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 3100.398193359375,
+          "max_induction_sel": 6.448808891542634,
+          "max_prev_token_sel": 293.1650085449219,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 11,
+          "n_heads_in_layer": 12,
+          "n_sink_heads_geq30x": 10,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 5,
+          "max_first_token_sel": 952.8377685546875,
+          "max_induction_sel": 2.774490955791277,
+          "max_prev_token_sel": 1477.1761474609375,
+          "overlap_sink_and_induction": false
+        }
+      ]
+    },
+    "Pythia 410M": {
+      "model": "Pythia 410M",
+      "n_layer": 24,
+      "n_head_per_layer": 16,
+      "n_heads_total": 384,
+      "total_sink_heads_geq30x": 238,
+      "total_induction_heads_geq30x": 11,
+      "sink_fraction": 0.6197916666666666,
+      "zero_bos_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "pure_sink_layers": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "pure_induction_layers": [],
+      "overlap_layers (sink + induction)": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "per_layer": [
+        {
+          "layer": 0,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 5,
+          "max_first_token_sel": 0.8155251145362854,
+          "max_induction_sel": 0.9635573723618625,
+          "max_prev_token_sel": 617.0261840820312,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 1,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 11,
+          "max_first_token_sel": 0.4934879541397095,
+          "max_induction_sel": 0.7118956902656413,
+          "max_prev_token_sel": 271.5879821777344,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 2,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 1.3173832893371582,
+          "max_induction_sel": 0.9597349044324087,
+          "max_prev_token_sel": 472.41845703125,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 3,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 10,
+          "max_first_token_sel": 1.7872517108917236,
+          "max_induction_sel": 1.0028853905692259,
+          "max_prev_token_sel": 1814.4935302734375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 4,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 4.176619052886963,
+          "max_induction_sel": 0.9727485808241741,
+          "max_prev_token_sel": 1712.421875,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 5,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 13,
+          "max_first_token_sel": 8.838860511779785,
+          "max_induction_sel": 1.7398160890736591,
+          "max_prev_token_sel": 24576.853515625,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 6,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 2083.083740234375,
+          "max_induction_sel": 105.74994229465331,
+          "max_prev_token_sel": 2082.730224609375,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 7,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 3446.647216796875,
+          "max_induction_sel": 175.2310442233219,
+          "max_prev_token_sel": 6181.1015625,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 8,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 3,
+          "n_prev_token_heads_geq30x": 5,
+          "max_first_token_sel": 1600.7493896484375,
+          "max_induction_sel": 202.33766313942758,
+          "max_prev_token_sel": 5113.6689453125,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 9,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 13,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 1937.7489013671875,
+          "max_induction_sel": 103.21900436107674,
+          "max_prev_token_sel": 10504.017578125,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 10,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 13,
+          "n_induction_heads_geq30x": 3,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 1558.302490234375,
+          "max_induction_sel": 117.00564710527907,
+          "max_prev_token_sel": 1012.6702270507812,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 11,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 2,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1306.982177734375,
+          "max_induction_sel": 128.20148906154395,
+          "max_prev_token_sel": 84.6081771850586,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 12,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1406.9075927734375,
+          "max_induction_sel": 8.062339880269102,
+          "max_prev_token_sel": 352.13323974609375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 13,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 14,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1683.4725341796875,
+          "max_induction_sel": 3.878109496603827,
+          "max_prev_token_sel": 1276.8587646484375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 14,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 1608.3111572265625,
+          "max_induction_sel": 25.792275540816746,
+          "max_prev_token_sel": 75.69392395019531,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 15,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 1698.2982177734375,
+          "max_induction_sel": 13.438407289748895,
+          "max_prev_token_sel": 336.02557373046875,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 16,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 1,
+          "max_first_token_sel": 1477.813232421875,
+          "max_induction_sel": 7.974187894271659,
+          "max_prev_token_sel": 41.58405303955078,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 17,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 2011.459716796875,
+          "max_induction_sel": 10.405479048444334,
+          "max_prev_token_sel": 442.8065185546875,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 18,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 13,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 0,
+          "max_first_token_sel": 1717.119873046875,
+          "max_induction_sel": 15.010413288576684,
+          "max_prev_token_sel": 11.641937255859375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 19,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 13,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 1,
+          "max_first_token_sel": 1632.049072265625,
+          "max_induction_sel": 7.302748013164068,
+          "max_prev_token_sel": 47.30539321899414,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 20,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 12,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 1,
+          "max_first_token_sel": 2164.728515625,
+          "max_induction_sel": 3.096365652993998,
+          "max_prev_token_sel": 43.10196304321289,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 21,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 6,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 1,
+          "max_first_token_sel": 1847.7423095703125,
+          "max_induction_sel": 2.666753028852019,
+          "max_prev_token_sel": 22777.185546875,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 22,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 3,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 0,
+          "max_first_token_sel": 1016.0524291992188,
+          "max_induction_sel": 1.8928199376037051,
+          "max_prev_token_sel": 22.257217407226562,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 23,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 13,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 7,
+          "max_first_token_sel": 2685.57861328125,
+          "max_induction_sel": 1.7638821856056388,
+          "max_prev_token_sel": 883.9653930664062,
+          "overlap_sink_and_induction": false
+        }
+      ]
+    },
+    "Pythia 1B": {
+      "model": "Pythia 1B",
+      "n_layer": 16,
+      "n_head_per_layer": 8,
+      "n_heads_total": 128,
+      "total_sink_heads_geq30x": 74,
+      "total_induction_heads_geq30x": 6,
+      "sink_fraction": 0.578125,
+      "zero_bos_layers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pure_sink_layers": [
+        6,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "pure_induction_layers": [],
+      "overlap_layers (sink + induction)": [
+        4,
+        5,
+        7,
+        10
+      ],
+      "per_layer": [
+        {
+          "layer": 0,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 0.6456037759780884,
+          "max_induction_sel": 0.855140502221596,
+          "max_prev_token_sel": 56.47157287597656,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 1,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 0.7076022624969482,
+          "max_induction_sel": 0.7868558297882151,
+          "max_prev_token_sel": 374.3767395019531,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 2,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 5,
+          "max_first_token_sel": 0.6143845319747925,
+          "max_induction_sel": 0.772189845706804,
+          "max_prev_token_sel": 289.8546142578125,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 3,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 1.7550081014633179,
+          "max_induction_sel": 0.9584605935584105,
+          "max_prev_token_sel": 97546312.0,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 4,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 8,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 1431.345947265625,
+          "max_induction_sel": 181.5975307270937,
+          "max_prev_token_sel": 214.41085815429688,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 5,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 7,
+          "n_induction_heads_geq30x": 2,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 1247.5262451171875,
+          "max_induction_sel": 49.74151308233347,
+          "max_prev_token_sel": 479.3800964355469,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 6,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 7,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1337.283447265625,
+          "max_induction_sel": 22.49569690860967,
+          "max_prev_token_sel": 1122598.75,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 7,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 6,
+          "n_induction_heads_geq30x": 2,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 1645.14794921875,
+          "max_induction_sel": 127.11626893154751,
+          "max_prev_token_sel": 368.96746826171875,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 8,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 7,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 0,
+          "max_first_token_sel": 830.0670776367188,
+          "max_induction_sel": 7.489903852626168,
+          "max_prev_token_sel": 25.48500633239746,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 9,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 7,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 830.8102416992188,
+          "max_induction_sel": 7.790439717401601,
+          "max_prev_token_sel": 292.0769348144531,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 10,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 7,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1755.88330078125,
+          "max_induction_sel": 31.706206076582273,
+          "max_prev_token_sel": 1560.3668212890625,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 11,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 7,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 0,
+          "max_first_token_sel": 260.30230712890625,
+          "max_induction_sel": 12.547092424409868,
+          "max_prev_token_sel": 10.12192440032959,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 12,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 5,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 0,
+          "max_first_token_sel": 1252.4119873046875,
+          "max_induction_sel": 3.7343497429338304,
+          "max_prev_token_sel": 14.109807014465332,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 13,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 4,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 1,
+          "max_first_token_sel": 686.3402709960938,
+          "max_induction_sel": 8.27684906243106,
+          "max_prev_token_sel": 77.39816284179688,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 14,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 4,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 0,
+          "max_first_token_sel": 118.6823501586914,
+          "max_induction_sel": 1.726959249557016,
+          "max_prev_token_sel": 21.609411239624023,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 15,
+          "n_heads_in_layer": 8,
+          "n_sink_heads_geq30x": 5,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 236.79214477539062,
+          "max_induction_sel": 0.9773865214501596,
+          "max_prev_token_sel": 61.717079162597656,
+          "overlap_sink_and_induction": false
+        }
+      ]
+    },
+    "OLMo 1B": {
+      "model": "OLMo 1B",
+      "n_layer": 16,
+      "n_head_per_layer": 16,
+      "n_heads_total": 256,
+      "total_sink_heads_geq30x": 207,
+      "total_induction_heads_geq30x": 3,
+      "sink_fraction": 0.80859375,
+      "zero_bos_layers": [
+        0,
+        1
+      ],
+      "pure_sink_layers": [
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15
+      ],
+      "pure_induction_layers": [],
+      "overlap_layers (sink + induction)": [
+        2,
+        4,
+        12
+      ],
+      "per_layer": [
+        {
+          "layer": 0,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 12,
+          "max_first_token_sel": 0.5015477538108826,
+          "max_induction_sel": 0.6720050483028318,
+          "max_prev_token_sel": 654.3942260742188,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 1,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 9,
+          "max_first_token_sel": 1.8771885633468628,
+          "max_induction_sel": 1.0845511057240302,
+          "max_prev_token_sel": 485.8901062011719,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 2,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 14,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 8,
+          "max_first_token_sel": 2483.26513671875,
+          "max_induction_sel": 133.90289267479025,
+          "max_prev_token_sel": 631.3604125976562,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 3,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 5967.73681640625,
+          "max_induction_sel": 4.348280823657715,
+          "max_prev_token_sel": 3919.947021484375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 4,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 7,
+          "max_first_token_sel": 4043.246826171875,
+          "max_induction_sel": 116.82048557132286,
+          "max_prev_token_sel": 633.3410034179688,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 5,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 7,
+          "max_first_token_sel": 6382.380859375,
+          "max_induction_sel": 5.680673352080893,
+          "max_prev_token_sel": 1133.2230224609375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 6,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 8,
+          "max_first_token_sel": 6843.63134765625,
+          "max_induction_sel": 2.2245465385749332,
+          "max_prev_token_sel": 948.6015014648438,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 7,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 8,
+          "max_first_token_sel": 4766.443359375,
+          "max_induction_sel": 1.4683827338280557,
+          "max_prev_token_sel": 1112.9124755859375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 8,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 3914.781005859375,
+          "max_induction_sel": 1.420264834739129,
+          "max_prev_token_sel": 393.433837890625,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 9,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 10,
+          "max_first_token_sel": 3166.973876953125,
+          "max_induction_sel": 1.1331654057399814,
+          "max_prev_token_sel": 402.05670166015625,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 10,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 5,
+          "max_first_token_sel": 5968.4794921875,
+          "max_induction_sel": 2.865419897788486,
+          "max_prev_token_sel": 1322.88671875,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 11,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 10,
+          "max_first_token_sel": 5669.62255859375,
+          "max_induction_sel": 1.7413518957660454,
+          "max_prev_token_sel": 10472.365234375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 12,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 2625.068359375,
+          "max_induction_sel": 56.403227728127675,
+          "max_prev_token_sel": 589.4240112304688,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 13,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 1091.54443359375,
+          "max_induction_sel": 5.715856459526334,
+          "max_prev_token_sel": 60.51144790649414,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 14,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 14,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1637.122802734375,
+          "max_induction_sel": 2.370284204097813,
+          "max_prev_token_sel": 58.361087799072266,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 15,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 7,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 524.81884765625,
+          "max_induction_sel": 1.486340789531316,
+          "max_prev_token_sel": 40.296791076660156,
+          "overlap_sink_and_induction": false
+        }
+      ]
+    },
+    "OLMoE 1B-7B": {
+      "model": "OLMoE 1B-7B",
+      "n_layer": 16,
+      "n_head_per_layer": 16,
+      "n_heads_total": 256,
+      "total_sink_heads_geq30x": 188,
+      "total_induction_heads_geq30x": 4,
+      "sink_fraction": 0.734375,
+      "zero_bos_layers": [
+        0,
+        1
+      ],
+      "pure_sink_layers": [
+        2,
+        3,
+        4,
+        6,
+        8,
+        10,
+        11,
+        13,
+        14,
+        15
+      ],
+      "pure_induction_layers": [],
+      "overlap_layers (sink + induction)": [
+        5,
+        7,
+        9,
+        12
+      ],
+      "per_layer": [
+        {
+          "layer": 0,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 1.3336604833602905,
+          "max_induction_sel": 1.1826639092445443,
+          "max_prev_token_sel": 2328.983154296875,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 1,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 0,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 1.9360525608062744,
+          "max_induction_sel": 1.0437537942508408,
+          "max_prev_token_sel": 212.7561798095703,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 2,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 10,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 129.63833618164062,
+          "max_induction_sel": 1.0045891920927352,
+          "max_prev_token_sel": 164.9218292236328,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 3,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 13,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 5,
+          "max_first_token_sel": 424.6953430175781,
+          "max_induction_sel": 16.206913390533327,
+          "max_prev_token_sel": 102.92770385742188,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 4,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 13,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 4,
+          "max_first_token_sel": 575.1824951171875,
+          "max_induction_sel": 0.9990703405941392,
+          "max_prev_token_sel": 553.572021484375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 5,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 11,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 694.121826171875,
+          "max_induction_sel": 101.81980502046035,
+          "max_prev_token_sel": 123.5484619140625,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 6,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 14,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 5,
+          "max_first_token_sel": 1060.2177734375,
+          "max_induction_sel": 1.2973573199252433,
+          "max_prev_token_sel": 1926.2579345703125,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 7,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 13,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 6,
+          "max_first_token_sel": 1034.585205078125,
+          "max_induction_sel": 171.70920963059388,
+          "max_prev_token_sel": 290.7799072265625,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 8,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 5,
+          "max_first_token_sel": 3119.71630859375,
+          "max_induction_sel": 3.617195418015017,
+          "max_prev_token_sel": 4798.62646484375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 9,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 671.6326904296875,
+          "max_induction_sel": 157.91128121683613,
+          "max_prev_token_sel": 87.93572998046875,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 10,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 14,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1705.877685546875,
+          "max_induction_sel": 20.40675118755631,
+          "max_prev_token_sel": 218.10198974609375,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 11,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 2618.580322265625,
+          "max_induction_sel": 5.46855428808953,
+          "max_prev_token_sel": 1648.203125,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 12,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 14,
+          "n_induction_heads_geq30x": 1,
+          "n_prev_token_heads_geq30x": 3,
+          "max_first_token_sel": 1290.339111328125,
+          "max_induction_sel": 61.62397414898204,
+          "max_prev_token_sel": 62.31593704223633,
+          "overlap_sink_and_induction": true
+        },
+        {
+          "layer": 13,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 16,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 1991.3946533203125,
+          "max_induction_sel": 7.17477575585087,
+          "max_prev_token_sel": 72.5718765258789,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 14,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 15,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 2,
+          "max_first_token_sel": 444.7579040527344,
+          "max_induction_sel": 4.052325069810742,
+          "max_prev_token_sel": 63.35959243774414,
+          "overlap_sink_and_induction": false
+        },
+        {
+          "layer": 15,
+          "n_heads_in_layer": 16,
+          "n_sink_heads_geq30x": 9,
+          "n_induction_heads_geq30x": 0,
+          "n_prev_token_heads_geq30x": 0,
+          "max_first_token_sel": 1072.7796630859375,
+          "max_induction_sel": 5.708253753725795,
+          "max_prev_token_sel": 15.986330032348633,
+          "overlap_sink_and_induction": false
+        }
+      ]
+    }
+  }
+}

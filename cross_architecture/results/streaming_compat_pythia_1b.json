@@ -1,0 +1,66 @@
+{
+  "model": "EleutherAI/pythia-1b",
+  "revision": "step143000",
+  "family": "pythia",
+  "seq_len": 256,
+  "n_sink": 4,
+  "n_examples": 2000,
+  "baseline": {
+    "n": 2000,
+    "acc_top1": 0.0405,
+    "acc_top5": 0.0885,
+    "mean_logit_B": 3.516547119140625
+  },
+  "windows": [
+    {
+      "window": 32,
+      "n_visible": 0,
+      "fraction_visible": 0.0,
+      "overall_top1": 0.0,
+      "overall_top5": 0.0,
+      "overall_logit_B": 0.9276509704589844,
+      "visible_set_top1": NaN,
+      "invisible_set_top1": 0.0
+    },
+    {
+      "window": 64,
+      "n_visible": 0,
+      "fraction_visible": 0.0,
+      "overall_top1": 0.0,
+      "overall_top5": 0.0,
+      "overall_logit_B": 0.924366943359375,
+      "visible_set_top1": NaN,
+      "invisible_set_top1": 0.0
+    },
+    {
+      "window": 128,
+      "n_visible": 19,
+      "fraction_visible": 0.0095,
+      "overall_top1": 0.0,
+      "overall_top5": 0.0,
+      "overall_logit_B": 0.8929193649291992,
+      "visible_set_top1": 0.0,
+      "invisible_set_top1": 0.0
+    },
+    {
+      "window": 200,
+      "n_visible": 1347,
+      "fraction_visible": 0.6735,
+      "overall_top1": 0.035,
+      "overall_top5": 0.077,
+      "overall_logit_B": 2.7959180908203125,
+      "visible_set_top1": 0.05196733400225639,
+      "invisible_set_top1": 0.0
+    },
+    {
+      "window": 252,
+      "n_visible": 2000,
+      "fraction_visible": 1.0,
+      "overall_top1": 0.0405,
+      "overall_top5": 0.0885,
+      "overall_logit_B": 3.516547119140625,
+      "visible_set_top1": 0.04050000011920929,
+      "invisible_set_top1": NaN
+    }
+  ]
+}

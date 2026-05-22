@@ -1,0 +1,66 @@
+{
+  "model": "allenai/OLMo-1B-0724-hf",
+  "revision": "main",
+  "family": "olmo",
+  "seq_len": 256,
+  "n_sink": 4,
+  "n_examples": 2000,
+  "baseline": {
+    "n": 2000,
+    "acc_top1": 0.01,
+    "acc_top5": 0.024,
+    "mean_logit_B": 2.5567066650390626
+  },
+  "windows": [
+    {
+      "window": 32,
+      "n_visible": 0,
+      "fraction_visible": 0.0,
+      "overall_top1": 0.0,
+      "overall_top5": 0.0005,
+      "overall_logit_B": 0.8634109191894531,
+      "visible_set_top1": NaN,
+      "invisible_set_top1": 0.0
+    },
+    {
+      "window": 64,
+      "n_visible": 0,
+      "fraction_visible": 0.0,
+      "overall_top1": 0.0,
+      "overall_top5": 0.0005,
+      "overall_logit_B": 0.8729935302734375,
+      "visible_set_top1": NaN,
+      "invisible_set_top1": 0.0
+    },
+    {
+      "window": 128,
+      "n_visible": 19,
+      "fraction_visible": 0.0095,
+      "overall_top1": 0.0,
+      "overall_top5": 0.0005,
+      "overall_logit_B": 0.9062940673828125,
+      "visible_set_top1": 0.0,
+      "invisible_set_top1": 0.0
+    },
+    {
+      "window": 200,
+      "n_visible": 1347,
+      "fraction_visible": 0.6735,
+      "overall_top1": 0.009,
+      "overall_top5": 0.0185,
+      "overall_logit_B": 2.107751281738281,
+      "visible_set_top1": 0.01336302887648344,
+      "invisible_set_top1": 0.0
+    },
+    {
+      "window": 252,
+      "n_visible": 2000,
+      "fraction_visible": 1.0,
+      "overall_top1": 0.01,
+      "overall_top5": 0.024,
+      "overall_logit_B": 2.5567066650390626,
+      "visible_set_top1": 0.009999999776482582,
+      "invisible_set_top1": NaN
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "model": "EleutherAI/pythia-1b",
+  "revision": "step143000",
+  "n_examples": 2000,
+  "overlap_layers": [
+    4,
+    5,
+    7,
+    10
+  ],
+  "non_overlap_layers": [
+    11,
+    12,
+    13,
+    14
+  ],
+  "sink_threshold": 30.0,
+  "induction_threshold": 30.0,
+  "results": [
+    {
+      "name": "baseline",
+      "spec": {},
+      "n_ablated": 0,
+      "n": 2000,
+      "acc_top1": 0.0405,
+      "acc_top5": 0.0885,
+      "mean_logit_B": 3.516547119140625,
+      "loss": 8.3868515625
+    },
+    {
+      "name": "sink_only_N11_overlap_L4-5-7-10",
+      "spec": {
+        "10": [
+          1,
+          2,
+          3,
+          4,
+          7
+        ],
+        "7": [
+          5,
+          6,
+          3
+        ],
+        "4": [
+          1
+        ],
+        "5": [
+          3,
+          5
+        ]
+      },
+      "n_ablated": 11,
+      "n": 2000,
+      "acc_top1": 0.05,
+      "acc_top5": 0.1005,
+      "mean_logit_B": 3.766904541015625,
+      "loss": 8.1414921875
+    },
+    {
+      "name": "sink_only_N4_overlap",
+      "spec": {
+        "10": [
+          1
+        ],
+        "7": [
+          5,
+          6
+        ],
+        "4": [
+          1
+        ]
+      },
+      "n_ablated": 4,
+      "n": 2000,
+      "acc_top1": 0.056,
+      "acc_top5": 0.104,
+      "mean_logit_B": 3.737431640625,
+      "loss": 8.16428125
+    },
+    {
+      "name": "other_only_N4_overlap",
+      "spec": {
+        "5": [
+          2
+        ],
+        "7": [
+          2,
+          4
+        ],
+        "10": [
+          0
+        ]
+      },
+      "n_ablated": 4,
+      "n": 2000,
+      "acc_top1": 0.048,
+      "acc_top5": 0.1065,
+      "mean_logit_B": 3.946503173828125,
+      "loss": 8.180109375
+    },
+    {
+      "name": "sink_only_N11_nonoverlap_L11-14",
+      "spec": {
+        "12": [
+          5,
+          1,
+          4
+        ],
+        "13": [
+          5,
+          1,
+          0,
+          7
+        ],
+        "11": [
+          3,
+          4,
+          2,
+          7
+        ]
+      },
+      "n_ablated": 11,
+      "n": 2000,
+      "acc_top1": 0.045,
+      "acc_top5": 0.089,
+      "mean_logit_B": 3.682780029296875,
+      "loss": 8.3944296875
+    }
+  ]
+}
