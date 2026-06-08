@@ -88,7 +88,7 @@ Applying the all-head capability-specific screen (induction selectivity ≥50×)
 | OLMo 1B (3-head circuit) | step1000-tokens2B | step5000-tokens10B | step1454000-tokens3048B (final) | ~0.3% |
 | OLMoE 1B-7B (4-head circuit) | step5000-tokens20B | step10000-tokens41B | step400000-tokens1677B | ~0.8% |
 
-The screen identifies most of the final-checkpoint induction circuit using a small fraction of the training budget — 0.3% to 2% across the three models. For practical purposes: you do not need the final model to find induction heads. An intermediate checkpoint at 10–25B tokens already has the circuit.
+The screen identifies most of the final-checkpoint induction circuit using a small fraction of the training budget — 0.3% to 2% across the three models. For practical purposes: you do not need the final model to find induction heads. An intermediate checkpoint at 10–25B tokens already has most of the circuit — though this is *recall*, not identity: the set passing the screen at that point also contains strong heads that later drop out (Finding 6).
 
 ## Finding 5: Per-head PR trajectories rise before induction selectivity does
 
@@ -109,11 +109,25 @@ For each final-checkpoint induction head, the per-revision PR trajectory and ind
 
 PR rises sharply at 0.5B tokens; induction selectivity crosses 50× at 6B tokens — a ~12× lead in token count. Same pattern for the other final-checkpoint induction heads (Pythia L7_H1, L7_H0; OLMo L2_H11, L4_H12, L12_H8; OLMoE L7_H0, L9_H8, L5_H10, L12_H14): PR is already elevated by the time induction selectivity crosses threshold.
 
-The spectral signal precedes the capability-pattern signal *for the heads that end up induction-selective*. That is not the same as the PR-integral top-K identifying induction heads specifically: in attention-sink-dominated 1B models the top-K by PR-integral is dominated by L0/L1 generic content-dependent heads, not the induction circuit. PR-integral is a general "specialized computation" indicator; the capability-specific screen disambiguates which specialized computation each head is doing.
+The spectral signal precedes the capability-pattern signal *for the heads that end up induction-selective*. That is not the same as the PR-integral top-K identifying induction heads specifically: in attention-sink-dominated 1B models the top-K by PR-integral is dominated by L0/L1 generic content-dependent heads, not the induction circuit. PR-integral is a general "specialized computation" indicator; the capability-specific screen disambiguates which specialized computation each head is doing. The PR↔selectivity coupling is also not specific to survivors: for the decay-out heads of Finding 6, PR rises with their induction selectivity and *falls* with it as they shed the pattern.
+
+## Finding 6: The induction circuit turns over during training
+
+Finding 4 measured *recall* — how fast the final heads appear. Screening every head independently at each revision (rather than tracking the final circuit backward) asks the complementary question: at an intermediate revision, are the passing heads *only* the eventual final heads? They are not — the circuit's membership turns over substantially.
+
+Taking the formation circuit to be the heads passing the ≥50× screen at the first revision any head does, its Jaccard overlap with the final circuit is **0.33 (Pythia), 0.33 (OLMo), 0.29 (OLMoE)** — about a third of the combined heads, robust across screen thresholds from 30× to 100× (Jaccard 0.2–0.5, never near 1). Turnover runs both ways:
+
+- **Heads join late** — Pythia L7_H0 (absent at formation → 113× final); OLMoE L9_H8 (25× → 165×); OLMo L12_H8 (1× → 56×).
+- **Strong early heads decay out** — in OLMoE the two highest-selectivity heads at formation, L7_H15 (165×) and L6_H1 (156×), fall to 3× and 1×; Pythia L5_H7, co-leading at formation (164× vs L4_H4's 172×), decays to the screen threshold. (OLMo's low overlap is pure accretion — heads join, none drop.)
+
+**Turnover is specific to functional circuits, not the sink.** The first-token/BOS class *only accretes* — it grows from a handful of heads at formation to dozens or hundreds (7→63 Pythia, 11→202 OLMo, 4→176 OLMoE) with **zero dropouts at any threshold in any model**. Once a head becomes a sink it stays one. The specialized circuits do the opposite: induction sheds heads, and in the MoE the previous-token and self classes also churn (self drops 9–30 across thresholds), whereas the dense models show only marginal churn. Turnover — a head losing a learned pattern — is a property of specialized computation, not the attention sink, and is broadest in the MoE.
+
+The induction *function* emerges early (Finding 4) and is developmentally stable; its *circuit-level implementation* is not. The induction-phase-transition installs the function early, but the specific heads carrying it keep turning over well past it.
 
 ## Methodology consequences
 
 - The recipe is predictive, not retrospective. The capability-specific screen at 1–10% of total training tokens identifies most of the final-checkpoint circuit; the final model is not required.
+- Circuit *identity* fixes only late, even though circuit *size* and *recall* converge within ~1% of training — an intermediate checkpoint recovers most final heads but over-includes transient ones, and strong early heads can decay out entirely (Finding 6).
 - "Phase transition in attention" needs disambiguation. In DCLM 1B models, induction-circuit formation and BOS-attractor formation are separated by 10–20× in tokens — two transitions, not one.
 - L0/L1 zero-BOS is an architectural constraint rather than a learned outcome. An account of the attention-sink mechanism needs to explain why the gradient signal never installs BOS heads at L0/L1, at any point during training.
 
